@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Start2Code - Belajar Koding Jadi Mudah!</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <style type="text/tailwindcss">
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F0F9FF;
+        }
+
+        .primary-gradient {
+            background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+        }
+
+        .secondary-gradient {
+            background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+      
+
+       
+        
+       
+
+        .deadline-marker {
+            @apply absolute -left-[9px] top-0 w-4 h-4 bg-blue-500 rounded-full border-2 border-white;
+        }
+    </style>
+</head>
+
+<body class="flex min-h-screen">
+
+    <aside class="w-64 bg-white shadow-lg p-6 flex flex-col justify-between">
+        <div>
+            <div class="flex items-center space-x-3 mb-10">
+                <img alt="Start2Code Logo" class="h-10 w-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDZ3l6qPfkg2_z_2DOyGzAu0Kr0Ggo1w6pU0OoXjvGAAm30NcvO9GxTgxmqOPEmX4LYV9rSKJyRzW0ZQSvW6wWJoFsd97c12bieY06tbZO-X9HiIS46jGvIqC2ohPa_ZamwxQoKJAiJXou9HTuXfOcktZliGW7wLD9iCqqTiR1eumRxOHIEq96uA_b7o5y5Uuyhoc1uEOzFbPhvqdPqxM2rxxcQL85m8SnGe9_3Pml50Gl85wOT69grg9VtUbw3vch_vyhXz3FLz8K" />
+                <h1 class="text-2xl font-bold text-blue-600">Start2Code</h1>
+            </div>
+            <nav class="space-y-2">
+                <a class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition duration-150 ease-in-out bg-blue-500 text-white shadow-md" href="#">
+                    <span class="material-icons">home</span>
+                    <span>Home page</span>
+                </a>
+                <a class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition duration-150 ease-in-out" href="#">
+                    <span class="material-icons">menu_book</span>
+                    <span>Modul Pembelajaran</span>
+                </a>
+                <a class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition duration-150 ease-in-out" href="#">
+                    <span class="material-icons">videocam</span>
+                    <span>Zoom/Meet</span>
+                </a>
+                <a class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition duration-150 ease-in-out" href="#">
+                    <span class="material-icons">forum</span>
+                    <span>Forum diskusi</span>
+                </a>
+                <a class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition duration-150 ease-in-out" href="#">
+                    <span class="material-icons">headset_mic</span>
+                    <span>Konsultasi</span>
+                </a>
+                <a class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition duration-150 ease-in-out" href="#">
+                    <span class="material-icons">bar_chart</span>
+                    <span>Statistik</span>
+                </a>
+                <a class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition duration-150 ease-in-out" href="#">
+                    <span class="material-icons">auto_awesome</span>
+                    <span>AI Assistant</span>
+                </a>
+            </nav>
+        </div>
+        <div class="mt-auto">
+            <a class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition duration-150 ease-in-out" href="#">
+                <span class="material-icons">account_circle</span>
+                <span>Akun</span>
+            </a>
+            <a class="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition duration-150 ease-in-out mt-2 text-red-500 hover:bg-red-100 hover:text-red-600" href="#">
+                <span class="material-icons">logout</span>
+                <span>Keluar</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="flex-1 p-8 overflow-y-auto">
+        <header class="flex justify-between items-center mb-8">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800">Hai, Sabrina!</h2>
+                <p class="text-gray-600">Yuk, mulai petualangan seru belajar bersama!</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-gray-500 hover:text-blue-600 transition duration-150 ease-in-out">
+                    <span class="material-icons text-3xl">notifications_none</span>
+                </button>
+                <button class="text-gray-500 hover:text-blue-600 transition duration-150 ease-in-out">
+                    <span class="material-icons text-3xl">chat_bubble_outline</span>
+                </button>
+            </div>
+        </header>
+
+        <section class="mb-10">
+            <div class="primary-gradient rounded-xl p-8 text-white card-shadow">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-semibold">Deadline Pengumpulan Tugas</h3>
+                    <div class="flex space-x-2">
+                        <button class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white font-medium py-2 px-4 rounded-lg text-sm transition">Program Saya</button>
+                        <button class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white font-medium py-2 px-4 rounded-lg text-sm transition">Deadline</button>
+                        <button class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white font-medium py-2 px-4 rounded-lg text-sm transition">PROCODECG's</button>
+                        <button class="bg-white bg-opacity-20 hover:bg-opacity-30 text-white font-medium py-2 px-4 rounded-lg text-sm transition">Event</button>
+                    </div>
+                </div>
+                <div class="bg-white bg-opacity-90 p-6 rounded-lg shadow-inner text-gray-800">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="text-sm text-blue-600 font-semibold bg-blue-100 px-3 py-1 rounded-full mb-2 inline-block">16th Regular Coding Class</span>
+                            <h4 class="text-xl font-bold mb-1">Web Programming</h4>
+                            <p class="text-gray-600 text-sm">Pembelajaran Web dari nol! Dari SellerPintar.com dengan HTML & CSS.</p>
+                        </div>
+                        <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 transform hover:scale-105">Mulai Belajar</button>
+                    </div>
+                    <div class="mt-4">
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                            <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 45%"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1 text-right">45% Selesai</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Deadline Pengumpulan Tugas</h3>
+            <div class="bg-white rounded-xl p-6 card-shadow">
+                <div class="relative">
+                    <div class="relative pl-8 pb-8">
+                        <div class="ml-4 flex items-center justify-center h-full">
+                            <div class="text-center text-gray-500 py-8">
+                                <span class="material-icons text-6xl mb-2 text-gray-400">manage_search</span>
+                                <p class="text-lg font-medium">Tidak ada timeline saat ini.</p>
+                                <p class="text-sm">Silakan cek kembali nanti atau tambahkan timeline baru.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Program Start2Code</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl p-6 card-shadow hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-full h-40 bg-gray-200 rounded-lg mb-4 overflow-hidden">
+                        <img alt="Kids Regular Coding Class" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGcGO2qrA1w-rlrrBrZ1ve_SCI3Yz9KlHxwc6ooMaNhXsUsa6havFcW7gle34abjzzSyUswCHIzSwybXUmE-ih-0n5Cw6ZCaOJ5DTdRcYhSFsh9XL-tgtXM_AXEj1gt9TWm71CWv3gI_b1mgZsPNIThtBcNElGNxUpl5It64z2J1DX69IXPwrWUD5zK_XZ_Of__1IcrU0JcMckOjAogaBvpXIx5kKTuNljKq9tuVP3ibOcy4PTy8UjNz5sVqBQt0Q9HT5JAgZsauqD" />
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Kids Regular Coding Class</h4>
+                    <p class="text-sm text-gray-600 mb-4">Kelas koding reguler untuk anak-anak, belajar dasar pemrograman dengan menyenangkan.</p>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Lihat Detail</button>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-shadow hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-full h-40 bg-gray-200 rounded-lg mb-4 overflow-hidden">
+                        <img alt="Kids Weekday Coding Class" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFsa2JWmpjqlXlnxAH8pSNqc5TZ8X1veReB5SNAuYBlbgWKyHUpUiGi_U7Vyx5RBI4NYkF8TLNUPZ9mQvkUlVBhHvgUXDpWKTJyIqwP-rbT6u_yjaEPJRvBqwTUE0kgHEprAevF1J0hKhCSCQy6hAUMBA6Xjtc5s5fAbDAqgEXDCSEfrztupcBbnBUNS8Lfazgey_q7h9a8Np92nSauXtgK2SAJ0j8aBYf7CctDEQp020DvOPl-KFLK_ek8PIHIA4naXXPdsASrBqJ" />
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Kids Weekday Coding Class</h4>
+                    <p class="text-sm text-gray-600 mb-4">Kelas koding intensif di hari kerja untuk mengasah skill koding anak.</p>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Lihat Detail</button>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-shadow hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-full h-40 bg-gray-200 rounded-lg mb-4 overflow-hidden">
+                        <img alt="Coding Mom" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVTosCtds8fGorVwINcSyJgSdCR9Zr34SaNOKbuA9hhaXx_ouAoK0zv0Q9p92to182cPiqwDSltlZelb8G31T20DiKj190VCsfqGL1Y00lBZZqAobcM8p4v8ZmTj8HrBC_8AGgzkDAi7YytbGyTb7MXQ7dUb-pMN9bUpL5njVtsWZqk9t4-y3Yobhb5OmsKb7NFQ7vXp_udfC2k4hBhuoQr_5aoi1GLfdYY65uyZwn6YBk6qrxDKWQkng-MnuK8nYXaAe_a2kkSz4S" />
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Coding Mom</h4>
+                    <p class="text-sm text-gray-600 mb-4">Program khusus untuk para ibu yang ingin belajar koding dari dasar.</p>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Lihat Detail</button>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-shadow hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-full h-40 bg-gray-200 rounded-lg mb-4 overflow-hidden">
+                        <img alt="Online Private Class" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm8Yf395PClsIT9ClAQ6kErnlGOFuiaVK1m35zGPmU2Mz8H_vthP02ACbmtK6q4-GsrOcgSm0eU1nyH5WDJG-utpwCto1PbFSZBZUHmXrAcL0qi521zpiSGXGZtBOorNGVV7V7rvJFIGChcYdlxu2CIL-IvFzKjHgUS7mOdTlk2UT8sMChy7tEiBFTeshg4zYAt_QWD5J58LIAvoNf6dhqM3g2TzCqTvxlDmLlTAd0ayE5rkoIvjkBkKsfSkOvRsHmYuS6_2ejiDYr" />
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Online Private Class</h4>
+                    <p class="text-sm text-gray-600 mb-4">Belajar koding secara privat dan online dengan mentor berpengalaman.</p>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Lihat Detail</button>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-shadow hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-full h-40 bg-gray-200 rounded-lg mb-4 overflow-hidden">
+                        <img alt="Kids Coding Camp" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIXf3VCRydO9DKMWqFkJ_hAfbPEBfrLIYY_kMMfkk1fvD0pPeSqW_n_2ykUcGsVcfjzXr8Mo3zYIFEm6AmSRiBtD8uwXgxP9wrCAqraRXa27gDG3AyZYXDxzrF5lMHzuBOYfd2Gqbqgz43rt10Ojbsnby4TYcDaXyCuKkfUOb6_slR6rWKFmfnAboudRddIXgV_q_r_wcFhkn6UAcW22t-OQtXl9WtdmESA9ibKWewCCislwymeyiZknqtm2X9aE1lYZ_3nKuoAIbO" />
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Kids Coding Camp</h4>
+                    <p class="text-sm text-gray-600 mb-4">Camp koding seru selama liburan untuk anak-anak usia 7-15 tahun.</p>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Lihat Detail</button>
+                </div>
+                <div class="bg-white rounded-xl p-6 card-shadow hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-full h-40 bg-gray-200 rounded-lg mb-4 overflow-hidden">
+                        <img alt="Kids Coding Camp" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIXf3VCRydO9DKMWqFkJ_hAfbPEBfrLIYY_kMMfkk1fvD0pPeSqW_n_2ykUcGsVcfjzXr8Mo3zYIFEm6AmSRiBtD8uwXgxP9wrCAqraRXa27gDG3AyZYXDxzrF5lMHzuBOYfd2Gqbqgz43rt10Ojbsnby4TYcDaXyCuKkfUOb6_slR6rWKFmfnAboudRddIXgV_q_r_wcFhkn6UAcW22t-OQtXl9WtdmESA9ibKWewCCislwymeyiZknqtm2X9aE1lYZ_3nKuoAIbO" />
+                    </div>
+                    <h4 class="text-lg font-semibold text-gray-800 mb-2">Kids Coding Camp</h4>
+                    <p class="text-sm text-gray-600 mb-4">Camp koding seru selama liburan untuk anak-anak usia 7-15 tahun.</p>
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Lihat Detail</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Event Start2Code</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl card-shadow overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <img alt="Kids Online Coding Camp Mid Year 2025" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwjXAHuOJ-EyCtqZ8aT7yQRaTdMKQo0laOoL0rN657pyCGAIgPdRBjJ3cxOTkH-HE2-cMDhRLiW53dbmrNJqXxsIG4m9XGU0oMqFTFNPXTcx6r1f6ZERCqHA_T7kIGRFRyni0o84qLxkL0P-lyEUqZ4nodWSk-fEPIq79LUl9SFCRndjX4QBs95hfbJVIvYbc4AnbZusD5UdAnapp6lNnGDgnObX2-Ruzh1Z6KYYA_28HZBbwtZy28LFyLYTLge67H_-XitanrHhAu" />
+                    <div class="p-6">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2">Kids Online Coding Camp Mid-Year 2025</h4>
+                        <p class="text-sm text-gray-600 mb-4">Liburan tengah tahun jadi lebih produktif dengan coding camp online!</p>
+                        <button class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Daftar Sekarang</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl card-shadow overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <img alt="Kids Online Coding Camp" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALHAXQDmAJJQORxzRyxzpMrXOraSBzzEB1sWeLExw1SyHKmKnNRDUO5hTvxBxDd0t57H5dPdre7RkXwJ_3Yx8qfeoGzNqvBeuHrELHnbyRrJvQI4wnOvveZqK1fkYI76SlSXUHbgrFnxKTP1xXB9rBEmq0w-d3Hb2GxH_6v3PhT5dN04IZLqlGfiwDAqd6sYRyh00WhEx8zy2b7W5zAQ6nboZMHpRH5t5-3gKYt1di53xyGogKK3OcclrAXNfO3LfaGnBFXTCG7oDa" />
+                    <div class="p-6">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2">Kids Online Coding Camp</h4>
+                        <p class="text-sm text-gray-600 mb-4">Belajar koding dari rumah dengan mentor profesional dan kurikulum terstruktur.</p>
+                        <button class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Daftar Sekarang</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl card-shadow overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <img alt="Kids Online Coding Camp Event" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDr0IvUn2tox8MLRnj-hAn9baYRnkD3HV6rdkhzWcLmVGt_QVqGY7mDynf5rOsxmrNc8v3kERp5yJsbfnKgNQ92Z0hlCM93Z9F3piCpSYwwP8EcO8Y6ckQPmgocS_1EyYLrlGxmJrspD2LCgRx7W325YMUgyIHYq1Utvas06iDiEG6lypSHExd6n2ELUwVt5KV2U94Q4aMZ_LLHMUz6l83JUdsnBPf_bTQFQYhQheC-tcx4UjC3EPeAvmloaokaJPrDShmpxV1BZIfH" />
+                    <div class="p-6">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2">Kids Online Coding Camp (Special Edition)</h4>
+                        <p class="text-sm text-gray-600 mb-4">Edisi spesial coding camp dengan materi dan proyek yang lebih menantang.</p>
+                        <button class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Daftar Sekarang</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-6">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Dokumentasi</h3>
+            <div class="bg-white rounded-xl p-1 card-shadow">
+                <img alt="Dokumentasi ProcodeCG's" class="w-full h-auto rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApLO8BL15x3yympBfaZNmJ_R1NOPzRbbUPOl_Jg4mzSBWzEYcEFL-BxbcSvcr0XbzFdkPrQERyCW1PF1IBD3GysG5fbHNUcaxZYam5gbh52tOcASWHvkw9s4ukiuWvhYclF9VVCx0VNnKh1q6tyjPpLLDYGWQtFgYBqyKSIIFRJFLlUuEA5wU_E9zme3vulRbL50iC4sknPuTLik6Fh_eIRPD4e1LObL_JSIbbgi2X-AIZTSlhHbGEKqS5Ls-zFEn1MdW1ljWDbAPu" />
+            </div>
+        </section>
+    </main>
+
+    <aside class="w-80 bg-white shadow-lg p-6 space-y-6 hidden lg:block">
+        <div class="flex flex-col items-center text-center">
+            <img alt="Avatar Sabrina Yuanti" class="w-24 h-24 rounded-full mb-3 border-4 border-blue-200 shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsVLdsreqFV6gE-iaeo2tbo_9VQnLl2Aa1axBE66LlE4aUnjerdiH6xNbScWmcjyQ9iUha0JDqzrp9bm_8Bmrud5EO-nx-bp9HVavll20Q6kS0_vnKm997edYRSuyMCcDlTsumvehoBXd4zCrgmKLjCdbncXz7baajEMvWM_05yggm82rSJ1EIY7PdCUKTG6HF5Qct_TfIG7BmeIHHVhZ5anEozR7QCpVELwBgy7pa6U7dDtp-xyq_GQP1MgeqzxiORvWr3eGQOi0_" />
+            <h4 class="text-lg font-semibold text-gray-800">Sabrina Yuanti</h4>
+            <p class="text-sm text-gray-500">Member</p>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg shadow">
+            <h5 class="font-semibold text-gray-700 mb-2">Mentor Saya</h5>
+            <div class="flex items-center space-x-3">
+                <img alt="Avatar Mentor" class="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwFU9j6igS72YF9FB7jzejvg-l4smuJx366xccS4C0-Toc2f38GdwLq9LABMpek3F1HHluhfA6C7O4jsUcr0qRnNdhWOT6p5NIVITrc4CGeP2fs45GjjXfNtAVyJTlWrNJycdxkwledei7tLarqG2wIJhrZ3-TcGCpIf80sXxLq7-q9GcfvxzqJaYpVBtvzUlawDbczAQwInwS4z-kiZX-N3ulrkl6LKmglxeu1yZ6SyjOvqGXH6BclkCnI0j15vzMnunBOq9pyV9Z" />
+                <div>
+                    <p class="text-sm font-medium text-gray-800">Lisa Amalia</p>
+                    <p class="text-xs text-gray-500">Web Developer Expert</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg shadow">
+            <h5 class="font-semibold text-gray-700 mb-3">Progres Belajar</h5>
+            <div class="flex justify-center">
+                <div class="w-32 h-32 relative">
+                    <svg class="w-full h-full" viewBox="0 0 36 36">
+                        <path class="text-gray-200" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3.8"></path>
+                        <path class="text-blue-500" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="70, 100" stroke-linecap="round" stroke-width="3.8"></path>
+                    </svg>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                        <span class="text-2xl font-bold text-blue-600">70%</span>
+                        <span class="text-xs text-gray-500">Selesai</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-gray-50 p-4 rounded-lg shadow">
+            <h5 class="font-semibold text-gray-700 mb-3">Sertifikat</h5>
+            <div class="space-y-2">
+                <div class="flex items-center justify-between p-3 bg-white rounded-md shadow-sm hover:bg-blue-50 transition">
+                    <div class="flex items-center space-x-2">
+                        <span class="material-icons text-yellow-500">workspace_premium</span>
+                        <span class="text-sm text-gray-700">Dasar HTML & CSS</span>
+                    </div>
+                    <span class="material-icons text-gray-400 hover:text-blue-500 cursor-pointer">download</span>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-white rounded-md shadow-sm hover:bg-blue-50 transition">
+                    <div class="flex items-center space-x-2">
+                        <span class="material-icons text-yellow-500">workspace_premium</span>
+                        <span class="text-sm text-gray-700">Javascript Fundamental</span>
+                    </div>
+                    <span class="material-icons text-gray-400 hover:text-blue-500 cursor-pointer">download</span>
+                </div>
+            </div>
+            <button class="mt-3 w-full text-sm text-blue-600 hover:text-blue-800 font-medium py-2 rounded-lg border border-blue-300 hover:bg-blue-100 transition">Lihat Semua</button>
+        </div>
+    </aside>
+
+    <footer class="fixed bottom-0 left-0 w-full bg-gray-800 text-white p-4 shadow-md z-50 hidden">
+        <div class="container mx-auto flex justify-between items-center">
+            <p class="text-sm">© 2024 Start2Code. Hak Cipta Dilindungi.</p>
+            <div class="flex space-x-4">
+                <a class="hover:text-blue-400" href="#"><img alt="LinkedIn" class="h-6 w-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5Qu8eYKU1yz9qNI1uO9PxckgaiG8BrFiRck34l7ORsGDzmEhQ7Du4SbOdQHB6mff65XEGBiIhnHALBIyThu9osvYZg-50kbGgldE_G_GDFTsUo9IDfO1tM-_4vWorCJbWoINq4z7LcEM3wQ-OqN5ZU8McGw8fAazKcbkNJ-YvwdeNAFwTrJgl65d0blxNZzsPhx62YZ9Ga7emDm0sKydTWKkwkqdYRLk30XBcXu9eH-SJ0XdBUJ6RiW1eKa7KCRCTWYLqDbEaLJg_" /></a>
+                <a class="hover:text-pink-400" href="#"><img alt="Instagram" class="h-6 w-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA37kaKuTCL1kxFCOV-UUmsQ8MgCGReiPLwEap9MuYiKcfX6BhsM5ZAWZqnLBXFTt0zoTCs5pUd1IBNnVNpqYRFwqWjBHFb3d7pliTLIcF9WHtIQVrZzRRa19fnPxEWqW-HzxqITuvkrRynJdBB0b9CL1QRAFFgtJ2WMVPc7ZFTShNMLSZTDRkFPHkJPf3aRIKFVA5RC4WQUpUAsFuGoX215_fzhcqza6VTssTNtrwn3tKEz_IYEwKuAfGDM3ujZn9e_A7TsFpc04Jp" /></a>
+                <a class="hover:text-blue-400" href="#"><img alt="Facebook" class="h-6 w-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkacYEFXIS3rcSAvdzmeR-4mcNK0p4-8Gmwk44jzNngXcAS6JJUm3qwgw3d2SaGP6m44VGiswzkovEtz9ffmvmtzgzequziRlxbGKnVc-eLPOZAMZzgKP2ITjdwf0E0kmNeTqqkzh0nhqzEBgqrz4aw3r0QMdHCxzebaE0HWrYnT859QsLo0jhs_NfRqwBMSu8sBzX6PARduss4wb3RZfT5BHWzqtNRSSecrzDUVlVWtVP8qqkNRh9Bm5URrhvgiJJQM_IUjToVO-e" /></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
+```
