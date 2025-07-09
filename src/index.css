@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F0F9FF;
+        }
+
+        .primary-gradient {
+            background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+        }
+
+        .secondary-gradient {
+            background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
