@@ -2,11 +2,11 @@ import List from "./List";
 const Side = (props) => {
     const{name, jenis} = props;
     return(
-        <nav className="space-y-2">
+        <div>
             
             <List variant={jenis}>{name}</List>
                                 
-        </nav>
+        </div>
     );
 };
 export default Side;
