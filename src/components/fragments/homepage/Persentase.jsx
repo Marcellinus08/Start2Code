@@ -1,5 +1,5 @@
-import StatusPersentase from "../elements/StatusPersentase";
-import BarPersentase from "../elements/BarPersentase";
+import StatusPersentase from "../../elements/homepage/StatusPersentase";
+import BarPersentase from "../../elements/homepage/BarPersentase";
 const Persentase = (props) => {
     const {jumlah} = props;
     return(

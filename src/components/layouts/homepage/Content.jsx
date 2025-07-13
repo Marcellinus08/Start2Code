@@ -1,10 +1,12 @@
-import Header from "../fragments/Header";
-import MainContent from "../fragments/MainContent";
-import TypeTitle from "../elements/TypeTitle";
-import FontContent from "../fragments/FontContent";
-import Persentase from "../fragments/Persentase";
-import CardProgram from "../fragments/CardProgram";
-import TitleContent from "../fragments/TitleContent";
+import React from "react";
+import Header from "../../fragments/homepage/Header";
+import MainContent from "../../fragments/homepage/MainContent";
+import TypeTitle from "../../elements/homepage/TypeTitle";
+import FontContent from "../../fragments/homepage/FontContent";
+import Persentase from "../../fragments/homepage/Persentase";
+import CardProgram from "../../fragments/homepage/CardProgram";
+import TitleContent from "../../fragments/homepage/TitleContent";
+
 const Content = () => {
     return (
         <main className="flex-1 p-8 overflow-y-auto ml-64 mr-80">

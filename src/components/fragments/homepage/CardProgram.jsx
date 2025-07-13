@@ -1,5 +1,6 @@
-import CardImage from "../elements/CardImage";
-import ContentCard from "../elements/ContentCard";
+import CardImage from "../../elements/homepage/CardImage";
+import ContentCard from "../../elements/homepage/ContentCard";
+
 const CardProgram = (props) => {
     const {image, title, description} = props;
     return(

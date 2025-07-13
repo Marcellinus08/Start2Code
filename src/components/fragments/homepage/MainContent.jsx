@@ -1,4 +1,4 @@
-import AnchorMain from "../elements/AnchorMain";
+import AnchorMain from "../../elements/homepage/AnchorMain";
 const MainContent = (props) => {
     const {name,} = props;
     return(

@@ -1,6 +1,6 @@
-import Profile from "../elements/Profile";
-import Mentor from "../elements/Mentor";
-import Progres from "../elements/Progres";
+import Profile from "../../elements/homepage/Profile";
+import Mentor from "../../elements/homepage/Mentor";
+import Progres from "../../elements/homepage/Progres";
 const SidebarRightList = (props) => {
     const{name, bidang, name_mentor, persen, status} = props;
     return(

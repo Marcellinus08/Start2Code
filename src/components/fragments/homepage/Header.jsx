@@ -1,4 +1,5 @@
-import Greeting from "../elements/Greeting";
+import Greeting from "../../elements/homepage/Greeting";
+
 const Header = (props) => {
     const {hello, letsgo} = props;
     return(
