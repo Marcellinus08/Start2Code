@@ -4,7 +4,7 @@ import Modul from './pages/ModulPembelajaran';
 import Meet from './pages/Meet';
 // import NotFound from './pages/NotFound';
 
-const App = () => {
+function App () { 
   return (
     <Router>
       <Routes>

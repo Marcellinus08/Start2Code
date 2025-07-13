@@ -10,7 +10,7 @@ const ProgressBar = (props) => {
       </div>
       <p className="text-xs text-gray-500 mb-3 text-right">
         {value}% Selesai
-    </p>
+      </p>
     </div>
   );
 };
