@@ -14,7 +14,7 @@ const SidebarLeft = () => {
                     <SidebarListLeft jenis="forum" name="Forum diskusi" to="/forum"></SidebarListLeft>
                     <SidebarListLeft jenis="headset_mic" name="Konsultasi" to="/konsultasi"></SidebarListLeft>
                     <SidebarListLeft jenis="bar_chart" name="Statistik" to="/statistik"></SidebarListLeft>
-                    <SidebarListLeft jenis="auto_awesome" name="Compiler & AI" to="/ai & compiler"></SidebarListLeft>
+                    <SidebarListLeft jenis="auto_awesome" name="Compiler & AI" to="/compilerai"></SidebarListLeft>
                 </nav>
             </div>
             <div>
