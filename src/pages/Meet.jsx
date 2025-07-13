@@ -1,7 +1,7 @@
 import React from "react";
 import SidebarLeft from "../components/layouts/homepage/SidebarLeft";
 
-const Modul = () => {
+const Meet = () => {
     return (
         <div className="flex min-h-screen">
             <SidebarLeft />
@@ -9,4 +9,4 @@ const Modul = () => {
     );
 };
 
-export default Modul;
+export default Meet;
