@@ -1,0 +1,68 @@
+import ContentCard from "../../../elements/modulpembelajaran/modul/ContentCard";
+
+const ModulSection = () => {
+  const modules = [
+    {
+      title: "Algorithm & Data Structure",
+      icon: "integration_instructions",
+      desc: "Pahami konsep fundamental algoritma...",
+      progress: 75,
+      color: "green",
+    },
+    {
+      title: "Game Programming",
+      icon: "sports_esports",
+      desc: "Pelajari dasar-dasar pengembangan game...",
+      progress: 50,
+      color: "pink",
+    },
+    {
+      title: "Web Programming",
+      icon: "code",
+      desc: "Kuasai teknologi untuk membangun aplikasi web...",
+      progress: 25,
+      color: "blue",
+    },
+    {
+      title: "Application Programming",
+      icon: "widgets",
+      desc: "Kembangkan aplikasi desktop atau mobile...",
+      progress: 7,
+      color: "purple",
+    },
+    {
+      title: "Crypto Programming",
+      icon: "enhanced_encryption",
+      desc: "Selami dunia kriptografi...",
+      progress: 0,
+      color: "yellow",
+    },
+    {
+      title: "Basic Hardware Programming",
+      icon: "memory",
+      desc: "Pelajari interaksi antara perangkat keras dan lunak...",
+      progress: 0,
+      color: "teal",
+    },
+  ];
+
+  return (
+    <section className="mb-10 rounded-xl">
+      <h3 className="text-2xl font-semibold text-gray-800 mb-4">Modul Saya</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {modules.map((modul, i) => (
+          <ContentCard
+            key={i}
+            title={modul.title}
+            icon={modul.icon}
+            desc={modul.desc}
+            progress={modul.progress}
+            color={modul.color}
+          />
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default ModulSection;
