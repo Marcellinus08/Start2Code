@@ -1,10 +1,9 @@
-const CardButton = (props) => {
-    const { variant } = props;
-    return (
-        <button class={`w-full btn-primary text-sm mt-auto bg-${variant}-500 hover:bg-${variant}-600}`}>
-            Mulai Belajar
-        </button>
-    );
+const CardButton = () => {
+  return (
+    <button className="w-full text-sm mt-auto font-semibold py-3 px-6 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition duration-300 ease-in-out">
+      Mulai Belajar
+    </button>
+  );
 };
 
 export default CardButton;
