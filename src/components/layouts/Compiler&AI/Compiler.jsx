@@ -155,7 +155,7 @@ const Compiler = () => {
   };
 
   return (
-    <div className="h-screen bg-[#F4F6F8] text-gray-800 flex-col flex-1 overflow-y-auto ml-64">
+    <div className="h-screen bg-[#F4F6F8] text-gray-800 flex-col flex-1 overflow-y-auto ml-64 mr-106">
       <main className="flex flex-1 overflow-hidden">
         <section className="flex flex-col flex-[2] p-6 space-y-4 overflow-auto">
           <h1 className="text-2xl font-bold">Compiler & AI Assistant</h1>
@@ -214,7 +214,7 @@ const Compiler = () => {
           </div>
         </section>
 
-        <section className="flex flex-col flex-[1] bg-white border-l border-gray-200 p-4 space-y-4">
+        <section className="flex flex-col flex-[1] bg-white border-l border-gray-200 p-4 space-y-4 h-screen fixed top-0 right-0">
           <h2 className="text-xl font-bold">AI Assistant</h2>
           <div className="flex-1 overflow-y-auto space-y-3 px-1">
             <Bubble type="ai" text="Halo! Ada yang bisa saya bantu dengan kodenya?" />
