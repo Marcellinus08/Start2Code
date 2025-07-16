@@ -12,8 +12,8 @@ const ContentCard = (props) => {
       <h4 className="text-lg font-semibold text-gray-800 mb-2">{title}</h4>
       <p className="text-sm text-gray-600 mb-4 flex-grow whitespace-pre-line">{desc}</p>
       <div className="mt-auto">
-        <ProgressBar value={progress} />
-        <CardButton />
+        <ProgressBar value={progress} color={color} />
+        <CardButton color={color} />
       </div>
     </div>
   );

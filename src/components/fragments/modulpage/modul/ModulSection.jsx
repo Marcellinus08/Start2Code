@@ -27,14 +27,14 @@ const ModulSection = () => {
       title: "Application Programming",
       icon: "widgets",
       desc: "Kembangkan aplikasi desktop atau mobile dengan berbagai bahasa pemrograman dan framework populer.",
-      progress: 7,
+      progress: 10,
       color: "purple",
     },
     {
       title: "Crypto Programming",
       icon: "enhanced_encryption",
       desc: "Selami dunia kriptografi dan pelajari cara mengamankan data dan komunikasi digital.",
-      progress: 0,
+      progress: 7,
       color: "yellow",
     },
     {
