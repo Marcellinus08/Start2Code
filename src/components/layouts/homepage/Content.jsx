@@ -95,7 +95,7 @@ const Content = () => {
                 </div>
             </section> */}
 
-            <section className="mb-10">
+            <section>
     <TitleContent name="Event Start2Code"></TitleContent>
     
     {/* <div className="flex overflow-x-auto gap-6 pb-4 scrollbar-hide"> 
@@ -139,13 +139,6 @@ const Content = () => {
     </div> */}
     <EventList></EventList>
 </section>
-
-            <section className="mb-6">
-                <TitleContent name="Dokumentasi"></TitleContent>
-                <div className="bg-white rounded-xl p-1 card-shadow">
-                    <img alt="Dokumentasi ProcodeCG's" className="w-full h-auto rounded-lg object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApLO8BL15x3yympBfaZNmJ_R1NOPzRbbUPOl_Jg4mzSBWzEYcEFL-BxbcSvcr0XbzFdkPrQERyCW1PF1IBD3GysG5fbHNUcaxZYam5gbh52tOcASWHvkw9s4ukiuWvhYclF9VVCx0VNnKh1q6tyjPpLLDYGWQtFgYBqyKSIIFRJFLlUuEA5wU_E9zme3vulRbL50iC4sknPuTLik6Fh_eIRPD4e1LObL_JSIbbgi2X-AIZTSlhHbGEKqS5Ls-zFEn1MdW1ljWDbAPu" />
-                </div>
-            </section>
             
         </main>
         
