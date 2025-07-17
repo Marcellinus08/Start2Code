@@ -258,7 +258,7 @@ const Compiler = () => {
             )}
           </div>
         </section>
-        <section className="flex flex-col flex-[1] bg-white border-l border-gray-200 p-4 space-y-4 h-screen fixed top-0 right-0">
+        <section className="flex flex-col w-[425px] bg-white border-l border-gray-200 p-4 space-y-4 h-screen fixed top-0 right-0">
           <h2 className="text-xl font-bold">AI Assistant</h2>
           <div className="flex-1 overflow-y-auto space-y-3 px-1">
             {messages.map((msg, i) => <Bubble key={i} type={msg.type} text={msg.text} />)}
