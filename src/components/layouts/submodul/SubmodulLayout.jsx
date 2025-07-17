@@ -1,5 +1,6 @@
-import Header from "../fragments/global/Header";
-import SidebarLeft from "../elements/global/SidebarLeft";
+import Header from "../../fragments/modulpage/submodul/Header";
+import SidebarLeft from "../homepage/SidebarLeft";
+
 
 const SubmodulLayout = (props) => {
     const { children, title, desc } = props;
