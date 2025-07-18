@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Editor from "@monaco-editor/react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
@@ -27,6 +27,9 @@ const Compiler = () => {
   const [chatSession, setChatSession] = useState(null);
   const [selectedCode, setSelectedCode] = useState("");
   const [refactorSuggestion, setRefactorSuggestion] = useState("");
+
+  const chatEndRef = useRef(null);
+  const outputRef = useRef(null);
 
   useEffect(() => {
     const initChat = async () => {
@@ -76,6 +79,10 @@ const Compiler = () => {
       setSourceCode("");
     }
   }, [language]);
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   const getMonacoLanguage = (langId) => {
     switch (parseInt(langId)) {
@@ -141,6 +148,7 @@ const Compiler = () => {
           }
 
           setLoading(false);
+          setTimeout(() => outputRef.current?.scrollIntoView({ behavior: "smooth" }), 100);
         }
       };
       fetchResult();
@@ -154,6 +162,7 @@ const Compiler = () => {
     if (!inputMessage.trim()) return;
     setMessages((prev) => [...prev, { type: "user", text: inputMessage }]);
     setInputMessage("");
+    setIsAITyping(true);
     try {
       if (!chatSession) throw new Error("Chat session belum siap");
       const result = await chatSession.sendMessage(inputMessage);
@@ -163,6 +172,8 @@ const Compiler = () => {
     } catch (err) {
       console.error(err);
       setMessages((prev) => [...prev, { type: "ai", text: "Maaf, terjadi kesalahan saat meminta ke AI." }]);
+    } finally {
+      setIsAITyping(false);
     }
   };
 
@@ -170,6 +181,7 @@ const Compiler = () => {
     if (!selectedCode || !chatSession) return;
     const prompt = `Jelaskan secara singkat dan jelas maksud dari kode berikut:\n\n${selectedCode}`;
     setMessages((prev) => [...prev, { type: "user", text: prompt }]);
+    setIsAITyping(true);
     try {
       const result = await chatSession.sendMessage(prompt);
       const response = await result.response;
@@ -178,8 +190,13 @@ const Compiler = () => {
     } catch (err) {
       console.error(err);
       setMessages((prev) => [...prev, { type: "ai", text: "Maaf, terjadi kesalahan saat menjelaskan kode." }]);
+    } finally {
+      setIsAITyping(false);
     }
   };
+
+  const [isAITyping, setIsAITyping] = useState(false);
+
 
   return (
     <div className="h-screen text-gray-800 flex-col flex-1 overflow-y-auto ml-64 mr-106">
@@ -240,7 +257,7 @@ const Compiler = () => {
               </button>
             )}
           </div>
-          <div className="bg-black text-white rounded-lg p-4 shadow">
+          <div className="bg-black text-white rounded-lg p-4 shadow" ref={outputRef}>
             <h3 className="font-semibold mb-2">Output:</h3>
             <pre className="whitespace-pre-wrap">{output}</pre>
             {details.status && (
@@ -262,6 +279,14 @@ const Compiler = () => {
           <h2 className="text-xl font-bold">AI Assistant</h2>
           <div className="flex-1 overflow-y-auto space-y-3 px-1">
             {messages.map((msg, i) => <Bubble key={i} type={msg.type} text={msg.text} />)}
+            {isAITyping && (
+              <div className="flex justify-start">
+                <div className="px-4 py-2 rounded-lg text-sm bg-gray-100 text-gray-600 animate-pulse max-w-[90%]">
+                  AI sedang mengetik...
+                </div>
+              </div>
+            )}
+            <div ref={chatEndRef} />
           </div>
           <div className="relative mt-auto">
             <input
