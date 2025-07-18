@@ -1,6 +1,5 @@
 import Header from "../../fragments/modulpage/submodul/Header";
 
-
 const KonsultasiLayout = (props) => {
     const { children } = props;
     return (

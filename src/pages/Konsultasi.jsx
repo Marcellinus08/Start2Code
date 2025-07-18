@@ -12,9 +12,8 @@ const Konsultasi = () => {
 
       <main className="ml-64 flex-1 p-8 overflow-auto w-full">
         <Header
-          title="Booking Konsultasi"
-          desc="Lakukan konsultasi dengan mentor apabila anda masih bingung."
-        />
+          title="Konsultasi"
+          desc="Lakukan konsultasi dengan mentor apabila anda masih bingung."/>
 
         <div className="bg-white p-6 rounded-xl shadow-lg mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
