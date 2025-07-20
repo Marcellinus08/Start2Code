@@ -8,7 +8,7 @@ const ContentAkun = () => {
             />
             
             <div className="bg-white p-8 rounded-2xl shadow-lg">
-                    <div className="flex flex-col md:flex-row items-center md:items-start md:space-x-8">
+                <div className="flex flex-col md:flex-row items-center md:items-start md:space-x-8">
                     <div className="relative mb-6 md:mb-0">
                         <img className="w-32 h-32 rounded-full border-4 border-blue-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsVLdsreqFV6gE-iaeo2tbo_9VQnLl2Aa1axBE66LlE4aUnjerdiH6xNbScWmcjyQ9iUha0JDqzrp9bm_8Bmrud5EO-nx-bp9HVavll20Q6kS0_vnKm997edYRSuyMCcDlTsumvehoBXd4zCrgmKLjCdbncXz7baajEMvWM_05yggm82rSJ1EIY7PdCUKTG6HF5Qct_TfIG7BmeIHHVhZ5anEozR7QCpVELwBgy7pa6U7dDtp-xyq_GQP1MgeqzxiORvWr3eGQOi0_" alt="Avatar Sabrina Yuanti" />
                         <button className="absolute bottom-1 right-1 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition">

@@ -1,4 +1,6 @@
 import { useEffect, useState, useRef } from "react";
+import Header from "../../fragments/modulpage/submodul/Header";
+
 import Editor from "@monaco-editor/react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
@@ -199,19 +201,18 @@ const Compiler = () => {
 
 
   return (
-    <div className="h-screen text-gray-800 flex-col flex-1 overflow-y-auto ml-64 mr-106">
-      <main className="flex flex-1 overflow-hidden">
-        <section className="flex flex-col flex-[2] p-6 space-y-4 overflow-auto">
-          <div>
-            <h2 className="text-3xl font-bold text-gray-800">Compiler & AI Assistant</h2>
-            <p className="text-gray-600">Tempat belajar coding secara interaktif. Jalankan program Anda, dan gunakan bantuan AI untuk memahami setiap bagian kode dengan mudah.</p>
-          </div>
+      <main className="flex flex-1 overflow-hidden p-8 ml-64 mr-106">
+        <section className="flex flex-col flex-[2] space-y-4 overflow-auto">
+          <Header
+                title="Compiler & AI Assistant"
+                desc="Tempat belajar coding secara interaktif dengan compiler dan AI Assistant"
+            />
           <div className="bg-white rounded-xl px-4 py-2 shadow">
             <div className="flex items-center justify-between gap-4">
               <h2 className="text-lg font-semibold">Compiler</h2>
               <div className="flex items-center gap-4 ml-auto">
                 <select
-                  className="border rounded-md px-3 py-1 text-sm"
+                  className="border rounded-md px-3 py-1.5 text-sm"
                   value={language}
                   onChange={(e) => setLanguage(e.target.value)}
                 >
@@ -306,7 +307,6 @@ const Compiler = () => {
           </div>
         </section>
       </main>
-    </div>
   );
 };
 
