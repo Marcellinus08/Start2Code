@@ -1,25 +1,18 @@
 import Header from "../../fragments/modulpage/submodul/Header";
+import Profile from "../../fragments/akun/Profile";
+import Username from "../../fragments/akun/Username";
 const ContentAkun = () => {
     return (
         <main className="flex-1 p-8 overflow-y-auto ml-64">
             <Header
                 title="Akun Saya"
-                desc="Lakukan konsultasi dengan mentor apabila anda masih bingung."
-            />
+                desc="Lakukan konsultasi dengan mentor apabila anda masih bingung."/>
             
             <div className="bg-white p-8 rounded-2xl shadow-lg">
                 <div className="flex flex-col md:flex-row items-center md:items-start md:space-x-8">
-                    <div className="relative mb-6 md:mb-0">
-                        <img className="w-32 h-32 rounded-full border-4 border-blue-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsVLdsreqFV6gE-iaeo2tbo_9VQnLl2Aa1axBE66LlE4aUnjerdiH6xNbScWmcjyQ9iUha0JDqzrp9bm_8Bmrud5EO-nx-bp9HVavll20Q6kS0_vnKm997edYRSuyMCcDlTsumvehoBXd4zCrgmKLjCdbncXz7baajEMvWM_05yggm82rSJ1EIY7PdCUKTG6HF5Qct_TfIG7BmeIHHVhZ5anEozR7QCpVELwBgy7pa6U7dDtp-xyq_GQP1MgeqzxiORvWr3eGQOi0_" alt="Avatar Sabrina Yuanti" />
-                        <button className="absolute bottom-1 right-1 bg-blue-500 text-white p-2 rounded-full hover:bg-blue-600 transition">
-                        <span className="material-icons">edit</span>
-                        </button>
-                    </div>
-
+                    <Profile img="https://lh3.googleusercontent.com/aida-public/AB6AXuCsVLdsreqFV6gE-iaeo2tbo_9VQnLl2Aa1axBE66LlE4aUnjerdiH6xNbScWmcjyQ9iUha0JDqzrp9bm_8Bmrud5EO-nx-bp9HVavll20Q6kS0_vnKm997edYRSuyMCcDlTsumvehoBXd4zCrgmKLjCdbncXz7baajEMvWM_05yggm82rSJ1EIY7PdCUKTG6HF5Qct_TfIG7BmeIHHVhZ5anEozR7QCpVELwBgy7pa6U7dDtp-xyq_GQP1MgeqzxiORvWr3eGQOi0_"/>
                     <div className="flex-1 w-full">
-                        <h3 className="text-2xl font-bold text-gray-800">Sabrina Yuanti</h3>
-                        <p className="text-gray-500">sabrina.yuanti@example.com</p>
-
+                        <Username name= "Sabrina Yuanti" email="sabrina@example.com"/>
                         <form className="mt-8 space-y-6">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
