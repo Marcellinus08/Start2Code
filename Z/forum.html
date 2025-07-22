@@ -1,148 +1,222 @@
 <!DOCTYPE html>
-<html lang="id">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Start2Code - Forum Diskusi</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <style type="text/tailwindcss">
-      body {
-        font-family: 'Poppins', sans-serif;
-        background-color: #F0F9FF;
-      }
-
-      .btn-primary {
-        @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full shadow-md transition duration-300 ease-in-out transform hover:scale-105;
-      }
-
-      .nav-link {
-        @apply flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition duration-150 ease-in-out;
-      }
-
-      .nav-link.active {
-        @apply bg-blue-500 text-white shadow-md;
-      }
-
-      .icon-btn {
-        @apply text-gray-500 hover:text-blue-600 transition duration-150 ease-in-out;
-      }
-
-      .tweet-card {
-        @apply bg-white p-4 border-b border-gray-200;
-      }
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Start2Code - Forum Diskusi</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F0F9FF;
+        }
+        .btn-primary {
+            @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105;
+        }
+        .nav-link {
+            @apply flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition duration-150 ease-in-out;
+        }
+        .nav-link.active {
+            @apply bg-blue-500 text-white shadow-md;
+        }
+        .icon-btn {
+            @apply text-gray-500 hover:text-blue-600 transition duration-150 ease-in-out;
+        }
+        .card {
+            @apply bg-white rounded-xl p-6 shadow-md;
+        }
+        .tag {
+            @apply text-xs font-semibold px-2.5 py-1 rounded-full;
+        }
+        .tag-html {
+            @apply bg-orange-100 text-orange-600;
+        }
+        .chat-bubble-sender {
+            @apply bg-blue-500 text-white rounded-lg rounded-br-none;
+        }
+        .chat-bubble-receiver {
+            @apply bg-gray-200 text-gray-800 rounded-lg rounded-bl-none;
+        }
+        .reply-btn {
+            @apply text-xs text-gray-500 hover:text-blue-600 font-medium flex items-center gap-1 transition-colors;
+        }
     </style>
-  </head>
+</head>
+<body class="flex flex-col min-h-screen">
+  <div class="flex flex-1">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white shadow-lg p-6 flex-col justify-between hidden lg:flex">
+      <!-- Logo dan Navigasi -->
+      <div>
+        <div class="flex items-center space-x-3 mb-10">
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDZ3l6qPfkg2_z_2DOyGzAu0Kr0Ggo1w6pU0OoXjvGAAm30NcvO9GxTgxmqOPEmX4LYV9rSKJyRzW0ZQSvW6wWJoFsd97c12bieY06tbZO-X9HiIS46jGvIqC2ohPa_ZamwxQoKJAiJXou9HTuXfOcktZliGW7wLD9iCqqTiR1eumRxOHIEq96uA_b7o5y5Uuyhoc1uEOzFbPhvqdPqxM2rxxcQL85m8SnGe9_3Pml50Gl85wOT69grg9VtUbw3vch_vyhXz3FLz8K"
+            alt="Start2Code Logo"
+            class="h-10 w-10"
+          />
+          <h1 class="text-2xl font-bold text-blue-600">Start2Code</h1>
+        </div>
+        <nav class="space-y-2">
+          <a class="nav-link" href="#"><span class="material-icons">home</span> <span>Home page</span></a>
+          <a class="nav-link" href="#"><span class="material-icons">menu_book</span> <span>Modul Pembelajaran</span></a>
+          <a class="nav-link" href="#"><span class="material-icons">videocam</span> <span>Zoom/Meet</span></a>
+          <a class="nav-link active" href="#"><span class="material-icons">forum</span> <span>Forum diskusi</span></a>
+          <a class="nav-link" href="#"><span class="material-icons">headset_mic</span> <span>Konsultasi</span></a>
+          <a class="nav-link" href="#"><span class="material-icons">bar_chart</span> <span>Statistik</span></a>
+          <a class="nav-link" href="#"><span class="material-icons">auto_awesome</span> <span>AI Assistant</span></a>
+        </nav>
+      </div>
 
-  <body class="flex flex-col min-h-screen">
-    <div class="flex flex-1">
-      <!-- Sidebar -->
-      <aside class="w-64 bg-white shadow-lg p-6 flex-col justify-between hidden lg:flex">
-        <div>
-          <div class="flex items-center space-x-3 mb-10">
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDZ3l6qPfkg2_z_2DOyGzAu0Kr0Ggo1w6pU0OoXjvGAAm30NcvO9GxTgxmqOPEmX4LYV9rSKJyRzW0ZQSvW6wWJoFsd97c12bieY06tbZO-X9HiIS46jGvIqC2ohPa_ZamwxQoKJAiJXou9HTuXfOcktZliGW7wLD9iCqqTiR1eumRxOHIEq96uA_b7o5y5Uuyhoc1uEOzFbPhvqdPqxM2rxxcQL85m8SnGe9_3Pml50Gl85wOT69grg9VtUbw3vch_vyhXz3FLz8K"
-              class="h-10 w-10"
-              alt="Start2Code Logo"
-            />
-            <h1 class="text-2xl font-bold text-blue-600">Start2Code</h1>
+      <!-- Menu Bawah -->
+      <div class="mt-auto">
+        <a class="nav-link" href="#"><span class="material-icons">account_circle</span> <span>Akun</span></a>
+        <a class="nav-link mt-2 text-red-500 hover:bg-red-100 hover:text-red-600" href="#">
+          <span class="material-icons">logout</span> <span>Keluar</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Konten Utama -->
+    <main class="flex-1 p-4 sm:p-8 flex flex-col h-screen">
+      <!-- Header -->
+      <header class="flex justify-between items-center mb-6">
+        <div class="flex items-center space-x-4">
+          <button class="lg:hidden text-gray-600">
+            <span class="material-icons">arrow_back</span>
+          </button>
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQsHiQx0JeHnLHvH97bgZyDCHejmkuNIWYfhlJ_69L80fwDl9nvdSAaW2xLOw2tmvR4llTWMHjc--STtPfI-ChuBHdHEJhlsotUagtZGoJhifmQEWen1dTqpXxBh1uZlqeRQxEvJQtMk788aa5rbxwoF_ZUES8XssorGW-i7vzxOrC29kRnUW374EvzfztXOx8BAeUvVAgnPCpjvv73AHLN-ThgvAEdczX6lS4pbz0ekd62-EFR1bHdJmGaoVkqNBgTpvuSWDudRan"
+            alt="Avatar User"
+            class="w-12 h-12 rounded-full"
+          />
+          <div>
+            <h2 class="text-xl font-bold text-gray-800">Bingung cara centering div di CSS</h2>
+            <p class="text-sm text-gray-600">Ditanyakan oleh Ahmad Fauzi</p>
           </div>
-
-          <nav class="space-y-2">
-            <a class="nav-link" href="#">
-              <span class="material-icons">home</span>
-              <span>Home page</span>
-            </a>
-            <a class="nav-link" href="#">
-              <span class="material-icons">menu_book</span>
-              <span>Modul Pembelajaran</span>
-            </a>
-            <a class="nav-link" href="#">
-              <span class="material-icons">videocam</span>
-              <span>Zoom/Meet</span>
-            </a>
-            <a class="nav-link active" href="#">
-              <span class="material-icons">forum</span>
-              <span>Forum diskusi</span>
-            </a>
-            <a class="nav-link" href="#">
-              <span class="material-icons">headset_mic</span>
-              <span>Konsultasi</span>
-            </a>
-            <a class="nav-link" href="#">
-              <span class="material-icons">bar_chart</span>
-              <span>Statistik</span>
-            </a>
-            <a class="nav-link" href="#">
-              <span class="material-icons">auto_awesome</span>
-              <span>AI Assistant</span>
-            </a>
-          </nav>
         </div>
 
-        <div class="mt-auto">
-          <a class="nav-link" href="#">
-            <span class="material-icons">account_circle</span>
-            <span>Akun</span>
-          </a>
-          <a class="nav-link mt-2 text-red-500 hover:bg-red-100 hover:text-red-600" href="#">
-            <span class="material-icons">logout</span>
-            <span>Keluar</span>
-          </a>
+        <div class="flex items-center space-x-4">
+          <button class="icon-btn">
+            <span class="material-icons text-3xl">notifications_none</span>
+          </button>
+          <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsVLdsreqFV6gE-iaeo2tbo_9VQnLl2Aa1axBE66LlE4aUnjerdiH6xNbScWmcjyQ9iUha0JDqzrp9bm_8Bmrud5EO-nx-bp9HVavll20Q6kS0_vnKm997edYRSuyMCcDlTsumvehoBXd4zCrgmKLjCdbncXz7baajEMvWM_05yggm82rSJ1EIY7PdCUKTG6HF5Qct_TfIG7BmeIHHVhZ5anEozR7QCpVELwBgy7pa6U7dDtp-xyq_GQP1MgeqzxiORvWr3eGQOi0_"
+            alt="Avatar Sabrina Yuanti"
+            class="w-10 h-10 rounded-full border-2 border-blue-300"
+          />
         </div>
-      </aside>
+      </header>
 
-      <!-- Main Content -->
-      <main class="flex-1 border-x border-gray-200">
-        <!-- Header -->
-        <header class="flex justify-between items-center p-4 border-b border-gray-200 sticky top-0 bg-white/80 backdrop-blur-sm z-10">
-          <h2 class="text-xl font-bold text-gray-800">Forum Diskusi</h2>
-          <div class="flex items-center space-x-4">
-            <button class="icon-btn">
-              <span class="material-icons text-3xl">notifications_none</span>
-            </button>
-            <img
-              class="w-10 h-10 rounded-full border-2 border-blue-300"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsVLdsreqFV6gE-iaeo2tbo_9VQnLl2Aa1axBE66LlE4aUnjerdiH6xNbScWmcjyQ9iUha0JDqzrp9bm_8Bmrud5EO-nx-bp9HVavll20Q6kS0_vnKm997edYRSuyMCcDlTsumvehoBXd4zCrgmKLjCdbncXz7baajEMvWM_05yggm82rSJ1EIY7PdCUKTG6HF5Qct_TfIG7BmeIHHVhZ5anEozR7QCpVELwBgy7pa6U7dDtp-xyq_GQP1MgeqzxiORvWr3eGQOi0_"
-              alt="Avatar Sabrina Yuanti"
-            />
+      <!-- Forum Diskusi -->
+      <div class="flex-1 overflow-y-auto p-4 space-y-6 bg-white rounded-xl shadow-inner">
+        <!-- Post Ahmad -->
+        <div class="flex items-start gap-3">
+          <img class="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQsHiQx0JeHnLHvH97bgZyDCHejmkuNIWYfhlJ_69L80fwDl9nvdSAaW2xLOw2tmvR4llTWMHjc--STtPfI-ChuBHdHEJhlsotUagtZGoJhifmQEWen1dTqpXxBh1uZlqeRQxEvJQtMk788aa5rbxwoF_ZUES8XssorGW-i7vzxOrC29kRnUW374EvzfztXOx8BAeUvVAgnPCpjvv73AHLN-ThgvAEdczX6lS4pbz0ekd62-EFR1bHdJmGaoVkqNBgTpvuSWDudRan" alt="Avatar Ahmad Fauzi" />
+          <div>
+            <div class="flex items-baseline gap-2">
+              <p class="font-semibold text-gray-800">Ahmad Fauzi</p>
+              <span class="text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full">Member</span>
+            </div>
+            <div class="chat-bubble-receiver p-3 mt-1 max-w-md">
+              <p>Halo semua, saya masih bingung nih soal centering div di CSS. Udah coba `margin: auto;` tapi kadang gak berhasil. Ada cara lain yang lebih jitu gak ya? Terutama buat centering vertikal juga.</p>
+            </div>
+            <div class="flex items-center gap-3 mt-1">
+              <p class="text-xs text-gray-400">13.45</p>
+              <button class="reply-btn"><span class="material-icons text-base">reply</span> <span>Balas</span></button>
+            </div>
           </div>
-        </header>
+        </div>
 
-        <!-- Form Post Baru -->
-        <section class="p-4 border-b border-gray-200">
-          <div class="flex space-x-4">
-            <img
-              class="w-12 h-12 rounded-full"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsVLdsreqFV6gE-iaeo2tbo_9VQnLl2Aa1axBE66LlE4aUnjerdiH6xNbScWmcjyQ9iUha0JDqzrp9bm_8Bmrud5EO-nx-bp9HVavll20Q6kS0_vnKm997edYRSuyMCcDlTsumvehoBXd4zCrgmKLjCdbncXz7baajEMvWM_05yggm82rSJ1EIY7PdCUKTG6HF5Qct_TfIG7BmeIHHVhZ5anEozR7QCpVELwBgy7pa6U7dDtp-xyq_GQP1MgeqzxiORvWr3eGQOi0_"
-              alt="Avatar Sabrina Yuanti"
-            />
-            <div class="flex-1">
-              <textarea
-                class="w-full text-lg p-2 bg-transparent focus:outline-none"
-                rows="2"
-                placeholder="Apa yang ingin kamu tanyakan?"
-              ></textarea>
-              <div class="flex justify-between items-center mt-2">
-                <div class="flex space-x-2 text-blue-500">
-                  <button class="icon-btn"><span class="material-icons">image</span></button>
-                  <button class="icon-btn"><span class="material-icons">gif_box</span></button>
-                  <button class="icon-btn"><span class="material-icons">poll</span></button>
-                  <button class="icon-btn"><span class="material-icons">sentiment_satisfied</span></button>
-                </div>
-                <button class="btn-primary py-2 px-6 text-sm">Tanyakan</button>
+        <!-- Balasan Sabrina -->
+        <div class="flex items-start gap-3 justify-end">
+          <div class="text-right">
+            <div class="flex items-baseline gap-2 justify-end">
+              <p class="font-semibold text-gray-800">Sabrina Yuanti</p>
+              <span class="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full">Member</span>
+            </div>
+            <div>
+              <div class="chat-bubble-sender p-3 mt-1 inline-block max-w-md text-left">
+                <p>Halo Ahmad! Cara paling modern dan efektif sekarang itu pakai Flexbox atau Grid. Coba deh pakai ini di container div-nya:
+                                            <br/><br/>
+                                            `display: flex;`<br/>
+                                            `justify-content: center;` (horizontal)<br/>
+                                            `align-items: center;` (vertikal)
+                                            <br/><br/>
+                                            Itu dijamin langsung ke tengah deh, baik horizontal maupun vertikal.</p>
+              </div>
+              <div class="flex items-center justify-end gap-3 mt-1">
+                <p class="text-xs text-gray-400">14.05</p>
+                <button class="reply-btn text-gray-500 hover:text-blue-500"><span class="material-icons text-base">reply</span> <span>Balas</span></button>
               </div>
             </div>
           </div>
-        </section>
+          <img class="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsVLdsreqFV6gE-iaeo2tbo_9VQnLl2Aa1axBE66LlE4aUnjerdiH6xNbScWmcjyQ9iUha0JDqzrp9bm_8Bmrud5EO-nx-bp9HVavll20Q6kS0_vnKm997edYRSuyMCcDlTsumvehoBXd4zCrgmKLjCdbncXz7baajEMvWM_05yggm82rSJ1EIY7PdCUKTG6HF5Qct_TfIG7BmeIHHVhZ5anEozR7QCpVELwBgy7pa6U7dDtp-xyq_GQP1MgeqzxiORvWr3eGQOi0_" alt="">
+        </div>
 
-        <!-- Post dan Balasan -->
-        <section class="divide-y divide-gray-200">
-          <!-- Di sini berisi banyak <div class="tweet-card"> untuk setiap pertanyaan dan balasan -->
-          <!-- Sudah sangat rapi, tidak saya ulangi karena terlalu panjang. Jika kamu ingin bagian bawahnya juga dirapikan, saya bisa lanjutkan. -->
-        </section>
-      </main>
-    </div>
-  </body>
+        <!-- Balasan Budi -->
+        <div class="ml-10 border-l-2 border-gray-200 pl-5">
+          <div class="flex items-start gap-3">
+            <img class="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1WzsGYNG9RF79XP0UUf5vu5q2arhuHY78srXTESBMcEsQUiEGG7e6tYpuT_XABAuAev87T6HfwrMsgSrDJeQfhIDnPc-emFxgeTbQcyhIr4ggjU76svn8554WF7zYnLFIoTgskt5_kgkD3wq9v8InWxnt_QgMczCZ9QxFIsSNmvCz6nwzvBE_mZzJK0BhjT1ziv5O26kMlwkxqzdsKehdnAWfx--Cx7czaXbkl8MNyZPWU94bxFaYcXPJUy17iZBIcTUoOLHxENUU"" alt="Avatar Budi Santoso" />
+            <div>
+              <div class="flex items-baseline gap-2">
+                <p class="font-semibold text-gray-800">Budi Santoso</p>
+                <span class="text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full">Member</span>
+              </div>
+              <div class="bg-gray-100 p-2 rounded-lg mt-1 text-sm text-gray-600 max-w-md">
+                Balasan untuk <span class="font-semibold text-blue-600">@Sabrina Yuanti</span>
+              </div>
+              <div class="chat-bubble-receiver p-3 mt-1 max-w-md">
+                <p>Betul kata Sabrina, Flexbox itu sakti banget buat layout. Kalau kasusnya lebih kompleks dan butuh kontrol baris dan kolom, bisa coba CSS Grid juga. Tapi untuk sekedar centering, Flexbox udah lebih dari cukup dan gampang diingat.</p>
+              </div>
+              <div class="flex items-center gap-3 mt-1">
+                <p class="text-xs text-gray-400">15.00</p>
+                <button class="reply-btn"><span class="material-icons text-base">reply</span> <span>Balas</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Balasan Ahmad -->
+        <div class="flex items-start gap-3">
+          <img class="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQsHiQx0JeHnLHvH97bgZyDCHejmkuNIWYfhlJ_69L80fwDl9nvdSAaW2xLOw2tmvR4llTWMHjc--STtPfI-ChuBHdHEJhlsotUagtZGoJhifmQEWen1dTqpXxBh1uZlqeRQxEvJQtMk788aa5rbxwoF_ZUES8XssorGW-i7vzxOrC29kRnUW374EvzfztXOx8BAeUvVAgnPCpjvv73AHLN-ThgvAEdczX6lS4pbz0ekd62-EFR1bHdJmGaoVkqNBgTpvuSWDudRan"" alt="Avatar Ahmad Fauzi" />
+          <div>
+            <div class="flex items-baseline gap-2">
+              <p class="font-semibold text-gray-800">Ahmad Fauzi</p>
+              <span class="text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full">Member</span>
+            </div>
+            <div class="chat-bubble-receiver p-3 mt-1 max-w-md">
+              <p>Wah, makasih banyak Sabrina dan Budi! Langsung saya coba dan berhasil. Keren banget! Ternyata segampang itu ya, hehe.</p>
+            </div>
+            <div class="flex items-center gap-3 mt-1">
+              <p class="text-xs text-gray-400">15.40</p>
+              <button class="reply-btn"><span class="material-icons text-base">reply</span> <span>Balas</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Balasan -->
+      <div class="mt-6">
+        <div class="bg-gray-100 p-2 rounded-t-lg -mb-1 max-w-fit ml-4 z-10 relative hidden" id="replying-to-container">
+          <span class="text-sm text-gray-600">Membalas <strong id="replying-to-user"></strong></span>
+          <button class="ml-2 text-gray-500 hover:text-gray-700" id="cancel-reply">
+            <span class="material-icons text-base">close</span>
+          </button>
+        </div>
+        <div class="relative">
+          <input
+            class="w-full pl-4 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Ketik balasan Anda..."
+            type="text"
+          />
+          <button class="absolute right-3 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full">
+            <span class="material-icons">send</span>
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+
 </html>
