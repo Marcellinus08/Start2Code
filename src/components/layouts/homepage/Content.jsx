@@ -65,80 +65,10 @@ const Content = () => {
                 </div>
             </section>
 
-            {/* <section className="mb-10">
-                <TitleContent name="Event Start2Code"></TitleContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div className="bg-white rounded-xl card-shadow overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
-                        <img alt="Kids Online Coding Camp Mid Year 2025" className="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwjXAHuOJ-EyCtqZ8aT7yQRaTdMKQo0laOoL0rN657pyCGAIgPdRBjJ3cxOTkH-HE2-cMDhRLiW53dbmrNJqXxsIG4m9XGU0oMqFTFNPXTcx6r1f6ZERCqHA_T7kIGRFRyni0o84qLxkL0P-lyEUqZ4nodWSk-fEPIq79LUl9SFCRndjX4QBs95hfbJVIvYbc4AnbZusD5UdAnapp6lNnGDgnObX2-Ruzh1Z6KYYA_28HZBbwtZy28LFyLYTLge67H_-XitanrHhAu" />
-                        <div className="p-6">
-                            <h4 className="text-lg font-semibold text-gray-800 mb-2">Kids Online Coding Camp Mid-Year 2025</h4>
-                            <p className="text-sm text-gray-600 mb-4">Liburan tengah tahun jadi lebih produktif dengan coding camp online!</p>
-                            <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Daftar Sekarang</button>
-                        </div>
-                    </div>
-                    <div className="bg-white rounded-xl card-shadow overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
-                        <img alt="Kids Online Coding Camp" className="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALHAXQDmAJJQORxzRyxzpMrXOraSBzzEB1sWeLExw1SyHKmKnNRDUO5hTvxBxDd0t57H5dPdre7RkXwJ_3Yx8qfeoGzNqvBeuHrELHnbyRrJvQI4wnOvveZqK1fkYI76SlSXUHbgrFnxKTP1xXB9rBEmq0w-d3Hb2GxH_6v3PhT5dN04IZLqlGfiwDAqd6sYRyh00WhEx8zy2b7W5zAQ6nboZMHpRH5t5-3gKYt1di53xyGogKK3OcclrAXNfO3LfaGnBFXTCG7oDa" />
-                        <div className="p-6">
-                            <h4 className="text-lg font-semibold text-gray-800 mb-2">Kids Online Coding Camp</h4>
-                            <p className="text-sm text-gray-600 mb-4">Belajar koding dari rumah dengan mentor profesional dan kurikulum terstruktur.</p>
-                            <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Daftar Sekarang</button>
-                        </div>
-                    </div>
-                    <div className="bg-white rounded-xl card-shadow overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
-                        <img alt="Kids Online Coding Camp Event" className="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDr0IvUn2tox8MLRnj-hAn9baYRnkD3HV6rdkhzWcLmVGt_QVqGY7mDynf5rOsxmrNc8v3kERp5yJsbfnKgNQ92Z0hlCM93Z9F3piCpSYwwP8EcO8Y6ckQPmgocS_1EyYLrlGxmJrspD2LCgRx7W325YMUgyIHYq1Utvas06iDiEG6lypSHExd6n2ELUwVt5KV2U94Q4aMZ_LLHMUz6l83JUdsnBPf_bTQFQYhQheC-tcx4UjC3EPeAvmloaokaJPrDShmpxV1BZIfH" />
-                        <div className="p-6">
-                            <h4 className="text-lg font-semibold text-gray-800 mb-2">Kids Online Coding Camp (Special Edition)</h4>
-                            <p className="text-sm text-gray-600 mb-4">Edisi spesial coding camp dengan materi dan proyek yang lebih menantang.</p>
-                            <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Daftar Sekarang</button>
-                        </div>
-                    </div>
-                </div>
-            </section> */}
-
             <section>
-    <TitleContent name="Event Start2Code"></TitleContent>
-    
-    {/* <div className="flex overflow-x-auto gap-6 pb-4 scrollbar-hide"> 
-        
-        <div className="bg-white rounded-xl card-shadow overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between w-80 flex-shrink-0">
-            <img alt="Kids Online Coding Camp Mid Year 2025" className="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwjXAHuOJ-EyCtqZ8aT7yQRaTdMKQo0laOoL0rN657pyCGAIgPdRBjJ3cxOTkH-HE2-cMDhRLiW53dbmrNJqXxsIG4m9XGU0oMqFTFNPXTcx6r1f6ZERCqHA_T7kIGRFRyni0o84qLxkL0P-lyEUqZ4nodWSk-fEPIq79LUl9SFCRndjX4QBs95hfbJVIvYbc4AnbZusD5UdAnapp6lNnGDgnObX2-Ruzh1Z6KYYA_28HZBbwtZy28LFyLYTLge67H_-XitanrHhAu" />
-            <div className="p-6">
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">Kids Online Coding Camp Mid-Year 2025</h4>
-                <p className="text-sm text-gray-600 mb-4">Liburan tengah tahun jadi lebih produktif dengan coding camp online!</p>
-                <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Daftar Sekarang</button>
-            </div>
-        </div>
-
-        <div className="bg-white rounded-xl card-shadow overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between w-80 flex-shrink-0">
-            <img alt="Kids Online Coding Camp" className="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALHAXQDmAJJQORxzRyxzpMrXOraSBzzEB1sWeLExw1SyHKmKnNRDUO5hTvxBxDd0t57H5dPdre7RkXwJ_3Yx8qfeoGzNqvBeuHrELHnbyRrJvQI4wnOvveZqK1fkYI76SlSXUHbgrFnxKTP1xXB9rBEmq0w-d3Hb2GxH_6v3PhT5dN04IZLqlGfiwDAqd6sYRyh00WhEx8zy2b7W5zAQ6nboZMHpRH5t5-3gKYt1di53xyGogKK3OcclrAXNfO3LfaGnBFXTCG7oDa" />
-            <div className="p-6">
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">Kids Online Coding Camp</h4>
-                <p className="text-sm text-gray-600 mb-4">Belajar koding dari rumah dengan mentor profesional dan kurikulum terstruktur.</p>
-                <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Daftar Sekarang</button>
-            </div>
-        </div>
-
-        <div className="bg-white rounded-xl card-shadow overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between w-80 flex-shrink-0">
-            <img alt="Kids Online Coding Camp Event" className="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDr0IvUn2tox8MLRnj-hAn9baYRnkD3HV6rdkhzWcLmVGt_QVqGY7mDynf5rOsxmrNc8v3kERp5yJsbfnKgNQ92Z0hlCM93Z9F3piCpSYwwP8EcO8Y6ckQPmgocS_1EyYLrlGxmJrspD2LCgRx7W325YMUgyIHYq1Utvas06iDiEG6lypSHExd6n2ELUwVt5KV2U94Q4aMZ_LLHMUz6l83JUdsnBPf_bTQFQYhQheC-tcx4UjC3EPeAvmloaokaJPrDShmpxV1BZIfH" />
-            <div className="p-6">
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">Kids Online Coding Camp (Special Edition)</h4>
-                <p className="text-sm text-gray-600 mb-4">Edisi spesial coding camp dengan materi dan proyek yang lebih menantang.</p>
-                <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Daftar Sekarang</button>
-            </div>
-        </div>
-        
-        <div className="bg-white rounded-xl card-shadow overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between w-80 flex-shrink-0">
-            <img alt="Kids Online Coding Camp" className="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALHAXQDmAJJQORxzRyxzpMrXOraSBzzEB1sWeLExw1SyHKmKnNRDUO5hTvxBxDd0t57H5dPdre7RkXwJ_3Yx8qfeoGzNqvBeuHrELHnbyRrJvQI4wnOvveZqK1fkYI76SlSXUHbgrFnxKTP1xXB9rBEmq0w-d3Hb2GxH_6v3PhT5dN04IZLqlGfiwDAqd6sYRyh00WhEx8zy2b7W5zAQ6nboZMHpRH5t5-3gKYt1di53xyGogKK3OcclrAXNfO3LfaGnBFXTCG7oDa" />
-            <div className="p-6">
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">Advanced Coding Camp</h4>
-                <p className="text-sm text-gray-600 mb-4">Lanjutkan perjalanan kodingmu ke level yang lebih tinggi.</p>
-                <button className="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 text-sm">Daftar Sekarang</button>
-            </div>
-        </div>
-
-    </div> */}
-    <EventList></EventList>
-</section>
+                <TitleContent name="Event Start2Code"></TitleContent>
+                <EventList></EventList>
+            </section>
             
         </main>
         
