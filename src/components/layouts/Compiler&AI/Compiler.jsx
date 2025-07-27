@@ -4,6 +4,7 @@ import Header from "../../fragments/modulpage/submodul/Header";
 import Editor from "@monaco-editor/react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+
 const defaultTemplates = {
   71: `# Program Python\nprint("Hello, World!")`,
   63: `// JavaScript Example\nconsole.log("Hello, World!");`,
