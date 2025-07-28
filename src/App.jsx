@@ -23,7 +23,6 @@ function App () {
         <Route path="/statistik" element={<Statistik />} />
         <Route path="/compilerai" element={<CompilerAI />} />
         <Route path="/akun" element={<Akun />} />
-        <Route path="/login" element={<Login />} />
         {/* <Route path="/submodul" element={<SubModul />} /> */}
       </Routes>
     </Router>

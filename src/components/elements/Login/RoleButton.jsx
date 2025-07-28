@@ -5,7 +5,7 @@ const RoleButton = ({ icon, label, active, onClick }) => {
     <button
       className={`w-full py-4 px-4 rounded-full text-sm font-semibold transition-all duration-300 ease-in-out transform flex items-center justify-center gap-2 role-button ${
         active
-          ? 'bg-white text-[#4285F4] shadow-lg scale-105'
+          ? 'bg-white text-[#4285F4] shadow-lg scale-104'
           : 'text-white/80 hover:bg-white/20 hover:text-white'
       }`}
       onClick={onClick}
