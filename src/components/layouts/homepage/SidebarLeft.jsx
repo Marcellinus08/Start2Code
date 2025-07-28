@@ -40,7 +40,7 @@ const SidebarLeft = () => {
                     <img alt="Start2Code Logo" src="../assets/logo.png" />
                 </div>
                 <nav className="space-y-2">
-                    <SidebarListLeft jenis="home" name="Home page" to="/" />
+                    <SidebarListLeft jenis="home" name="Home page" to="/home" />
                     <SidebarListLeft jenis="menu_book" name="Modul Pembelajaran" to="/modul" />
                     <SidebarListLeft jenis="videocam" name="Meet" to="/meet" />
                     <SidebarListLeft jenis="forum" name="Forum diskusi" to="/forum" />
@@ -52,7 +52,7 @@ const SidebarLeft = () => {
             <div>
                 <nav>
                     <SidebarListLeft jenis="account_circle" name="Akun" to="/akun" />
-                    <SidebarListLeft jenis="logout" name="Keluar" to="/logout" now="mt-2 text-red-500 hover:bg-red-100 hover:text-red-600" />
+                    <SidebarListLeft jenis="logout" name="Keluar" to="/" now="mt-2 text-red-500 hover:bg-red-100 hover:text-red-600" />
                 </nav>
             </div>
         </aside>

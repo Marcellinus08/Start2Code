@@ -31,7 +31,9 @@ const LoginForm = () => {
       </div>
       <div className="mb-6 mt-8">
         <button className="bg-[#4285F4] text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-600 transition duration-300 w-full text-lg">
+          <a href="Home">
           Masuk Sekarang
+          </a>
         </button>
       </div>
     </form>
