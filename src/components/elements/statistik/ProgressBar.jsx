@@ -1,4 +1,5 @@
-const ProgressBar = ({ label, percentage, color }) => {
+const ProgressBar = (props) => {
+  const { label, percentage, color } = props;
   return (
     <div>
       <div className="flex justify-between mb-1">

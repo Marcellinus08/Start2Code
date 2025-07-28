@@ -5,12 +5,12 @@ import StatCard from "../../elements/statistik/StatCard";
 
 const StatistikModul = () => {
   const modules = [
-    { name: "Algorithm & Data Structure", percentage: 90, color: "text-blue-700" },
-    { name: "Game Programming", percentage: 80, color: "text-green-700" },
-    { name: "Web Programming", percentage: 75, color: "text-indigo-700" },
-    { name: "Application Programming", percentage: 60, color: "text-yellow-700" },
-    { name: "Crypto Programming", percentage: 45, color: "text-purple-700" },
-    { name: "Basic Hardware Programming", percentage: 25, color: "text-red-700" },
+    { name: "Algorithm & Data Structure", percentage: 90, color: "text-blue-500" },
+    { name: "Game Programming", percentage: 80, color: "text-green-500" },
+    { name: "Web Programming", percentage: 75, color: "text-indigo-500" },
+    { name: "Application Programming", percentage: 60, color: "text-yellow-500" },
+    { name: "Crypto Programming", percentage: 45, color: "text-purple-500" },
+    { name: "Basic Hardware Programming", percentage: 25, color: "text-red-500" },
   ];
 
   return (

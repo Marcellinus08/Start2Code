@@ -7,8 +7,8 @@ import Konsultasi from './pages/Konsultasi';
 import Statistik from './pages/Statistik';
 import CompilerAI from './pages/CompilerAI';
 import Akun from './pages/Akun';
+import Login from './pages/Login';
 // import SubModul from './pages/SubModul';
-// import NotFound from './pages/NotFound';
 
 function App () { 
   return (
@@ -22,8 +22,8 @@ function App () {
         <Route path="/statistik" element={<Statistik />} />
         <Route path="/compilerai" element={<CompilerAI />} />
         <Route path="/akun" element={<Akun />} />
+        <Route path="/login" element={<Login />} />
         {/* <Route path="/submodul" element={<SubModul />} /> */}
-        {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </Router>
   );

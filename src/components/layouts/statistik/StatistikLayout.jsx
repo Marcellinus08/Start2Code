@@ -1,25 +1,26 @@
-// import React from "react";
-// import Header from "../../fragments/modulpage/submodul/Header";
-// import AktivitasTerbaru from "../../fragments/statistik/AktivitasTerbaru";
-// import StatistikModule from "../../fragments/statistik/StatistikModul";
-// import SidebarLeft from "../homepage/SidebarLeft";
+import React from "react";
+import StatistikModul from "../../fragments/statistik/StatistikModul";
+import RingkasanStatistik from "../../fragments/statistik/RingkasanStatistik";
+import DistribusiChart from "../../fragments/statistik/DistribusiChart";
+import AktivitasTerbaru from "../../fragments/statistik/AktivitasTerbaru";
 
-// const StatistikLayout = () => {
-//   return (
-//     <div className="flex min-h-screen bg-[#F0F9FF]">
-//       <SidebarLeft />
-//       <main className="flex-1 p-6 overflow-y-auto">
-//         <Header
-//           title="Statistik Pembelajaran"
-//           desc="Lihat statistik perjalanan pembelajaranmu."
-//         />
-//         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-//           <StatistikModule />
-//           <AktivitasTerbaru />
-//         </div>
-//       </main>
-//     </div>
-//   );
-// };
+const StatistikLayout = () => (
+  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+    <div className="lg:col-span-2 space-y-6">
+      <StatistikModul />
+      <RingkasanStatistik />
+    </div>
+    <div className="space-y-6">
+      <DistribusiChart />
+      <div className="bg-white p-6 rounded-xl shadow-lg">
+        <AktivitasTerbaru />
+      </div>
+      <button className="w-full bg-blue-600 text-white py-3 px-6 rounded-xl font-semibold shadow-md hover:bg-blue-700 transition">
+        <span className="material-icons align-middle mr-2">download</span>
+        Unduh Statistik
+      </button>
+    </div>
+  </div>
+);
 
-// export default StatistikLayout;
+export default StatistikLayout;

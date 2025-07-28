@@ -7,7 +7,7 @@ const ContentAkun = () => {
         <main className="flex-1 p-8 overflow-y-auto ml-64">
             <Header
                 title="Akun Saya"
-                desc="Lakukan konsultasi dengan mentor apabila anda masih bingung."/>
+                desc="Kelola data dan informasi akun Anda di sini."/>
             
             <div className="bg-white p-8 rounded-2xl shadow-lg">
                 <div className="flex flex-col md:flex-row items-center md:items-start md:space-x-8">
