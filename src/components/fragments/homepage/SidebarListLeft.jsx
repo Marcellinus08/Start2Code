@@ -8,7 +8,7 @@ const SidebarListLeft = ({ name, jenis, now, to = "/" }) => {
         <ListNav2
           variant={jenis}  
           now={now}
-          isActive={isActive && to !== "/logout"}
+          isActive={isActive}
         >
           {name}
         </ListNav2>

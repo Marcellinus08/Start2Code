@@ -18,7 +18,7 @@ const Login = () => {
           <RoleButton icon="menu_book" label="Mentor" active={activeRole === 'mentor'} onClick={() => setActiveRole('mentor')} />
           <RoleButton icon="admin_panel_settings" label="Admin" active={activeRole === 'admin'} onClick={() => setActiveRole('admin')} />
         </div>
-        <LoginForm />
+        <LoginForm selectedRole={activeRole} />
       </div>
     </LayoutLogin>
   );
