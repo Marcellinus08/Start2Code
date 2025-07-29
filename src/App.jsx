@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Modul from './pages/ModulPembelajaran';
-import Meet from './pages/Meet';
-import ForumDiskusi from './pages/ForumDiskusi';
-import Konsultasi from './pages/Konsultasi';
-import Statistik from './pages/Statistik';
-import CompilerAI from './pages/CompilerAI';
-import Akun from './pages/Akun';
-import Login from './pages/Login';
+import Home from './pages/Member/Home';
+import Modul from './pages/Member/ModulPembelajaran';
+import Meet from './pages/Member/Meet';
+import ForumDiskusi from './pages/Member/ForumDiskusi';
+import Konsultasi from './pages/Member/Konsultasi';
+import Statistik from './pages/Member/Statistik';
+import CompilerAI from './pages/Member/CompilerAI';
+import Akun from './pages/Member/Akun';
+import Login from './pages/Member/Login';
 // import SubModul from './pages/SubModul';
 
 function App () { 

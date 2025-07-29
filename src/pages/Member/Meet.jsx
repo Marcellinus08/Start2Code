@@ -1,5 +1,5 @@
 import React from "react";
-import SidebarLeft from "../components/layouts/homepage/SidebarLeft";
+import SidebarLeft from "../../components/layouts/homepage/SidebarLeft";
 
 const Meet = () => {
     return (

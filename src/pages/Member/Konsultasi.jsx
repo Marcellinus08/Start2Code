@@ -1,9 +1,9 @@
 import React from "react";
-import SidebarLeft from "../components/layouts/homepage/SidebarLeft";
-import Header from "../components/fragments/modulpage/submodul/Header";
-import TanggalKonsultasi from "../components/fragments/konsultasi/TanggalKonsultasi";
-import WaktuKonsultasi from "../components/fragments/konsultasi/WaktuKonsultasi";
-import DeskripsiKonsultasi from "../components/fragments/konsultasi/DeskripsiKonsultasi";
+import SidebarLeft from "../../components/layouts/homepage/SidebarLeft";
+import Header from "../../components/fragments/modulpage/submodul/Header";
+import TanggalKonsultasi from "../../components/fragments/konsultasi/TanggalKonsultasi";
+import WaktuKonsultasi from "../../components/fragments/konsultasi/WaktuKonsultasi";
+import DeskripsiKonsultasi from "../../components/fragments/konsultasi/DeskripsiKonsultasi";
 
 const Konsultasi = () => {
   return (

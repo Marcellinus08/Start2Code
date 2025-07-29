@@ -1,7 +1,7 @@
 import React from "react";
-import SidebarLeft from "../components/layouts/homepage/SidebarLeft";
-import SidebarRight from "../components/layouts/homepage/SidebarRight";
-import Content from "../components/layouts/homepage/Content";
+import SidebarLeft from "../../components/layouts/homepage/SidebarLeft";
+import SidebarRight from "../../components/layouts/homepage/SidebarRight";
+import Content from "../../components/layouts/homepage/Content";
 
 const Home = () => {
   return (

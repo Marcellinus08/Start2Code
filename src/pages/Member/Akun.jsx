@@ -1,7 +1,7 @@
 import React from "react";
-import SidebarLeft from "../components/layouts/homepage/SidebarLeft";
-import Content from "../components/layouts/Akun/ContentAkun";
-import ContentAkun from "../components/layouts/Akun/ContentAkun";
+import SidebarLeft from "../../components/layouts/homepage/SidebarLeft";
+import Content from "../../components/layouts/Akun/ContentAkun";
+import ContentAkun from "../../components/layouts/Akun/ContentAkun";
 
 const Akun = () => {
     return (

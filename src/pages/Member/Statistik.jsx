@@ -1,7 +1,7 @@
 import React from "react";
-import SidebarLeft from "../components/layouts/homepage/SidebarLeft";
-import Header from "../components/fragments/modulpage/submodul/Header";
-import StatistikLayout from "../components/layouts/statistik/StatistikLayout";
+import SidebarLeft from "../../components/layouts/homepage/SidebarLeft";
+import Header from "../../components/fragments/modulpage/submodul/Header";
+import StatistikLayout from "../../components/layouts/statistik/StatistikLayout";
 
 const Statistik = () => {
   return (
