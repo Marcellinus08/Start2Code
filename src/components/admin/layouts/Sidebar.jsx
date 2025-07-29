@@ -8,8 +8,8 @@ const Sidebar = () => {
                     <img alt="Start2Code Logo" src="../assets/logo.png" />
                 </div>
                 <nav className="space-y-2">
-                    <SidebarListLeft jenis="home" name="Account" to="/home" />
-                    <SidebarListLeft jenis="videocam" name="Moduls Management" to="/" />
+                    <SidebarListLeft jenis="manage_accounts" name="User Management" to="/admin" />
+                    <SidebarListLeft jenis="library_books" name="Modul Management" to="/modul_management" />
                 </nav>
             </div>
             <div>
