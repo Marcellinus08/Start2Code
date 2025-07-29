@@ -9,8 +9,7 @@ import CompilerAI from './pages/member/CompilerAI';
 import Akun from './pages/member/Akun';
 import Login from './pages/member/Login';
 import Dashboard from "./pages/admin/Dashboard";
-
-// import SubModul from './pages/SubModul';
+import SubModul from './pages/member/SubModul';
 
 function App () { 
   return (
@@ -26,7 +25,7 @@ function App () {
         <Route path="/compilerai" element={<CompilerAI />} />
         <Route path="/akun" element={<Akun />} />
         <Route path="/admin" element={<Dashboard />} />
-        {/* <Route path="/submodul" element={<SubModul />} /> */}
+        <Route path="/submodul" element={<SubModul />} />
       </Routes>
     </Router>
   );
