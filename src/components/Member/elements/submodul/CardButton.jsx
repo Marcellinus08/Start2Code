@@ -11,7 +11,7 @@ const CardButton = ({ locked }) => {
         }
       `}
     >
-      {locked ? "Terkunci" : "Masuk Sub Bab"}
+      {locked ? "Terkunci" : "Masuk Sub Modul"}
     </button>
   );
 };
