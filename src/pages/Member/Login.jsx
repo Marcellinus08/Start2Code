@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import LayoutLogin from '../../components/layouts/Login/LayOutLogin';
-import RoleButton from '../../components/elements/Login/RoleButton';
-import LoginForm from '../../components/fragments/Login/LoginForm';
+import LayoutLogin from '@/components/member/layouts/Login/LayoutLogin';
+import RoleButton from '@/components/member/elements/Login/RoleButton';
+import LoginForm from '@/components/member/fragments/Login/LoginForm';
 
 const Login = () => {
   const [activeRole, setActiveRole] = useState('member');

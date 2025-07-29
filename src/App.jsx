@@ -1,13 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Member/Home';
-import Modul from './pages/Member/ModulPembelajaran';
-import Meet from './pages/Member/Meet';
-import ForumDiskusi from './pages/Member/ForumDiskusi';
-import Konsultasi from './pages/Member/Konsultasi';
-import Statistik from './pages/Member/Statistik';
-import CompilerAI from './pages/Member/CompilerAI';
-import Akun from './pages/Member/Akun';
-import Login from './pages/Member/Login';
+import Home from './pages/member/Home';
+import Modul from './pages/member/ModulPembelajaran';
+import Meet from './pages/member/Meet';
+import ForumDiskusi from './pages/member/ForumDiskusi';
+import Konsultasi from './pages/member/Konsultasi';
+import Statistik from './pages/member/Statistik';
+import CompilerAI from './pages/member/CompilerAI';
+import Akun from './pages/member/Akun';
+import Login from './pages/member/Login';
+import Dashboard from "./pages/admin/Dashboard";
+
 // import SubModul from './pages/SubModul';
 
 function App () { 
@@ -23,6 +25,7 @@ function App () {
         <Route path="/statistik" element={<Statistik />} />
         <Route path="/compilerai" element={<CompilerAI />} />
         <Route path="/akun" element={<Akun />} />
+        <Route path="/admin" element={<Dashboard />} />
         {/* <Route path="/submodul" element={<SubModul />} /> */}
       </Routes>
     </Router>

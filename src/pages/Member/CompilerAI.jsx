@@ -1,6 +1,6 @@
 import React from "react";
-import SidebarLeft from "../../components/layouts/homepage/SidebarLeft";
-import Compiler from "../../components/layouts/Compiler&AI/Compiler";
+import SidebarLeft from "@/components/member/layouts/homepage/SidebarLeft";
+import Compiler from "@/components/member/layouts/Compiler&AI/Compiler";
 
 const CompilerAI = () => {
     return (

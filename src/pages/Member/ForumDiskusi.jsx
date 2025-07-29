@@ -1,6 +1,6 @@
 import React from "react";
-import SidebarLeft from "../../components/layouts/homepage/SidebarLeft";
-import ContentForum from "../../components/layouts/Forum/ContentForum";
+import SidebarLeft from "@/components/member/layouts/homepage/SidebarLeft";
+import ContentForum from "@/components/member/layouts/Forum/ContentForum";
 
 const ForumDiskusi = () => {
     return (

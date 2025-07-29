@@ -1,5 +1,5 @@
 import React from 'react';
-import KontenKiri from '../../fragments/Login/KontenKiri';
+import KontenKiri from "../../fragments/Login/KontenKiri";
 
 const LayoutLogin = ({ children }) => {
   return (
