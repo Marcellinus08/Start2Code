@@ -98,7 +98,7 @@ const ContentAdmin = () => {
 
   return (
     <main className="flex-1 p-8 ml-64 bg-[#F0F9FF] min-h-screen">
-      <Header hello="User Management" letsgo="Silakan pilih menu untuk mengelola sistem." />
+      <Header hello="User Management" letsgo="Kelola data pengguna dengan mudah dan efisien." />
 
       {/* TAMBAH USER */}
       <section className="bg-white p-6 rounded-2xl shadow-lg mb-10">

@@ -5,10 +5,10 @@ import Sandi from "../../elements/Akun/Sandi";
 import Button from "../../elements/Akun/Button";
 
 const Form = (props) => {
-    const {nama_depan, nama_belakang, email, telepon} = props;
+    const {nama_lengkap, email, telepon} = props;
     return (
         <form className="mt-8 space-y-6">
-            <Data1 nama_depan={nama_depan} nama_belakang={nama_belakang}/>
+            <Data1 nama_lengkap={nama_lengkap}/>
             <Data2 email={email}/>
             <Data3 telepon={telepon}/>
             <Sandi/>

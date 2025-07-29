@@ -15,8 +15,7 @@ const ContentAkun = () => {
                     <div className="flex-1 w-full">
                         <Username name= "Sabrina Yuanti" email="sabrina@example.com"/>
                         <Form
-                        nama_depan="Sabrina"
-                        nama_belakang="Yuanti"
+                        nama_lengkap="Sabrina Yuanti"
                         email="sabrina.yuanti@example.com"
                         telepon="0812345678979"/>
                     </div>
