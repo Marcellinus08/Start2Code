@@ -1,12 +1,13 @@
 import React from "react";
-import LayoutDashboard from "../../components/admin/layouts/LayoutDashboard";
+import Sidebar from "../../components/admin/layouts/Sidebar";
+import ContentAdmin from "../../components/admin/layouts/ContentAdmin"
 
 const DashboardAdmin = () => {
   return (
-    <LayoutDashboard>
-      <h1 className="text-2xl font-bold">Selamat Datang Admin!</h1>
-      <p className="text-gray-600 mt-2">Kelola data user, statistik, forum, dan lainnya.</p>
-    </LayoutDashboard>
+    <div>
+    <Sidebar></Sidebar>
+    <ContentAdmin></ContentAdmin>
+    </div>
   );
 };
 

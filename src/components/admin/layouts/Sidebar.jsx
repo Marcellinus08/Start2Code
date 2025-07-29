@@ -1,6 +1,6 @@
 import SidebarListLeft from "../../member/fragments/homepage/SidebarListLeft";
 
-const LayoutDashboard = () => {
+const Sidebar = () => {
     return(
         <aside className="w-64 bg-white shadow-lg p-6 h-screen fixed top-0 left-0 flex flex-col justify-between">
             <div>
@@ -22,4 +22,4 @@ const LayoutDashboard = () => {
     );
 };
 
-export default LayoutDashboard;
+export default Sidebar;
