@@ -1,15 +1,20 @@
-import ListNav2 from "../../elements/homepage/ListNav2";
 import { NavLink, useLocation } from "react-router-dom";
+import ListNav2 from "../../elements/homepage/ListNav2";
 
 const SidebarListLeft = ({ name, jenis, now, to = "/", onClick, noActive = false }) => {
+  const location = useLocation();
+
+  const isModulActive = to === "/modul" && (
+    location.pathname.startsWith("/submodul") || location.pathname === "/materisubmodul"
+  );
+
   if (onClick) {
-    // 🔴 Jika ada onClick, render <div> biasa agar tidak langsung navigate
     return (
       <div onClick={onClick}>
         <ListNav2
           variant={jenis}
           now={now}
-          isActive={false} // tidak aktifkan warna biru
+          isActive={false}
         >
           {name}
         </ListNav2>
@@ -17,14 +22,13 @@ const SidebarListLeft = ({ name, jenis, now, to = "/", onClick, noActive = false
     );
   }
 
-  // ✅ Default: jika tidak ada onClick, tetap gunakan NavLink
   return (
-    <NavLink to={to} end>
+    <NavLink to={to}>
       {({ isActive }) => (
         <ListNav2
           variant={jenis}
           now={now}
-          isActive={noActive ? false : isActive}
+          isActive={noActive ? false : isActive || isModulActive}
         >
           {name}
         </ListNav2>

@@ -28,12 +28,10 @@ function App () {
         <Route path="/compilerai" element={<CompilerAI />} />
         <Route path="/akun" element={<Akun />} />
         <Route path="/admin" element={<Dashboard />} />
-        <Route path="/submodul" element={<SubModul />} />
-        <Route path="/materi-submodul" element={<MateriSubModul />} />
+        <Route path="/submodul/:slug" element={<SubModul />} />
+        <Route path="/materisubmodul" element={<MateriSubModul />} />
         <Route path="/modul_management" element={<ModulManagement />} />
         <Route path="/activity" element={<Activity />} />
-
-        
       </Routes>
     </Router>
   );

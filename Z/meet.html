@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Start2Code - Jadwal Zoom/Meet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F0F9FF;
+        }
+        .primary-gradient {
+            background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%);
+        }
+        .secondary-gradient {
+            background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .btn-primary {
+            @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105;
+        }
+        .btn-secondary {
+            @apply bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105;
+        }
+        .nav-link {
+            @apply flex items-center space-x-3 px-4 py-3 text-gray-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition duration-150 ease-in-out;
+        }
+        .nav-link.active {
+            @apply bg-blue-500 text-white shadow-md;
+        }
+        .icon-btn {
+            @apply text-gray-500 hover:text-blue-600 transition duration-150 ease-in-out;
+        }
+        .schedule-card {
+            @apply bg-white rounded-xl p-6 card-shadow hover:shadow-xl transition-shadow duration-300 flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+<div class="flex flex-1">
+<aside class="w-64 bg-white shadow-lg p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center space-x-3 mb-10">
+<img alt="Start2Code Logo" class="h-10 w-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDZ3l6qPfkg2_z_2DOyGzAu0Kr0Ggo1w6pU0OoXjvGAAm30NcvO9GxTgxmqOPEmX4LYV9rSKJyRzW0ZQSvW6wWJoFsd97c12bieY06tbZO-X9HiIS46jGvIqC2ohPa_ZamwxQoKJAiJXou9HTuXfOcktZliGW7wLD9iCqqTiR1eumRxOHIEq96uA_b7o5y5Uuyhoc1uEOzFbPhvqdPqxM2rxxcQL85m8SnGe9_3Pml50Gl85wOT69grg9VtUbw3vch_vyhXz3FLz8K"/>
+<h1 class="text-2xl font-bold text-blue-600">Start2Code</h1>
+</div>
+<nav class="space-y-2">
+<a class="nav-link" href="#">
+<span class="material-icons">home</span>
+<span>Home page</span>
+</a>
+<a class="nav-link" href="#">
+<span class="material-icons">menu_book</span>
+<span>Modul Pembelajaran</span>
+</a>
+<a class="nav-link active" href="#">
+<span class="material-icons">videocam</span>
+<span>Zoom/Meet</span>
+</a>
+<a class="nav-link" href="#">
+<span class="material-icons">forum</span>
+<span>Forum diskusi</span>
+</a>
+<a class="nav-link" href="#">
+<span class="material-icons">headset_mic</span>
+<span>Konsultasi</span>
+</a>
+<a class="nav-link" href="#">
+<span class="material-icons">bar_chart</span>
+<span>Statistik</span>
+</a>
+<a class="nav-link" href="#">
+<span class="material-icons">auto_awesome</span>
+<span>AI Assistant</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto">
+<a class="nav-link" href="#">
+<span class="material-icons">account_circle</span>
+<span>Akun</span>
+</a>
+<a class="nav-link mt-2 text-red-500 hover:bg-red-100 hover:text-red-600" href="#">
+<span class="material-icons">logout</span>
+<span>Keluar</span>
+</a>
+</div>
+</aside>
+<main class="flex-1 p-8 overflow-y-auto">
+<header class="flex justify-between items-center mb-8">
+<div>
+<h2 class="text-3xl font-bold text-gray-800">Jadwal Zoom/Meet</h2>
+<p class="text-gray-600">Berikut adalah jadwal sesi tatap muka online Anda.</p>
+</div>
+<div class="flex items-center space-x-4">
+<button class="icon-btn">
+<span class="material-icons text-3xl">notifications_none</span>
+</button>
+<img alt="Avatar Sabrina Yuanti" class="w-10 h-10 rounded-full border-2 border-blue-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsVLdsreqFV6gE-iaeo2tbo_9VQnLl2Aa1axBE66LlE4aUnjerdiH6xNbScWmcjyQ9iUha0JDqzrp9bm_8Bmrud5EO-nx-bp9HVavll20Q6kS0_vnKm997edYRSuyMCcDlTsumvehoBXd4zCrgmKLjCdbncXz7baajEMvWM_05yggm82rSJ1EIY7PdCUKTG6HF5Qct_TfIG7BmeIHHVhZ5anEozR7QCpVELwBgy7pa6U7dDtp-xyq_GQP1MgeqzxiORvWr3eGQOi0_"/>
+</div>
+</header>
+<section class="space-y-8">
+<div>
+<h3 class="text-xl font-semibold text-gray-700 mb-4">Sesi Kelas Mendatang</h3>
+<div class="schedule-card">
+<div class="flex-shrink-0 w-24 h-24 primary-gradient rounded-lg flex flex-col items-center justify-center text-white">
+<span class="text-4xl font-bold">05</span>
+<span class="font-medium">AGU '24</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-blue-600">Selasa, 10:00 - 11:30 WIB</p>
+<h4 class="text-lg font-bold text-gray-800 mt-1">Sesi Tanya Jawab: Struktur Data Lanjutan</h4>
+<p class="text-gray-500 mt-1 text-sm">Dibawakan oleh: <span class="font-medium">Bpk. Reno</span></p>
+</div>
+<a class="btn-primary py-2 px-5 text-sm" href="#">
+<span class="material-icons mr-2 text-base">video_call</span> Gabung Sesi
+                    </a>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-gray-700 mb-4">Sesi Konsultasi Mendatang</h3>
+<div class="schedule-card opacity-70">
+<div class="flex-shrink-0 w-24 h-24 secondary-gradient rounded-lg flex flex-col items-center justify-center text-white">
+<span class="text-4xl font-bold">06</span>
+<span class="font-medium">AGU '24</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-yellow-600">Rabu, 14:00 - 14:30 WIB</p>
+<h4 class="text-lg font-bold text-gray-800 mt-1">Konsultasi Proyek Akhir</h4>
+<p class="text-gray-500 mt-1 text-sm">Dengan: <span class="font-medium">Ibu Dini</span></p>
+</div>
+<button class="bg-gray-300 text-gray-500 font-semibold py-2 px-5 text-sm rounded-lg cursor-not-allowed" disabled="">
+<span class="material-icons mr-2 text-base align-bottom">watch_later</span> Belum Tersedia
+                    </button>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-gray-700 mb-4">Sesi Kelas Selesai</h3>
+<div class="schedule-card opacity-70">
+<div class="flex-shrink-0 w-24 h-24 bg-gray-200 rounded-lg flex flex-col items-center justify-center text-gray-600">
+<span class="text-4xl font-bold">29</span>
+<span class="font-medium">JUL '24</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-gray-500">Senin, 13:00 - 14:30 WIB</p>
+<h4 class="text-lg font-bold text-gray-800 mt-1">Review Tugas: Pengenalan Algoritma</h4>
+<p class="text-gray-500 mt-1 text-sm">Dibawakan oleh: <span class="font-medium">Ibu Dini</span></p>
+</div>
+<a class="btn-secondary py-2 px-5 text-sm" href="#">
+<span class="material-icons mr-2 text-base">movie</span> Lihat Rekaman
+                    </a>
+</div>
+<div class="schedule-card opacity-70 mt-4">
+<div class="flex-shrink-0 w-24 h-24 bg-gray-200 rounded-lg flex flex-col items-center justify-center text-gray-600">
+<span class="text-4xl font-bold">25</span>
+<span class="font-medium">JUL '24</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-gray-500">Kamis, 09:00 - 10:30 WIB</p>
+<h4 class="text-lg font-bold text-gray-800 mt-1">Live Coding: Implementasi Array dan Linked List</h4>
+<p class="text-gray-500 mt-1 text-sm">Dibawakan oleh: <span class="font-medium">Bpk. Reno</span></p>
+</div>
+<a class="btn-secondary py-2 px-5 text-sm" href="#">
+<span class="material-icons mr-2 text-base">movie</span> Lihat Rekaman
+                    </a>
+</div>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-gray-700 mb-4">Sesi Konsultasi Selesai</h3>
+<div class="schedule-card opacity-70">
+<div class="flex-shrink-0 w-24 h-24 bg-gray-200 rounded-lg flex flex-col items-center justify-center text-gray-600">
+<span class="text-4xl font-bold">28</span>
+<span class="font-medium">JUL '24</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-gray-500">Minggu, 16:00 - 16:30 WIB</p>
+<h4 class="text-lg font-bold text-gray-800 mt-1">Diskusi Konsep OOP</h4>
+<p class="text-gray-500 mt-1 text-sm">Dengan: <span class="font-medium">Bpk. Reno</span></p>
+</div>
+<a class="btn-secondary py-2 px-5 text-sm" href="#">
+<span class="material-icons mr-2 text-base">movie</span> Lihat Rekaman
+                    </a>
+</div>
+</div>
+</section>
+</main>
+</div>
+
+</body></html>
