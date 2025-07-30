@@ -6,7 +6,6 @@ const ModulManagement = () => {
   return (
     <div>
     <Sidebar></Sidebar>
-    <Content></Content>
     </div>
   );
 };
