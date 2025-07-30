@@ -8,6 +8,7 @@ const ModulSection = () => {
       desc: "Pahami konsep fundamental algoritma dan berbagai struktur data untuk pemecahan masalah yang efektif dan efisien.",
       progress: 75,
       color: "green",
+      to: "/submodul/algoritma",
     },
     {
       title: "Game Programming",
@@ -15,6 +16,7 @@ const ModulSection = () => {
       desc: "Pelajari dasar-dasar pengembangan game, mulai dari logika, grafis, hingga interaksi pemain.",
       progress: 50,
       color: "pink",
+      to: "/submodul/game",
     },
     {
       title: "Web Programming",
@@ -22,6 +24,7 @@ const ModulSection = () => {
       desc: "Kuasai teknologi untuk membangun aplikasi web interaktif, mulai dari frontend hingga backend.",
       progress: 25,
       color: "blue",
+      to: "/submodul/web",
     },
     {
       title: "Application Programming",
@@ -29,6 +32,7 @@ const ModulSection = () => {
       desc: "Kembangkan aplikasi desktop atau mobile dengan berbagai bahasa pemrograman dan framework populer.",
       progress: 10,
       color: "purple",
+      to: "/submodul/app",
     },
     {
       title: "Crypto Programming",
@@ -36,6 +40,7 @@ const ModulSection = () => {
       desc: "Selami dunia kriptografi dan pelajari cara mengamankan data dan komunikasi digital.",
       progress: 7,
       color: "yellow",
+      to: "/submodul/crypto",
     },
     {
       title: "Basic Hardware Programming",
@@ -43,6 +48,7 @@ const ModulSection = () => {
       desc: "Pelajari interaksi antara perangkat keras dan perangkat lunak melalui pemrograman tingkat rendah.",
       progress: 0,
       color: "teal",
+      to: "/submodul/hardware",
     },
   ];
 
@@ -58,6 +64,7 @@ const ModulSection = () => {
             desc={modul.desc}
             progress={modul.progress}
             color={modul.color}
+            to={modul.to}
           />
         ))}
       </div>

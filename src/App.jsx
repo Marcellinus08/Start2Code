@@ -10,7 +10,7 @@ import Akun from './pages/member/Akun';
 import Login from './pages/member/Login';
 import Dashboard from "./pages/admin/Dashboard";
 import SubModul from './pages/member/SubModul';
-import MateriSubModul from './pages/Member/MateriSubModul';
+import MateriSubModul from './pages/member/MateriSubModul';
 
 function App () { 
   return (
@@ -26,8 +26,8 @@ function App () {
         <Route path="/compilerai" element={<CompilerAI />} />
         <Route path="/akun" element={<Akun />} />
         <Route path="/admin" element={<Dashboard />} />
-        <Route path="/submodul" element={<SubModul />} />
-        <Route path="/materi-submodul" element={<MateriSubModul />} />
+        <Route path="/submodul/:slug" element={<SubModul />} />
+        <Route path="/materisubmodul" element={<MateriSubModul />} />
       </Routes>
     </Router>
   );
