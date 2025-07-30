@@ -1,5 +1,4 @@
-const Header = (props) => {
-  const { title, desc } = props;
+const Header = ({ title, desc }) => {
   return (
     <header className="flex justify-between items-center mb-8">
       <div>

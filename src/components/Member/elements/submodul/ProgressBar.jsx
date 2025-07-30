@@ -1,15 +1,10 @@
-import React from "react";
-
-const ProgressBar = ({ percent }) => {
+const ProgressBar = ({ percent, color = "blue" }) => {
   return (
-    <div>
-      <div className="w-full bg-gray-200 rounded-full h-2.5 mb-1">
-        <div
-          className="bg-green-500 h-2.5 rounded-full"
-          style={{ width: `${percent}%` }}
-        ></div>
-      </div>
-      <p className="text-xs text-gray-500 text-right">{percent}% Selesai</p>
+    <div className="w-full bg-gray-200 rounded-full h-4">
+      <div
+        className={`h-4 rounded-full bg-${color}-500 transition-all duration-500`}
+        style={{ width: `${percent}%` }}
+      ></div>
     </div>
   );
 };

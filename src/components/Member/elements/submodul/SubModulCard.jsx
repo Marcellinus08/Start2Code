@@ -10,7 +10,7 @@ const SubModulCard = ({ nomor, title, deskripsi, locked }) => {
       </div>
       <p className="text-sm text-gray-600 mb-4 flex-grow">{deskripsi}</p>
 
-      <CardButton locked={locked} />
+      <CardButton locked={locked} to={!locked ? "/materisubmodul" : null} />
     </div>
   );
 };

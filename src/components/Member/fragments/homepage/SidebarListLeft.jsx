@@ -1,5 +1,5 @@
 import ListNav2 from "../../elements/homepage/ListNav2";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const SidebarListLeft = ({ name, jenis, now, to = "/", onClick, noActive = false }) => {
   if (onClick) {

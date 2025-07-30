@@ -1,9 +1,7 @@
 import ProgressBar from "./ProgressBar";
 import CardButton from "./CardButton";
 
-const ContentCard = (props) => {
-  const { title, icon, desc, progress, color } = props;
-
+const ContentCard = ({ title, icon, desc, progress, color, to }) => {
   return (
     <div className="bg-white rounded-xl p-6 shadow-xl hover:shadow-2xl transition-shadow duration-300 flex flex-col">
       <div className={`w-full h-32 bg-${color}-100 rounded-lg mb-4 flex items-center justify-center`}>
@@ -13,7 +11,7 @@ const ContentCard = (props) => {
       <p className="text-sm text-gray-600 mb-4 flex-grow whitespace-pre-line">{desc}</p>
       <div className="mt-auto">
         <ProgressBar value={progress} color={color} />
-        <CardButton color={color} />
+        <CardButton color={color} to={to} />
       </div>
     </div>
   );
