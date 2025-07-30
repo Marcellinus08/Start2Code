@@ -1,5 +1,5 @@
-import Header from "../../member/fragments/homepage/Header";
-import { supabase } from "../../../supabaseClient";
+import Header from "../../../member/fragments/homepage/Header";
+import { supabase } from "../../../../supabaseClient";
 import { useEffect, useState } from "react";
 
 const ContentAdmin = () => {

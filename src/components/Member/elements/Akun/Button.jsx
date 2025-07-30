@@ -1,10 +1,21 @@
 const Button = () => {
-    return (
-        <div className="flex justify-end space-x-4 pt-4">
-            <button type="button" className="bg-gray-200 text-gray-700 font-semibold py-2 px-6 rounded-lg hover:bg-gray-300 transition duration-300 ease-in-out">Batal</button>
-            <button type="submit" className="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">Simpan Perubahan</button>
-        </div>
-    );
+  return (
+    <div className="flex justify-end space-x-2">
+      <button
+        type="button"
+        className="bg-gray-200 px-4 py-2 rounded text-black hover:bg-gray-300"
+        onClick={() => window.location.reload()}
+      >
+        Batal
+      </button>
+      <button
+        type="submit"
+        className="bg-[#4285F4] text-white px-4 py-2 rounded hover:bg-blue-600"
+      >
+        Simpan Perubahan
+      </button>
+    </div>
+  );
 };
 
 export default Button;

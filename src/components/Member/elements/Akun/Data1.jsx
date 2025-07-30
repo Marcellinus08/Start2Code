@@ -1,11 +1,19 @@
-const Data1 = (props) => {
-    const {nama_lengkap} = props;
-    return (
-            <div>
-                <label for="nama_lengkap" className="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
-                <input type="text" id="nama_lengkap" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition;" value={nama_lengkap} />
-            </div>
-    );
+const Data1 = ({ username, onChange }) => {
+  return (
+    <div>
+      <label className="block text-sm font-medium text-gray-700">Username</label>
+      <input
+        name="username"
+        type="text"
+        value={username}
+        onChange={onChange}
+        className="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring-[#4285F4] focus:border-[#4285F4]"
+        placeholder="Masukkan username"
+        required
+        disabled
+      />
+    </div>
+  );
 };
 
 export default Data1;

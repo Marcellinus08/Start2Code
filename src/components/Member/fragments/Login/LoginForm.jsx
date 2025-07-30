@@ -31,6 +31,21 @@ const LoginForm = ({ selectedRole }) => {
       return;
     }
 
+    // ✅ Simpan sesi login
+    localStorage.setItem("username", data.username);
+
+    // ✅ Catat ke tabel aktivitas
+    const { error: logError } = await supabase.from("aktivitas").insert({
+      username: data.username,
+      aksi: "login",
+      waktu: new Date().toISOString(),
+    });
+
+    if (logError) {
+      console.error("Gagal mencatat aktivitas login:", logError.message);
+    }
+
+    // ✅ Notifikasi login berhasil
     Swal.fire({
       title: `Selamat Datang, ${data.full_name}!`,
       text: `Login berhasil sebagai ${selectedRole}`,
@@ -41,10 +56,10 @@ const LoginForm = ({ selectedRole }) => {
       timerProgressBar: true,
     });
 
-    // Arahkan berdasarkan role
-    if (selectedRole === "admin") navigate("admin");
-    else if (selectedRole === "mentor") navigate("mentor");
-    else navigate("home");
+    // ✅ Arahkan berdasarkan role
+    if (selectedRole === "admin") navigate("/admin");
+    else if (selectedRole === "mentor") navigate("/mentor");
+    else navigate("/home");
   };
 
   return (

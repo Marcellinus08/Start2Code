@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/supabaseClient";
 import Swal from "sweetalert2";
-import SidebarListLeft from "../../fragments/homepage/SidebarListLeft";
+import SidebarListLeft from "../../../member/fragments/homepage/SidebarListLeft";
 
-const SidebarLeft = () => {
+const Sidebar = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
@@ -19,18 +19,22 @@ const SidebarLeft = () => {
 
     if (result.isConfirmed) {
       const username = localStorage.getItem("username");
+      if (!username) {
+        return Swal.fire("Gagal", "Username tidak ditemukan di sesi", "error");
+      }
 
-      // Catat aktivitas logout ke tabel aktivitas
-      await supabase.from("aktivitas").insert({
+      const { error } = await supabase.from("aktivitas").insert({
         username,
-        aksi: "logout",
+        aksi: "logout", // ✅ gunakan 'aksi' sesuai struktur tabel
         waktu: new Date().toISOString(),
-    });
+      });
 
-      // Bersihkan sesi
+      if (error) {
+        console.error("Insert error:", error.message);
+        return Swal.fire("Gagal", error.message, "error");
+      }
+
       localStorage.removeItem("username");
-
-      // Redirect ke login
       navigate("/");
     }
   };
@@ -42,30 +46,25 @@ const SidebarLeft = () => {
           <img alt="Start2Code Logo" src="../assets/logo.png" />
         </div>
         <nav className="space-y-2">
-          <SidebarListLeft jenis="home" name="Home" to="/home" />
-          <SidebarListLeft jenis="menu_book" name="Modul Pembelajaran" to="/modul" />
-          <SidebarListLeft jenis="videocam" name="Meet" to="/meet" />
-          <SidebarListLeft jenis="forum" name="Forum diskusi" to="/forum" />
-          <SidebarListLeft jenis="headset_mic" name="Konsultasi" to="/konsultasi" />
-          <SidebarListLeft jenis="bar_chart" name="Statistik" to="/statistik" />
-          <SidebarListLeft jenis="auto_awesome" name="Compiler & AI" to="/compilerai" />
+          <SidebarListLeft jenis="manage_accounts" name="User Management" to="/admin" />
+          <SidebarListLeft jenis="library_books" name="Modul Management" to="/modul_management" />
+          <SidebarListLeft jenis="history" name="Activity" to="/activity" />
         </nav>
       </div>
       <div>
         <nav>
-          <SidebarListLeft jenis="account_circle" name="Akun" to="/akun" />
-          {/* Logout dengan handler */}
+          <SidebarListLeft jenis="account_circle" name="Akun" to="/" />
           <SidebarListLeft
             jenis="logout"
             name="Keluar"
-            onClick={handleLogout} // TANPA to="/"
+            onClick={handleLogout}
             now="mt-2 text-red-500 hover:bg-red-100 hover:text-red-600"
-            noActive={true}
-            />
+            noActive={true} // menghindari style biru saat aktif
+          />
         </nav>
       </div>
     </aside>
   );
 };
 
-export default SidebarLeft;
+export default Sidebar;

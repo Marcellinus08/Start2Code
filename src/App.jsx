@@ -8,9 +8,11 @@ import Statistik from './pages/member/Statistik';
 import CompilerAI from './pages/member/CompilerAI';
 import Akun from './pages/member/Akun';
 import Login from './pages/member/Login';
-import Dashboard from "./pages/admin/Dashboard";
+import Dashboard from "./pages/admin/UserManagement";
 import SubModul from './pages/member/SubModul';
 import MateriSubModul from './pages/Member/MateriSubModul';
+import ModulManagement from './pages/admin/ModulManagement';
+import Activity from './pages/admin/Activity';
 
 function App () { 
   return (
@@ -28,6 +30,10 @@ function App () {
         <Route path="/admin" element={<Dashboard />} />
         <Route path="/submodul" element={<SubModul />} />
         <Route path="/materi-submodul" element={<MateriSubModul />} />
+        <Route path="/modul_management" element={<ModulManagement />} />
+        <Route path="/activity" element={<Activity />} />
+
+        
       </Routes>
     </Router>
   );
