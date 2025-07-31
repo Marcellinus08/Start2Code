@@ -8,8 +8,8 @@ const MeetLayout = () => {
       <SidebarLeft />
       <main className="ml-64 flex-1 overflow-y-auto px-8 py-8">
         <Header
-          title="Jadwal Meet"
-          desc="Berikut adalah jadwal sesi tatap muka online Anda."
+          title="Meet"
+          desc="Berikut adalah jadwal sesi tatap muka online dan konsultasi Anda."
         />
         <MeetTabs />
       </main>
