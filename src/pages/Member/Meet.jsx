@@ -1,12 +1,8 @@
 import React from "react";
-import SidebarLeft from "@/components/member/layouts/homepage/SidebarLeft";
+import MeetLayout from "@/components/Member/layouts/meet/MeetLayout";
 
 const Meet = () => {
-    return (
-        <div className="flex min-h-screen">
-            <SidebarLeft />
-        </div>
-    );
+  return <MeetLayout />;
 };
 
 export default Meet;
