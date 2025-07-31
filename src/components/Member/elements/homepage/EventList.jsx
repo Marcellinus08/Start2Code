@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const EventList = () => {
+const EventList = ({ cards = [] }) => {
   const containerRef = useRef(null);
   const contentRef = useRef(null);
   const animationRef = useRef(null);
@@ -64,17 +64,6 @@ const EventList = () => {
     }, 400); // tunggu sampai transisi selesai
   };
 
-  const cards = [
-    { img: "/assets/event_1.png" },
-    { img: "/assets/event_2.png" },
-    { img: "/assets/event_3.png" },
-    { img: "/assets/event_4.png" },
-    { img: "/assets/event_5.png" },
-    { img: "/assets/event_6.png" },
-    { img: "/assets/event_7.png" },
-    { img: "/assets/event_8.png" },
-  ];
-
   const renderCards = () =>
     [...cards, ...cards].map((card, index) => (
       <div
@@ -89,6 +78,7 @@ const EventList = () => {
         </div>
       </div>
     ));
+
 
   return (
     <div className="py-1 overflow-hidden relative" ref={containerRef}>
