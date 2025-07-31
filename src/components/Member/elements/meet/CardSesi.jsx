@@ -20,7 +20,7 @@ const CardSesi = ({
     : "bg-yellow-400 text-white";
 
   return (
-    <div className="bg-white rounded-xl shadow-md flex items-center justify-between px-8 py-6 mb-6 transition-transform duration-300 hover:-translate-y-0.5">
+    <div className="bg-white rounded-xl shadow-md flex items-center justify-between px-8 py-6 mb-6 transition-transform duration-300 hover:shadow-lg">
       
       <div className={`flex flex-col items-center justify-center rounded-md w-[95px] h-[90px] ${cardColor}`}>
         <p className="text-[28px] font-bold leading-none">{date}</p>
