@@ -9,11 +9,10 @@ const MeetTabs = () => {
     kelas: {
       mendatang: [
         {
-          date: "05",
+          date: "02",
           month: "AGU",
           year: "2025",
-          day: "Selasa",
-          time: "10:00 - 11:30",
+          time: "04:36 - 23:30",
           title: "Sesi Tanya Jawab: Struktur Data Lanjutan",
           subtitle: "Sub Bab: Pengenalan Algoritma",
           teacher: "Bpk. Reno",
@@ -26,7 +25,6 @@ const MeetTabs = () => {
           date: "29",
           month: "JUL",
           year: "2025",
-          day: "Senin",
           time: "13:00 - 14:30",
           title: "Review Tugas: Pengenalan Algoritma",
           subtitle: "Sub Bab: Pengenalan Algoritma",
@@ -35,10 +33,9 @@ const MeetTabs = () => {
           type: "kelas",
         },
         {
-          date: "25",
+          date: "24",
           month: "JUL",
           year: "2025",
-          day: "Kamis",
           time: "09:00 - 10:30",
           title: "Live Coding: Implementasi Array & Linked List",
           subtitle: "Sub Bab: Pengenalan Algoritma",
@@ -47,10 +44,9 @@ const MeetTabs = () => {
           type: "kelas",
         },
         {
-          date: "25",
+          date: "21",
           month: "JUL",
           year: "2025",
-          day: "Kamis",
           time: "09:00 - 10:30",
           title: "Live Coding: Implementasi Array & Linked List",
           subtitle: "Sub Bab: Pengenalan Algoritma",
@@ -63,14 +59,14 @@ const MeetTabs = () => {
     konsultasi: {
       mendatang: [
         {
-          date: "06",
+          date: "04",
           month: "AGU",
           year: "2025",
-          day: "Rabu",
-          time: "14:00 - 14:30",
+          time: "02:00 - 14:30",
           title: "Konsultasi Proyek Akhir",
           subtitle: "Sub Bab: Pengenalan Algoritma",
           teacher: "Ibu Dini",
+          joinUrl: "https://zoom.com/konsul",
           type: "konsultasi",
         },
       ],
@@ -79,7 +75,6 @@ const MeetTabs = () => {
           date: "28",
           month: "JUL",
           year: "2025",
-          day: "Minggu",
           time: "16:00 - 16:30",
           title: "Diskusi Konsep OOP",
           subtitle: "Sub Bab: Pengenalan Algoritma",
@@ -88,10 +83,9 @@ const MeetTabs = () => {
           type: "konsultasi",
         },
         {
-          date: "28",
+          date: "25",
           month: "JUL",
           year: "2025",
-          day: "Minggu",
           time: "16:00 - 16:30",
           title: "Diskusi Konsep OOP",
           subtitle: "Sub Bab: Pengenalan Algoritma",
@@ -100,10 +94,9 @@ const MeetTabs = () => {
           type: "konsultasi",
         },
         {
-          date: "28",
+          date: "23",
           month: "JUL",
           year: "2025",
-          day: "Minggu",
           time: "16:00 - 16:30",
           title: "Diskusi Konsep OOP",
           subtitle: "Sub Bab: Pengenalan Algoritma",
@@ -115,7 +108,44 @@ const MeetTabs = () => {
     },
   };
 
-  const sesi = data[activeTab];
+  const parseDatetime = (sesi) => {
+    const [start, end] = sesi.time.split(" - ");
+    const monthMap = {
+      JAN: 0, FEB: 1, MAR: 2, APR: 3, MEI: 4, JUN: 5,
+      JUL: 6, AGU: 7, SEP: 8, OKT: 9, NOV: 10, DES: 11,
+    };
+    const month = monthMap[sesi.month];
+    const date = parseInt(sesi.date);
+    const year = parseInt("20" + sesi.year.slice(-2));
+    const [startHour, startMin] = start.split(":").map(Number);
+    const [endHour, endMin] = end.split(":").map(Number);
+    const startTime = new Date(year, month, date, startHour, startMin);
+    const endTime = new Date(year, month, date, endHour, endMin);
+    const now = new Date();
+
+    return { startTime, endTime, now };
+  };
+
+  const enrichSesiList = (list) => {
+    return list.map((sesi) => {
+      const { startTime, endTime, now } = parseDatetime(sesi);
+      const isNow = now >= startTime && now <= endTime;
+      const isFinished = now > endTime;
+      return {
+        ...sesi,
+        joinUrl: isNow ? sesi.joinUrl : null,
+        isFinished,
+      };
+    });
+  };
+
+  const sesi = {
+    mendatang: enrichSesiList(data[activeTab].mendatang).filter((s) => !s.isFinished),
+    selesai: [
+      ...data[activeTab].selesai,
+      ...enrichSesiList(data[activeTab].mendatang).filter((s) => s.isFinished),
+    ],
+  };
 
   return (
     <div className="space-y-12">
@@ -128,15 +158,31 @@ const MeetTabs = () => {
         </TabButton>
       </div>
 
-      <ScheduleCard
-        title={`Sesi ${activeTab === "kelas" ? "Kelas" : "Konsultasi"} Mendatang`}
-        sessions={sesi.mendatang}
-      />
+      <div>
+        <h2 className="text-xl font-bold text-gray-700 mb-5">
+          Sesi {activeTab === "kelas" ? "Kelas" : "Konsultasi"} Mendatang
+        </h2>
+        {sesi.mendatang.length > 0 ? (
+          <ScheduleCard sessions={sesi.mendatang} />
+        ) : (
+          <p className="text-gray-500 italic">
+            Tidak ada sesi {activeTab === "kelas" ? "kelas" : "konsultasi"} saat ini.
+          </p>
+        )}
+      </div>
 
-      <ScheduleCard
-        title={`Sesi ${activeTab === "kelas" ? "Kelas" : "Konsultasi"} Selesai`}
-        sessions={sesi.selesai}
-      />
+      <div>
+        <h2 className="text-xl font-bold text-gray-700 mb-5">
+          Sesi {activeTab === "kelas" ? "Kelas" : "Konsultasi"} Selesai
+        </h2>
+        {sesi.selesai.length > 0 ? (
+          <ScheduleCard sessions={sesi.selesai} />
+        ) : (
+          <p className="text-gray-500 italic">
+            Belum ada sesi {activeTab === "kelas" ? "kelas selesai" : "konsultasi selesai"} saat ini.
+          </p>
+        )}
+      </div>
     </div>
   );
 };

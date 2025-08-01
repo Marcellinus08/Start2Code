@@ -1,8 +1,14 @@
 import React from "react";
 
+const getDayName = (dateString) => {
+  const hari = [
+    "Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"
+  ];
+  return hari[new Date(dateString).getDay()];
+};
+
 const CardSesi = ({
   date,
-  day,
   month,
   year,
   time,
@@ -13,15 +19,21 @@ const CardSesi = ({
   isFinished,
   type,
 }) => {
+
   const cardColor = isFinished
     ? "bg-gray-200 text-gray-600"
-    : type === "kelas"
-    ? "bg-blue-500 text-white"
-    : "bg-yellow-400 text-white";
+    : "bg-blue-500 text-white";
+
+  const validDate = `${year}-${{
+    JAN: "01", FEB: "02", MAR: "03", APR: "04", MEI: "05", JUN: "06",
+    JUL: "07", AGU: "08", SEP: "09", OKT: "10", NOV: "11", DES: "12"
+  }[month]}-${date.padStart(2, "0")}`;
+
+  const realDay = getDayName(validDate);
 
   return (
     <div className="bg-white rounded-xl shadow-md flex items-center justify-between px-8 py-6 mb-6 transition-transform duration-300 hover:shadow-lg">
-      
+
       <div className={`flex flex-col items-center justify-center rounded-md w-[95px] h-[90px] ${cardColor}`}>
         <p className="text-[28px] font-bold leading-none">{date}</p>
         <p className="text-sm font-semibold mt-1 uppercase">
@@ -31,8 +43,9 @@ const CardSesi = ({
 
       <div className="flex-1 px-6 flex flex-col gap-y-1">
         <p className="text-sm text-blue-600 font-semibold">
-          {day}, {time} WIB
+          {realDay}, {time} WIB
         </p>
+
         <h3 className="text-base font-bold text-gray-800">{title}</h3>
         {subtitle && <p className="text-sm text-gray-600">{subtitle}</p>}
         {teacher && (
