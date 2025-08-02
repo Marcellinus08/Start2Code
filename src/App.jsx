@@ -13,6 +13,8 @@ import SubModul from './pages/member/SubModul';
 import MateriSubModul from './pages/Member/MateriSubModul';
 import ModulManagement from './pages/admin/ModulManagement';
 import Activity from './pages/admin/Activity';
+import ModulAdd from './pages/admin/ModulAdd';
+import ModulEdit from './pages/admin/ModulEdit';
 
 function App () { 
   return (
@@ -28,10 +30,12 @@ function App () {
         <Route path="/compilerai" element={<CompilerAI />} />
         <Route path="/akun" element={<Akun />} />
         <Route path="/admin" element={<Dashboard />} />
-        <Route path="/submodul/:slug" element={<SubModul />} />
+        <Route path="/submodul/:modulName" element={<SubModul />} />
         <Route path="/materisubmodul" element={<MateriSubModul />} />
         <Route path="/modul_management" element={<ModulManagement />} />
         <Route path="/activity" element={<Activity />} />
+        <Route path="/modul_add" element={<ModulAdd />} />
+        <Route path="/modul_edit" element={<ModulEdit />} />
       </Routes>
     </Router>
   );

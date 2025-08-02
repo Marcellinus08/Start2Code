@@ -1,14 +1,14 @@
 import React from "react";
 import Sidebar from "../../components/admin/layouts/UserManagement/Sidebar";
-import Content from "../../components/admin/layouts/ModulManagement/Content";
+import ContentAdd from "../../components/admin/layouts/ModulAdd/ContentModulSub";
 
-const ModulManagement = () => {
+const ModulAdd = () => {
   return (
     <div>
     <Sidebar></Sidebar>
-    <Content/>
+    <ContentAdd></ContentAdd>
     </div>
   );
 };
 
-export default ModulManagement;
+export default ModulAdd;

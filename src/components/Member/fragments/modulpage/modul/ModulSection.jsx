@@ -1,73 +1,64 @@
 import ContentCard from "../../../elements/modulpembelajaran/modul/ContentCard";
+import { useEffect, useState } from "react";
+import { supabase } from "@/supabaseClient";
 
 const ModulSection = () => {
-  const modules = [
-    {
-      title: "Algorithm & Data Structure",
-      icon: "integration_instructions",
-      desc: "Pahami konsep fundamental algoritma dan berbagai struktur data untuk pemecahan masalah yang efektif dan efisien.",
-      progress: 75,
-      color: "green",
-      to: "/submodul/algoritma",
-    },
-    {
-      title: "Game Programming",
-      icon: "sports_esports",
-      desc: "Pelajari dasar-dasar pengembangan game, mulai dari logika, grafis, hingga interaksi pemain.",
-      progress: 50,
-      color: "pink",
-      to: "/submodul/game",
-    },
-    {
-      title: "Web Programming",
-      icon: "code",
-      desc: "Kuasai teknologi untuk membangun aplikasi web interaktif, mulai dari frontend hingga backend.",
-      progress: 25,
-      color: "blue",
-      to: "/submodul/web",
-    },
-    {
-      title: "Application Programming",
-      icon: "widgets",
-      desc: "Kembangkan aplikasi desktop atau mobile dengan berbagai bahasa pemrograman dan framework populer.",
-      progress: 10,
-      color: "purple",
-      to: "/submodul/app",
-    },
-    {
-      title: "Crypto Programming",
-      icon: "enhanced_encryption",
-      desc: "Selami dunia kriptografi dan pelajari cara mengamankan data dan komunikasi digital.",
-      progress: 7,
-      color: "yellow",
-      to: "/submodul/crypto",
-    },
-    {
-      title: "Basic Hardware Programming",
-      icon: "memory",
-      desc: "Pelajari interaksi antara perangkat keras dan perangkat lunak melalui pemrograman tingkat rendah.",
-      progress: 0,
-      color: "teal",
-      to: "/submodul/hardware",
-    },
-  ];
+  const [modules, setModules] = useState([]);
+  const [loading, setLoading] = useState(true); // optional loading state
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchModules = async () => {
+      setLoading(true);
+      const { data, error } = await supabase
+        .from("modul")
+        .select("modul_name, modul_description, icon, color");
+
+      if (error) {
+        console.error("Gagal mengambil modul:", error);
+        setError("Gagal memuat modul. Silakan coba lagi nanti.");
+      } else {
+        setModules(data || []);
+      }
+
+      setLoading(false);
+    };
+
+    fetchModules();
+  }, []);
+
+  const generateSlug = (name) => {
+    return name
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, "") // hapus karakter khusus
+      .replace(/\s+/g, "-"); // ubah spasi jadi dash
+  };
 
   return (
     <section className="mb-10 rounded-xl">
       <h3 className="text-2xl font-semibold text-gray-800 mb-4">Modul Saya</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {modules.map((modul, i) => (
-          <ContentCard
-            key={i}
-            title={modul.title}
-            icon={modul.icon}
-            desc={modul.desc}
-            progress={modul.progress}
-            color={modul.color}
-            to={modul.to}
-          />
-        ))}
-      </div>
+      
+      {loading ? (
+        <p className="text-gray-500">Memuat modul...</p>
+      ) : error ? (
+        <p className="text-red-500">{error}</p>
+      ) : modules.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {modules.map((modul, i) => (
+            <ContentCard
+              key={i}
+              title={modul.modul_name}
+              icon={modul.icon}
+              desc={modul.modul_description}
+              progress={modul.progress || 0}
+              color={modul.color}
+              to={`/submodul/${encodeURIComponent(modul.modul_name)}`}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="text-gray-500">Belum ada modul yang tersedia.</p>
+      )}
     </section>
   );
 };

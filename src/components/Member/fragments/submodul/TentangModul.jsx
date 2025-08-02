@@ -1,71 +1,64 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { supabase } from "@/supabaseClient";
 import ProgressBar from "../../elements/submodul/ProgressBar";
 
-const modulInfo = {
-  algoritma: {
-    icon: "integration_instructions",
-    color: "green",
-    title: "Algorithm & Data Structure",
-    desc: "Modul ini akan membimbingmu memahami konsep fundamental algoritma dan berbagai struktur data untuk pemecahan masalah yang efektif dan efisien.",
-    progress: 75,
-  },
-  game: {
-    icon: "sports_esports",
-    color: "pink",
-    title: "Game Programming",
-    desc: "Pelajari dasar pengembangan game, logika permainan, grafik, dan interaksi pemain.",
-    progress: 50,
-  },
-  web: {
-    icon: "code",
-    color: "blue",
-    title: "Web Programming",
-    desc: "Kuasai teknologi web dari frontend hingga backend untuk membangun aplikasi interaktif.",
-    progress: 25,
-  },
-  app: {
-    icon: "widgets",
-    color: "purple",
-    title: "Application Programming",
-    desc: "Kembangkan aplikasi desktop atau mobile menggunakan berbagai bahasa dan framework.",
-    progress: 10,
-  },
-  crypto: {
-    icon: "enhanced_encryption",
-    color: "yellow",
-    title: "Crypto Programming",
-    desc: "Pahami dasar kriptografi, hashing, dan teknik pengamanan digital.",
-    progress: 7,
-  },
-  hardware: {
-    icon: "memory",
-    color: "teal",
-    title: "Basic Hardware Programming",
-    desc: "Pelajari cara perangkat lunak berinteraksi dengan hardware menggunakan pemrograman tingkat rendah.",
-    progress: 0,
-  },
-};
+const TentangModul = () => {
+  const { modulName } = useParams(); // menangkap nama modul dari URL
+  const [modul, setModul] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-const TentangModul = ({ slug }) => {
-  const data = modulInfo[slug];
+  useEffect(() => {
+    if (!modulName) return;
 
-  if (!data) return null;
+    const fetchModul = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("modul")
+          .select("*")
+          .eq("modul_name", decodeURIComponent(modulName))
+          .single();
+
+        if (error || !data) throw error;
+        setModul(data);
+      } catch (err) {
+        console.error("Gagal mengambil data modul:", err.message);
+        setError("Gagal mengambil data modul.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchModul();
+  }, [modulName]);
+
+  if (loading) return <p className="text-gray-500">Memuat data modul...</p>;
+  if (error) return <p className="text-red-500">{error}</p>;
+  if (!modul) return null;
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-md">
-      <div className="flex items-center mb-4">
-        <span className={`material-icons text-${data.color}-500 text-4xl mr-4`}>
-          {data.icon}
+    <div className="bg-white p-6 rounded-xl shadow-md mb-6 flex flex-col gap-4">
+      <div className="flex items-start md:items-center gap-4">
+        <span
+          className="material-icons text-4xl"
+          style={{ color: modul.color }}
+        >
+          {modul.icon}
         </span>
         <div>
-          <h3 className="text-xl font-semibold text-gray-800">
-            {data.title}
+          <h3 className="text-xl md:text-2xl font-bold text-gray-800">
+            {modul.modul_name}
           </h3>
-          <p className="text-sm text-gray-600">{data.desc}</p>
+          <p className="text-sm md:text-base text-gray-600">
+            {modul.modul_description}
+          </p>
         </div>
       </div>
 
-      <ProgressBar percent={data.progress} color={data.color} />
+      <div className="mt-2">
+        <ProgressBar percent={modul.progress || 0} color={modul.color} />
+      </div>
     </div>
   );
 };
