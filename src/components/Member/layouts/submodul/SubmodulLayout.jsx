@@ -31,7 +31,7 @@ const SubmodulLayout = ({ children }) => {
     <div className="flex min-h-screen bg-[#F0F9FF]">
       <SidebarLeft />
       <main className="ml-64 flex-1 overflow-auto px-8 py-8">
-        <Header title={modul.modul_name} desc={modul.modul_description} />
+        <Header title={modul.modul_name} desc="Pilih submodul untuk memulai atau melanjutkan pembelajaranmu." />
         {children}
       </main>
     </div>
