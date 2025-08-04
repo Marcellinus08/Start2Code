@@ -28,11 +28,14 @@ const MateriLayout = () => {
           <TabNavigation activeTab={activeTab} onChangeTab={setActiveTab} />
 
           {activeTab === "materi" && <MateriKonten />}
-          {activeTab === "tugas" && (
             <div className="text-gray-600 italic">
               Konten tugas akan ditampilkan di sini.
             </div>
-          )}
+          {/* {activeTab === "tugas" && (
+            <div className="text-gray-600 italic">
+              Konten tugas akan ditampilkan di sini.
+            </div>
+          )} */}
         </section>
       </main>
     </div>

@@ -24,7 +24,7 @@ const MateriKonten = () => {
 
   return (
     <div>
-      <TitleMateri title="Apa itu Algoritma?" />
+      {/* <TitleMateri title="Apa itu Algoritma?" />
 
       <MateriText>
         Algoritma adalah urutan langkah-langkah logis dan sistematis yang digunakan untuk menyelesaikan suatu masalah atau mencapai tujuan tertentu. Dalam konteks komputer, algoritma adalah inti dari sebuah program. Bayangkan seperti resep masakan; setiap langkah harus diikuti dengan benar untuk menghasilkan hidangan yang lezat.
@@ -45,7 +45,7 @@ const MateriKonten = () => {
         Memahami algoritma adalah kunci untuk menjadi programmer yang handal. Dengan algoritma yang baik, program akan berjalan efisien dan menghasilkan output yang benar.
       </MateriText>
 
-      <NavigationButton onPrev={handlePrev} onNext={handleNext} />
+      <NavigationButton onPrev={handlePrev} onNext={handleNext} /> */}
     </div>
   );
 };
