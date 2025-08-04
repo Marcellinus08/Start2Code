@@ -16,12 +16,12 @@ const ContentMateriTugas = () => {
     file: null,
   });
 
-  // Ambil daftar submodul dari Supabase
+  // Ambil data submodul
   useEffect(() => {
     const fetchSubmoduls = async () => {
       const { data, error } = await supabase.from("submodul").select("*");
       if (error) {
-        console.error("❌ Gagal mengambil submodul:", error.message);
+        console.error("❌ Gagal ambil submodul:", error.message);
       } else {
         setSubmodulOptions(data);
       }
@@ -29,33 +29,32 @@ const ContentMateriTugas = () => {
     fetchSubmoduls();
   }, []);
 
-  // Upload file ke Storage Supabase
-  const uploadFile = async (folder, file) => {
+  // Upload file ke bucket sesuai parameter
+  const uploadFile = async (bucketName, file) => {
     const fileExt = file.name.split(".").pop();
     const fileName = `${Date.now()}.${fileExt}`;
-    const filePath = `${folder}/${fileName}`;
+    const filePath = `${fileName}`;
+    console.log({ submodul_id, materi_title: judul, materi_content: fileUrl });
 
-    console.log("🟨 Akan mengupload:", filePath);
 
     const { error: uploadError } = await supabase.storage
-      .from("materi-tugas") // HARUS cocok dengan nama bucket-mu
+      .from(bucketName)
       .upload(filePath, file, { upsert: true });
 
     if (uploadError) {
       console.error("❌ Upload error:", uploadError.message);
-      throw uploadError;
+      throw new Error("Upload gagal: " + uploadError.message);
     }
 
     const { data: urlData, error: urlError } = supabase.storage
-      .from("materi-tugas")
+      .from(bucketName)
       .getPublicUrl(filePath);
 
     if (urlError) {
       console.error("❌ URL error:", urlError.message);
-      throw urlError;
+      throw new Error("Gagal ambil URL: " + urlError.message);
     }
 
-    console.log("✅ File URL:", urlData.publicUrl);
     return urlData.publicUrl;
   };
 
@@ -64,7 +63,7 @@ const ContentMateriTugas = () => {
     const { submodul_id, judul, file } = materi;
 
     if (!submodul_id || !judul || !file) {
-      alert("Semua field materi wajib diisi!");
+      alert("⚠️ Semua field materi wajib diisi.");
       return;
     }
 
@@ -81,7 +80,7 @@ const ContentMateriTugas = () => {
 
       if (error) throw error;
 
-      alert("✅ Materi berhasil disimpan!");
+      alert("✅ Materi berhasil disimpan.");
       setMateri({ submodul_id: "", judul: "", file: null });
     } catch (err) {
       alert("❌ Gagal menyimpan materi: " + err.message);
@@ -93,7 +92,7 @@ const ContentMateriTugas = () => {
     const { submodul_id, instruksi, file } = tugas;
 
     if (!submodul_id || !instruksi || !file) {
-      alert("Semua field tugas wajib diisi!");
+      alert("⚠️ Semua field tugas wajib diisi.");
       return;
     }
 
@@ -110,7 +109,7 @@ const ContentMateriTugas = () => {
 
       if (error) throw error;
 
-      alert("✅ Tugas berhasil disimpan!");
+      alert("✅ Tugas berhasil disimpan.");
       setTugas({ submodul_id: "", instruksi: "", file: null });
     } catch (err) {
       alert("❌ Gagal menyimpan tugas: " + err.message);
@@ -119,6 +118,7 @@ const ContentMateriTugas = () => {
 
   return (
     <section className="bg-white p-6 rounded-2xl shadow-lg">
+      {/* Form Materi */}
       <h3 className="text-lg font-semibold mb-4">Form Materi</h3>
       <div className="mb-4">
         <label className="block mb-1 font-medium">Pilih Submodul</label>
@@ -138,6 +138,7 @@ const ContentMateriTugas = () => {
         </select>
       </div>
       <input
+        type="text"
         value={materi.judul}
         onChange={(e) => setMateri({ ...materi, judul: e.target.value })}
         className="w-full border border-gray-300 rounded-lg p-2 mb-2"
@@ -156,8 +157,8 @@ const ContentMateriTugas = () => {
         Simpan Materi
       </button>
 
+      {/* Form Tugas */}
       <hr className="my-6 border-gray-300" />
-
       <h3 className="text-lg font-semibold mb-4 mt-6">Form Tugas</h3>
       <div className="mb-4">
         <label className="block mb-1 font-medium">Pilih Submodul</label>
