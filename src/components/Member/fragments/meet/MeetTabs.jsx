@@ -9,7 +9,7 @@ const MeetTabs = () => {
     kelas: {
       mendatang: [
         {
-          date: "02",
+          date: "04",
           month: "AGU",
           year: "2025",
           time: "04:36 - 23:30",
@@ -59,7 +59,7 @@ const MeetTabs = () => {
     konsultasi: {
       mendatang: [
         {
-          date: "04",
+          date: "05",
           month: "AGU",
           year: "2025",
           time: "02:00 - 14:30",
