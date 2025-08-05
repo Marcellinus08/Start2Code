@@ -1,22 +1,28 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/member/Home';
-import Modul from './pages/member/ModulPembelajaran';
-import Meet from './pages/member/Meet';
-import ForumDiskusi from './pages/member/ForumDiskusi';
-import Konsultasi from './pages/member/Konsultasi';
-import Statistik from './pages/member/Statistik';
-import CompilerAI from './pages/member/CompilerAI';
-import Akun from './pages/member/Akun';
-import Login from './pages/member/Login';
+import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
+import Home from './pages/Member/Home';
+import Modul from './pages/Member/ModulPembelajaran';
+import Meet from './pages/Member/Meet';
+import ForumDiskusi from './pages/Member/ForumDiskusi';
+import Konsultasi from './pages/Member/Konsultasi';
+import Statistik from './pages/Member/Statistik';
+import CompilerAI from './pages/Member/CompilerAI';
+import Akun from './pages/Member/Akun';
+import Login from './pages/Member/Login';
 import Dashboard from "./pages/admin/UserManagement";
-import SubModul from './pages/member/SubModul';
+import SubModul from './pages/Member/SubModul';
 import MateriSubModul from './pages/Member/MateriSubModul';
 import ModulManagement from './pages/admin/ModulManagement';
 import Activity from './pages/admin/Activity';
 import ModulAdd from './pages/admin/ModulAdd';
 import ModulEdit from './pages/admin/ModulEdit';
+import MeetRoom from './pages/Member/MeetRoom';
 
-function App () { 
+const MeetRoomWrapper = () => {
+  const { roomCode } = useParams();
+  return <MeetRoom roomCode={roomCode} />;
+};
+
+function App () {
   return (
     <Router>
       <Routes>
@@ -36,9 +42,10 @@ function App () {
         <Route path="/activity" element={<Activity />} />
         <Route path="/modul_add" element={<ModulAdd />} />
         <Route path="/modul_edit" element={<ModulEdit />} />
+        <Route path="/meetroom/:roomCode" element={<MeetRoom />} /> 
       </Routes>
     </Router>
   );
-};
+}
 
 export default App;
