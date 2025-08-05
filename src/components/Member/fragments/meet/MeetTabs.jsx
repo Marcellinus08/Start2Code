@@ -9,14 +9,14 @@ const MeetTabs = () => {
     kelas: {
       mendatang: [
         {
-          date: "04",
+          date: "05",
           month: "AGU",
           year: "2025",
-          time: "04:36 - 23:30",
+          time: "05:19 - 23:30",
           title: "Sesi Tanya Jawab: Struktur Data Lanjutan",
           subtitle: "Sub Bab: Pengenalan Algoritma",
           teacher: "Bpk. Reno",
-          joinUrl: "https://zoom.com/meet1",
+          roomCode: "cxr-atgo-wqk",
           type: "kelas",
         },
       ],
@@ -66,7 +66,7 @@ const MeetTabs = () => {
           title: "Konsultasi Proyek Akhir",
           subtitle: "Sub Bab: Pengenalan Algoritma",
           teacher: "Ibu Dini",
-          joinUrl: "https://zoom.com/konsul",
+          roomCode: "pif-irlg-tnl",
           type: "konsultasi",
         },
       ],
@@ -133,7 +133,7 @@ const MeetTabs = () => {
       const isFinished = now > endTime;
       return {
         ...sesi,
-        joinUrl: isNow ? sesi.joinUrl : null,
+        joinUrl: isNow ? sesi.roomCode : null,
         isFinished,
       };
     });
@@ -150,37 +150,25 @@ const MeetTabs = () => {
   return (
     <div className="space-y-12">
       <div className="flex space-x-4">
-        <TabButton active={activeTab === "kelas"} onClick={() => setActiveTab("kelas")}>
-          Kelas
-        </TabButton>
-        <TabButton active={activeTab === "konsultasi"} onClick={() => setActiveTab("konsultasi")}>
-          Konsultasi
-        </TabButton>
+        <TabButton active={activeTab === "kelas"} onClick={() => setActiveTab("kelas")}>Kelas</TabButton>
+        <TabButton active={activeTab === "konsultasi"} onClick={() => setActiveTab("konsultasi")}>Konsultasi</TabButton>
       </div>
 
       <div>
-        <h2 className="text-xl font-bold text-gray-700 mb-5">
-          Sesi {activeTab === "kelas" ? "Kelas" : "Konsultasi"} Mendatang
-        </h2>
+        <h2 className="text-xl font-bold text-gray-700 mb-5">Sesi {activeTab === "kelas" ? "Kelas" : "Konsultasi"} Mendatang</h2>
         {sesi.mendatang.length > 0 ? (
           <ScheduleCard sessions={sesi.mendatang} />
         ) : (
-          <p className="text-gray-500 italic">
-            Tidak ada sesi {activeTab === "kelas" ? "kelas" : "konsultasi"} saat ini.
-          </p>
+          <p className="text-gray-500 italic">Tidak ada sesi {activeTab === "kelas" ? "kelas" : "konsultasi"} saat ini.</p>
         )}
       </div>
 
       <div>
-        <h2 className="text-xl font-bold text-gray-700 mb-5">
-          Sesi {activeTab === "kelas" ? "Kelas" : "Konsultasi"} Selesai
-        </h2>
+        <h2 className="text-xl font-bold text-gray-700 mb-5">Sesi {activeTab === "kelas" ? "Kelas" : "Konsultasi"} Selesai</h2>
         {sesi.selesai.length > 0 ? (
           <ScheduleCard sessions={sesi.selesai} />
         ) : (
-          <p className="text-gray-500 italic">
-            Belum ada sesi {activeTab === "kelas" ? "kelas selesai" : "konsultasi selesai"} saat ini.
-          </p>
+          <p className="text-gray-500 italic">Belum ada sesi {activeTab === "kelas" ? "kelas selesai" : "konsultasi selesai"} saat ini.</p>
         )}
       </div>
     </div>
