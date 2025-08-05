@@ -4,19 +4,9 @@ import { supabase } from "@/supabaseClient";
 const ContentMateriTugas = () => {
   const [submodulOptions, setSubmodulOptions] = useState([]);
 
-  const [materi, setMateri] = useState({
-    submodul_id: "",
-    judul: "",
-    file: null,
-  });
+  const [materi, setMateri] = useState({ submodul_id: "", judul: "", konten: "" });
+  const [tugas, setTugas] = useState({ submodul_id: "", instruksi: "", konten: "" });
 
-  const [tugas, setTugas] = useState({
-    submodul_id: "",
-    instruksi: "",
-    file: null,
-  });
-
-  // Ambil data submodul
   useEffect(() => {
     const fetchSubmoduls = async () => {
       const { data, error } = await supabase.from("submodul").select("*");
@@ -29,104 +19,65 @@ const ContentMateriTugas = () => {
     fetchSubmoduls();
   }, []);
 
-  // Upload file ke bucket sesuai parameter
-  const uploadFile = async (bucketName, file) => {
-    const fileExt = file.name.split(".").pop();
-    const fileName = `${Date.now()}.${fileExt}`;
-    const filePath = `${fileName}`;
-    console.log({ submodul_id, materi_title: judul, materi_content: fileUrl });
-
-
-    const { error: uploadError } = await supabase.storage
-      .from(bucketName)
-      .upload(filePath, file, { upsert: true });
-
-    if (uploadError) {
-      console.error("❌ Upload error:", uploadError.message);
-      throw new Error("Upload gagal: " + uploadError.message);
-    }
-
-    const { data: urlData, error: urlError } = supabase.storage
-      .from(bucketName)
-      .getPublicUrl(filePath);
-
-    if (urlError) {
-      console.error("❌ URL error:", urlError.message);
-      throw new Error("Gagal ambil URL: " + urlError.message);
-    }
-
-    return urlData.publicUrl;
-  };
-
-  // Simpan Materi
   const handleSaveMateri = async () => {
-    const { submodul_id, judul, file } = materi;
-
-    if (!submodul_id || !judul || !file) {
+    const { submodul_id, judul, konten } = materi;
+    if (!submodul_id || !judul || !konten) {
       alert("⚠️ Semua field materi wajib diisi.");
       return;
     }
 
     try {
-      const fileUrl = await uploadFile("materi", file);
-
       const { error } = await supabase.from("materi").insert([
         {
           submodul_id,
           materi_title: judul,
-          materi_content: fileUrl,
+          materi_content: konten,
         },
       ]);
 
       if (error) throw error;
 
       alert("✅ Materi berhasil disimpan.");
-      setMateri({ submodul_id: "", judul: "", file: null });
+      setMateri({ submodul_id: "", judul: "", konten: "" });
     } catch (err) {
-      alert("❌ Gagal menyimpan materi: " + err.message);
+      alert("❌ Gagal menyimpan materi: " + (err?.message || "Unknown error"));
     }
   };
 
-  // Simpan Tugas
   const handleSaveTugas = async () => {
-    const { submodul_id, instruksi, file } = tugas;
-
-    if (!submodul_id || !instruksi || !file) {
+    const { submodul_id, instruksi, konten } = tugas;
+    if (!submodul_id || !instruksi || !konten) {
       alert("⚠️ Semua field tugas wajib diisi.");
       return;
     }
 
     try {
-      const fileUrl = await uploadFile("tugas", file);
-
       const { error } = await supabase.from("tugas").insert([
         {
           submodul_id,
           tugas_title: instruksi,
-          tugas_content: fileUrl,
+          tugas_content: konten,
         },
       ]);
 
       if (error) throw error;
 
       alert("✅ Tugas berhasil disimpan.");
-      setTugas({ submodul_id: "", instruksi: "", file: null });
+      setTugas({ submodul_id: "", instruksi: "", konten: "" });
     } catch (err) {
-      alert("❌ Gagal menyimpan tugas: " + err.message);
+      alert("❌ Gagal menyimpan tugas: " + (err?.message || "Unknown error"));
     }
   };
 
   return (
     <section className="bg-white p-6 rounded-2xl shadow-lg">
-      {/* Form Materi */}
+      {/* FORM MATERI */}
       <h3 className="text-lg font-semibold mb-4">Form Materi</h3>
       <div className="mb-4">
         <label className="block mb-1 font-medium">Pilih Submodul</label>
         <select
           value={materi.submodul_id}
-          onChange={(e) =>
-            setMateri({ ...materi, submodul_id: e.target.value })
-          }
+          onChange={(e) => setMateri({ ...materi, submodul_id: e.target.value })}
           className="w-full border border-gray-300 rounded-lg p-2"
         >
           <option value="">-- Pilih --</option>
@@ -144,11 +95,12 @@ const ContentMateriTugas = () => {
         className="w-full border border-gray-300 rounded-lg p-2 mb-2"
         placeholder="Judul Materi"
       />
-      <input
-        type="file"
-        accept=".pdf"
-        onChange={(e) => setMateri({ ...materi, file: e.target.files[0] })}
-        className="mb-4"
+      <textarea
+        value={materi.konten}
+        onChange={(e) => setMateri({ ...materi, konten: e.target.value })}
+        className="w-full border border-gray-300 rounded-lg p-2 mb-4"
+        rows="4"
+        placeholder="Isi Materi"
       />
       <button
         onClick={handleSaveMateri}
@@ -157,16 +109,14 @@ const ContentMateriTugas = () => {
         Simpan Materi
       </button>
 
-      {/* Form Tugas */}
+      {/* FORM TUGAS */}
       <hr className="my-6 border-gray-300" />
       <h3 className="text-lg font-semibold mb-4 mt-6">Form Tugas</h3>
       <div className="mb-4">
         <label className="block mb-1 font-medium">Pilih Submodul</label>
         <select
           value={tugas.submodul_id}
-          onChange={(e) =>
-            setTugas({ ...tugas, submodul_id: e.target.value })
-          }
+          onChange={(e) => setTugas({ ...tugas, submodul_id: e.target.value })}
           className="w-full border border-gray-300 rounded-lg p-2"
         >
           <option value="">-- Pilih --</option>
@@ -177,18 +127,19 @@ const ContentMateriTugas = () => {
           ))}
         </select>
       </div>
-      <textarea
+      <input
+        type="text"
         value={tugas.instruksi}
         onChange={(e) => setTugas({ ...tugas, instruksi: e.target.value })}
         className="w-full border border-gray-300 rounded-lg p-2 mb-2"
-        placeholder="Instruksi tugas"
-        rows={3}
+        placeholder="Judul Tugas"
       />
-      <input
-        type="file"
-        accept=".pdf"
-        onChange={(e) => setTugas({ ...tugas, file: e.target.files[0] })}
-        className="mb-4"
+      <textarea
+        value={tugas.konten}
+        onChange={(e) => setTugas({ ...tugas, konten: e.target.value })}
+        className="w-full border border-gray-300 rounded-lg p-2 mb-4"
+        rows="4"
+        placeholder="Isi Tugas"
       />
       <button
         onClick={handleSaveTugas}
