@@ -41,14 +41,14 @@ const TentangModul = () => {
     <div className="bg-white p-6 rounded-xl shadow-md mb-6 flex flex-col gap-4">
       <div className="flex items-start md:items-center gap-4">
         <span
-          className="material-icons text-4xl"
+          className="material-icons text-6xl"
           style={{ color: modul.color }}
         >
           {modul.icon}
         </span>
         <div>
           <h3 className="text-xl md:text-2xl font-bold text-gray-800">
-            {modul.modul_name}
+            Tentang Modul ini
           </h3>
           <p className="text-sm md:text-base text-gray-600">
             {modul.modul_description}

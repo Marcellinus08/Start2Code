@@ -37,7 +37,7 @@ function App () {
         <Route path="/akun" element={<Akun />} />
         <Route path="/admin" element={<Dashboard />} />
         <Route path="/submodul/:modulName" element={<SubModul />} />
-        <Route path="/materi/:id" element={<MateriSubModul />} />
+        <Route path="/materi/:submodulId" element={<MateriSubModul />} />
         <Route path="/modul_management" element={<ModulManagement />} />
         <Route path="/activity" element={<Activity />} />
         <Route path="/modul_add" element={<ModulAdd />} />

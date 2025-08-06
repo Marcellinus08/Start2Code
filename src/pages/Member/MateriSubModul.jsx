@@ -6,7 +6,6 @@ import SidebarLeft from "@/components/member/layouts/homepage/SidebarLeft";
 const MateriSubModul = () => {
   return (
     <div className="flex min-h-screen">
-      <SidebarLeft />
       <MateriLayout />
     </div>
     );  

@@ -3,10 +3,23 @@ import { supabase } from "@/supabaseClient";
 
 const ContentMateriTugas = () => {
   const [submodulOptions, setSubmodulOptions] = useState([]);
+  const [compilerLanguages, setCompilerLanguages] = useState([]);
 
-  const [materi, setMateri] = useState({ submodul_id: "", judul: "", konten: "" });
-  const [tugas, setTugas] = useState({ submodul_id: "", instruksi: "", konten: "" });
+  const [materi, setMateri] = useState({
+    submodul_id: "",
+    judul: "",
+    konten: "",
+  });
 
+  const [tugas, setTugas] = useState({
+    submodul_id: "",
+    instruksi: "",
+    konten: "",
+    use_compiler: false,
+    compiler_lang: "",
+  });
+
+  // Ambil submodul
   useEffect(() => {
     const fetchSubmoduls = async () => {
       const { data, error } = await supabase.from("submodul").select("*");
@@ -17,6 +30,43 @@ const ContentMateriTugas = () => {
       }
     };
     fetchSubmoduls();
+  }, []);
+
+  // Ambil daftar bahasa compiler dari Judge0
+  useEffect(() => {
+    const fetchLanguages = async () => {
+      try {
+        const res = await fetch("https://judge0-ce.p.rapidapi.com/languages", {
+          headers: {
+            "X-RapidAPI-Key": import.meta.env.VITE_JUDGE_API_KEY,
+            "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
+          },
+        });
+        const allLangs = await res.json();
+
+        const latestLangsMap = new Map();
+        allLangs.forEach((lang) => {
+          const baseName = lang.name.split(" ")[0];
+          if (!latestLangsMap.has(baseName)) {
+            latestLangsMap.set(baseName, lang);
+          } else {
+            const existing = latestLangsMap.get(baseName);
+            const v1 = parseFloat(existing.name.replace(/[^0-9.]/g, ""));
+            const v2 = parseFloat(lang.name.replace(/[^0-9.]/g, ""));
+            if (!isNaN(v1) && !isNaN(v2) && v2 > v1) {
+              latestLangsMap.set(baseName, lang);
+            }
+          }
+        });
+
+        const finalLangs = Array.from(latestLangsMap.values());
+        setCompilerLanguages(finalLangs);
+      } catch (error) {
+        console.error("Gagal mengambil daftar bahasa:", error);
+      }
+    };
+
+    fetchLanguages();
   }, []);
 
   const handleSaveMateri = async () => {
@@ -45,9 +95,15 @@ const ContentMateriTugas = () => {
   };
 
   const handleSaveTugas = async () => {
-    const { submodul_id, instruksi, konten } = tugas;
+    const { submodul_id, instruksi, konten, use_compiler, compiler_lang } = tugas;
+
     if (!submodul_id || !instruksi || !konten) {
       alert("⚠️ Semua field tugas wajib diisi.");
+      return;
+    }
+
+    if (use_compiler && !compiler_lang) {
+      alert("⚠️ Pilih bahasa compiler jika ingin menggunakan compiler.");
       return;
     }
 
@@ -57,13 +113,21 @@ const ContentMateriTugas = () => {
           submodul_id,
           tugas_title: instruksi,
           tugas_content: konten,
+          use_compiler,
+          compiler_lang: use_compiler ? parseInt(compiler_lang) : null,
         },
       ]);
 
       if (error) throw error;
 
       alert("✅ Tugas berhasil disimpan.");
-      setTugas({ submodul_id: "", instruksi: "", konten: "" });
+      setTugas({
+        submodul_id: "",
+        instruksi: "",
+        konten: "",
+        use_compiler: false,
+        compiler_lang: "",
+      });
     } catch (err) {
       alert("❌ Gagal menyimpan tugas: " + (err?.message || "Unknown error"));
     }
@@ -71,7 +135,7 @@ const ContentMateriTugas = () => {
 
   return (
     <section className="bg-white p-6 rounded-2xl shadow-lg">
-      {/* FORM MATERI */}
+      {/* === FORM MATERI === */}
       <h3 className="text-lg font-semibold mb-4">Form Materi</h3>
       <div className="mb-4">
         <label className="block mb-1 font-medium">Pilih Submodul</label>
@@ -109,7 +173,7 @@ const ContentMateriTugas = () => {
         Simpan Materi
       </button>
 
-      {/* FORM TUGAS */}
+      {/* === FORM TUGAS === */}
       <hr className="my-6 border-gray-300" />
       <h3 className="text-lg font-semibold mb-4 mt-6">Form Tugas</h3>
       <div className="mb-4">
@@ -137,10 +201,42 @@ const ContentMateriTugas = () => {
       <textarea
         value={tugas.konten}
         onChange={(e) => setTugas({ ...tugas, konten: e.target.value })}
-        className="w-full border border-gray-300 rounded-lg p-2 mb-4"
+        className="w-full border border-gray-300 rounded-lg p-2 mb-2"
         rows="4"
         placeholder="Isi Tugas"
       />
+
+      {/* === CHECKBOX + SELECT BAHASA COMPILER === */}
+      <div className="mb-4">
+        <label className="inline-flex items-center gap-2">
+          <input
+            type="checkbox"
+            checked={tugas.use_compiler}
+            onChange={(e) => setTugas({ ...tugas, use_compiler: e.target.checked })}
+            className="form-checkbox"
+          />
+          Tugas ini menggunakan compiler?
+        </label>
+      </div>
+
+      {tugas.use_compiler && (
+        <div className="mb-4">
+          <label className="block mb-1 font-medium">Pilih Bahasa Compiler</label>
+          <select
+            value={tugas.compiler_lang}
+            onChange={(e) => setTugas({ ...tugas, compiler_lang: e.target.value })}
+            className="w-full border border-gray-300 rounded-lg p-2"
+          >
+            <option value="">-- Pilih Bahasa --</option>
+            {compilerLanguages.map((lang) => (
+              <option key={lang.id} value={lang.id}>
+                {lang.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
       <button
         onClick={handleSaveTugas}
         className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
