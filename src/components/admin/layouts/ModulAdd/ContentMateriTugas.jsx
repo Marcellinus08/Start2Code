@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/supabaseClient";
-import Header from "../../../member/fragments/homepage/Header";
 
 const ContentMateriTugas = () => {
   const [submodulOptions, setSubmodulOptions] = useState([]);
@@ -80,6 +79,74 @@ const ContentMateriTugas = () => {
     fetchSubmodulsTugas();
   }, [tugas.modul_id]);
 
+  // Ambil materi berdasarkan submodul_id yang dipilih (untuk form Materi)
+  useEffect(() => {
+    // Reset materi jika submodul_id berubah
+    setMateri({
+      ...materi,
+      judul: "",
+      konten: "",
+    });
+
+    if (materi.submodul_id) {
+      const fetchMateri = async () => {
+        const { data, error } = await supabase
+          .from("materi")
+          .select("*")
+          .eq("submodul_id", materi.submodul_id)
+          .single(); // Ambil satu data materi berdasarkan submodul_id
+
+        if (error) {
+          console.error("❌ Gagal ambil materi:", error.message);
+        } else if (data) {
+          setMateri({
+            ...materi,
+            judul: data.materi_title,
+            konten: data.materi_content,
+          }); // Set materi jika ada
+        }
+      };
+
+      fetchMateri();
+    }
+  }, [materi.submodul_id]);
+
+  // Ambil tugas berdasarkan submodul_id yang dipilih (untuk form Tugas)
+  useEffect(() => {
+    // Reset tugas jika submodul_id berubah
+    setTugas({
+      ...tugas,
+      instruksi: "",
+      konten: "",
+      use_compiler: false,
+      compiler_lang: "",
+    });
+
+    if (tugas.submodul_id) {
+      const fetchTugas = async () => {
+        const { data, error } = await supabase
+          .from("tugas")
+          .select("*")
+          .eq("submodul_id", tugas.submodul_id)
+          .single(); // Ambil satu data tugas berdasarkan submodul_id
+
+        if (error) {
+          console.error("❌ Gagal ambil tugas:", error.message);
+        } else if (data) {
+          setTugas({
+            ...tugas,
+            instruksi: data.tugas_title,
+            konten: data.tugas_content,
+            use_compiler: data.use_compiler,
+            compiler_lang: data.compiler_lang,
+          }); // Set tugas jika ada
+        }
+      };
+
+      fetchTugas();
+    }
+  }, [tugas.submodul_id]);
+
   // Ambil daftar bahasa compiler dari Judge0
   useEffect(() => {
     const fetchLanguages = async () => {
@@ -117,6 +184,7 @@ const ContentMateriTugas = () => {
     fetchLanguages();
   }, []);
 
+  // Handle save Materi
   const handleSaveMateri = async () => {
     const { submodul_id, judul, konten } = materi;
     if (!submodul_id || !judul || !konten) {
@@ -125,23 +193,51 @@ const ContentMateriTugas = () => {
     }
 
     try {
-      const { error } = await supabase.from("materi").insert([
-        {
+      // Periksa apakah materi sudah ada sebelumnya (untuk update)
+      const { data: existingMateri, error: materiError } = await supabase
+        .from("materi")
+        .select("*")
+        .eq("submodul_id", submodul_id)
+        .single(); // Ambil materi berdasarkan submodul_id
+
+      if (materiError) throw materiError;
+
+      if (existingMateri) {
+        // Jika ada perubahan pada judul atau konten, update data
+        const changes = {};
+        if (existingMateri.materi_title !== judul) changes.materi_title = judul;
+        if (existingMateri.materi_content !== konten) changes.materi_content = konten;
+
+        if (Object.keys(changes).length > 0) {
+          const { error } = await supabase
+            .from("materi")
+            .update(changes)
+            .eq("submodul_id", submodul_id);
+
+          if (error) throw error;
+
+          alert("✅ Materi berhasil diperbarui.");
+        } else {
+          alert("⚠️ Tidak ada perubahan pada materi.");
+        }
+      } else {
+        // Jika materi tidak ada, simpan data baru
+        const { error } = await supabase.from("materi").insert([{
           submodul_id,
           materi_title: judul,
           materi_content: konten,
-        },
-      ]);
+        }]);
 
-      if (error) throw error;
+        if (error) throw error;
 
-      alert("✅ Materi berhasil disimpan.");
-      setMateri({ ...materi, judul: "", konten: "" }); // Reset hanya judul dan konten, biarkan submodul_id tetap
+        alert("✅ Materi berhasil disimpan.");
+      }
     } catch (err) {
       alert("❌ Gagal menyimpan materi: " + (err?.message || "Unknown error"));
     }
   };
 
+  // Handle save Tugas
   const handleSaveTugas = async () => {
     const { submodul_id, instruksi, konten, use_compiler, compiler_lang } = tugas;
 
@@ -156,26 +252,49 @@ const ContentMateriTugas = () => {
     }
 
     try {
-      const { error } = await supabase.from("tugas").insert([
-        {
+      // Periksa apakah tugas sudah ada sebelumnya (untuk update)
+      const { data: existingTugas, error: tugasError } = await supabase
+        .from("tugas")
+        .select("*")
+        .eq("submodul_id", submodul_id)
+        .single(); // Ambil tugas berdasarkan submodul_id
+
+      if (tugasError) throw tugasError;
+
+      if (existingTugas) {
+        // Jika ada perubahan pada instruksi, konten, atau compiler, update data
+        const changes = {};
+        if (existingTugas.tugas_title !== instruksi) changes.tugas_title = instruksi;
+        if (existingTugas.tugas_content !== konten) changes.tugas_content = konten;
+        if (existingTugas.use_compiler !== use_compiler) changes.use_compiler = use_compiler;
+        if (existingTugas.compiler_lang !== compiler_lang) changes.compiler_lang = compiler_lang;
+
+        if (Object.keys(changes).length > 0) {
+          const { error } = await supabase
+            .from("tugas")
+            .update(changes)
+            .eq("submodul_id", submodul_id);
+
+          if (error) throw error;
+
+          alert("✅ Tugas berhasil diperbarui.");
+        } else {
+          alert("⚠️ Tidak ada perubahan pada tugas.");
+        }
+      } else {
+        // Jika tugas tidak ada, simpan data baru
+        const { error } = await supabase.from("tugas").insert([{
           submodul_id,
           tugas_title: instruksi,
           tugas_content: konten,
           use_compiler,
           compiler_lang: use_compiler ? parseInt(compiler_lang) : null,
-        },
-      ]);
+        }]);
 
-      if (error) throw error;
+        if (error) throw error;
 
-      alert("✅ Tugas berhasil disimpan.");
-      setTugas({
-        ...tugas,
-        instruksi: "",
-        konten: "",
-        use_compiler: false,
-        compiler_lang: "",
-      }); // Reset hanya instruksi dan konten, biarkan submodul_id tetap
+        alert("✅ Tugas berhasil disimpan.");
+      }
     } catch (err) {
       alert("❌ Gagal menyimpan tugas: " + (err?.message || "Unknown error"));
     }
@@ -283,6 +402,44 @@ const ContentMateriTugas = () => {
         rows="4"
         placeholder="Isi Tugas"
       />
+
+      {/* === CHECKBOX + SELECT BAHASA COMPILER === */}
+      <div className="mb-4">
+        <label className="inline-flex items-center gap-2">
+          <input
+            type="checkbox"
+            checked={tugas.use_compiler}
+            onChange={(e) => setTugas({ ...tugas, use_compiler: e.target.checked })}
+            className="form-checkbox"
+          />
+          Tugas ini menggunakan compiler?
+        </label>
+      </div>
+
+      {tugas.use_compiler && (
+        <div className="mb-4">
+          <label className="block mb-1 font-medium">Pilih Bahasa Compiler</label>
+          <select
+            value={tugas.compiler_lang}
+            onChange={(e) => setTugas({ ...tugas, compiler_lang: e.target.value })}
+            className="w-full border border-gray-300 rounded-lg p-2"
+          >
+            <option value="">-- Pilih Bahasa --</option>
+            {compilerLanguages.map((lang) => (
+              <option key={lang.id} value={lang.id}>
+                {lang.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      <button
+        onClick={handleSaveTugas}
+        className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
+      >
+        Simpan Tugas
+      </button>
     </section>
   );
 };

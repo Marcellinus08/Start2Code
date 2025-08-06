@@ -15,7 +15,7 @@ const MateriKonten = ({ activeTab }) => {
   const [code, setCode] = useState(`# Program Python\nprint("Hello, World!")`);
   const [output, setOutput] = useState("");
   const [isRunning, setIsRunning] = useState(false);
-  const [keterangan, setKeterangan] = useState("");
+  const [keterangan, setKeterangan] = useState("");  // Input keterangan
   const [username, setUsername] = useState("");
   const [saving, setSaving] = useState(false);
   const [submittedData, setSubmittedData] = useState(null);
@@ -71,7 +71,7 @@ const MateriKonten = ({ activeTab }) => {
           setSubmittedData(jawabanData);
           setCode(jawabanData.jawaban_code);
           setOutput(jawabanData.jawaban_output);
-          setKeterangan(jawabanData.jawaban_keterangan);
+          setKeterangan(jawabanData.jawaban_keterangan);  // Mengambil keterangan yang sudah ada
         }
       }
 
@@ -138,6 +138,11 @@ const MateriKonten = ({ activeTab }) => {
       return;
     }
 
+    if (!keterangan.trim()) {
+      Swal.fire("Gagal", "Keterangan tidak boleh kosong.", "error");
+      return;
+    }
+
     setSaving(true);
 
     const { data, error } = await supabase
@@ -147,7 +152,7 @@ const MateriKonten = ({ activeTab }) => {
         tugas_id: tugas.tugas_id,
         jawaban_code: code,
         jawaban_output: output,
-        jawaban_keterangan: keterangan,
+        jawaban_keterangan: keterangan,  // Menyimpan keterangan
         jawaban_submitted_at: new Date().toISOString(),
       }])
       .select("*")
@@ -174,7 +179,7 @@ const MateriKonten = ({ activeTab }) => {
       .update({
         jawaban_code: code,
         jawaban_output: output,
-        jawaban_keterangan: keterangan,
+        jawaban_keterangan: keterangan,  // Memperbarui keterangan
       })
       .eq("id", submittedData.id);
 
@@ -285,7 +290,7 @@ const MateriKonten = ({ activeTab }) => {
                   placeholder="Tuliskan catatan, penjelasan, atau refleksi jawaban..."
                   rows={4}
                   value={keterangan}
-                  onChange={(e) => setKeterangan(e.target.value)}
+                  onChange={(e) => setKeterangan(e.target.value)}  // Menyimpan nilai input ke state
                 ></textarea>
               </div>
             </div>
@@ -317,6 +322,16 @@ const MateriKonten = ({ activeTab }) => {
           <>
             <TitleMateri title={tugas.tugas_title} />
             <MateriText>{tugas.tugas_content}</MateriText>
+            <div className="mt-4">
+                  <label className="text-black font-semibold mb-1 block">Jawab:</label>
+                  <textarea
+                    className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    placeholder="Tuliskan catatan, penjelasan, atau refleksi jawaban..."
+                    rows={4}
+                    value={keterangan}
+                    onChange={(e) => setKeterangan(e.target.value)}  // Menyimpan nilai input ke state
+                  ></textarea>
+                </div>
 
             {tugas.use_compiler && (
               <div className="bg-[#DFF0FF] p-6 rounded-lg space-y-4">
@@ -349,17 +364,6 @@ const MateriKonten = ({ activeTab }) => {
                   <div className="bg-black text-white p-4 rounded-md font-mono text-sm whitespace-pre-wrap min-h-[80px]">
                     {output}
                   </div>
-                </div>
-
-                <div className="mt-4">
-                  <label className="text-black font-semibold mb-1 block">Keterangan:</label>
-                  <textarea
-                    className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                    placeholder="Tuliskan catatan, penjelasan, atau refleksi jawaban..."
-                    rows={4}
-                    value={keterangan}
-                    onChange={(e) => setKeterangan(e.target.value)}
-                  ></textarea>
                 </div>
               </div>
             )}
