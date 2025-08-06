@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/supabaseClient";
+import Header from "../../../member/fragments/homepage/Header";
 
 const ContentMateriTugas = () => {
   const [submodulOptions, setSubmodulOptions] = useState([]);
+  const [modulOptions, setModulOptions] = useState([]);
   const [compilerLanguages, setCompilerLanguages] = useState([]);
 
+  // State untuk form Materi
   const [materi, setMateri] = useState({
+    modul_id: "", // modul_id untuk materi
     submodul_id: "",
     judul: "",
     konten: "",
   });
 
+  // State untuk form Tugas
   const [tugas, setTugas] = useState({
+    modul_id: "", // modul_id untuk tugas
     submodul_id: "",
     instruksi: "",
     konten: "",
@@ -19,18 +25,60 @@ const ContentMateriTugas = () => {
     compiler_lang: "",
   });
 
-  // Ambil submodul
+  // Ambil modul
   useEffect(() => {
-    const fetchSubmoduls = async () => {
-      const { data, error } = await supabase.from("submodul").select("*");
+    const fetchModuls = async () => {
+      const { data, error } = await supabase.from("modul").select("*");
       if (error) {
-        console.error("❌ Gagal ambil submodul:", error.message);
+        console.error("❌ Gagal ambil modul:", error.message);
       } else {
-        setSubmodulOptions(data);
+        setModulOptions(data);
       }
     };
-    fetchSubmoduls();
+    fetchModuls();
   }, []);
+
+  // Ambil submodul berdasarkan modul_id yang dipilih (Materi)
+  useEffect(() => {
+    const fetchSubmodulsMateri = async () => {
+      if (materi.modul_id) {
+        const { data, error } = await supabase
+          .from("submodul")
+          .select("*")
+          .eq("modul_id", materi.modul_id) // Filter berdasarkan modul_id
+          .order("submodul_name", { ascending: true });
+
+        if (error) {
+          console.error("❌ Gagal ambil submodul materi:", error.message);
+        } else {
+          setSubmodulOptions(data);
+        }
+      }
+    };
+
+    fetchSubmodulsMateri();
+  }, [materi.modul_id]);
+
+  // Ambil submodul berdasarkan modul_id yang dipilih (Tugas)
+  useEffect(() => {
+    const fetchSubmodulsTugas = async () => {
+      if (tugas.modul_id) {
+        const { data, error } = await supabase
+          .from("submodul")
+          .select("*")
+          .eq("modul_id", tugas.modul_id) // Filter berdasarkan modul_id
+          .order("submodul_name", { ascending: true });
+
+        if (error) {
+          console.error("❌ Gagal ambil submodul tugas:", error.message);
+        } else {
+          setSubmodulOptions(data);
+        }
+      }
+    };
+
+    fetchSubmodulsTugas();
+  }, [tugas.modul_id]);
 
   // Ambil daftar bahasa compiler dari Judge0
   useEffect(() => {
@@ -88,7 +136,7 @@ const ContentMateriTugas = () => {
       if (error) throw error;
 
       alert("✅ Materi berhasil disimpan.");
-      setMateri({ submodul_id: "", judul: "", konten: "" });
+      setMateri({ ...materi, judul: "", konten: "" }); // Reset hanya judul dan konten, biarkan submodul_id tetap
     } catch (err) {
       alert("❌ Gagal menyimpan materi: " + (err?.message || "Unknown error"));
     }
@@ -122,12 +170,12 @@ const ContentMateriTugas = () => {
 
       alert("✅ Tugas berhasil disimpan.");
       setTugas({
-        submodul_id: "",
+        ...tugas,
         instruksi: "",
         konten: "",
         use_compiler: false,
         compiler_lang: "",
-      });
+      }); // Reset hanya instruksi dan konten, biarkan submodul_id tetap
     } catch (err) {
       alert("❌ Gagal menyimpan tugas: " + (err?.message || "Unknown error"));
     }
@@ -138,16 +186,31 @@ const ContentMateriTugas = () => {
       {/* === FORM MATERI === */}
       <h3 className="text-lg font-semibold mb-4">Form Materi</h3>
       <div className="mb-4">
-        <label className="block mb-1 font-medium">Pilih Submodul</label>
+        <label className="block mb-1 font-medium">Pilih Modul</label>
         <select
-          value={materi.submodul_id}
-          onChange={(e) => setMateri({ ...materi, submodul_id: e.target.value })}
+          value={materi.modul_id} // Ensure value is correctly set
+          onChange={(e) => setMateri({ ...materi, modul_id: e.target.value })}
           className="w-full border border-gray-300 rounded-lg p-2"
         >
           <option value="">-- Pilih --</option>
-          {submodulOptions.map((sub) => (
-            <option key={sub.submodul_id} value={sub.submodul_id}>
-              {sub.submodul_name}
+          {modulOptions.map((modul) => (
+            <option key={modul.modul_id} value={modul.modul_id}>
+              {modul.modul_name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1 font-medium">Pilih Submodul</label>
+        <select
+          value={materi.submodul_id} // Ensure value is correctly set
+          onChange={(e) => setMateri({ ...materi, submodul_id: e.target.value })}
+          className="w-full border border-gray-300 rounded-lg p-2"
+        >
+          <option value="">-- Pilih Submodul --</option>
+          {submodulOptions.map((submodul) => (
+            <option key={submodul.submodul_id} value={submodul.submodul_id}>
+              {submodul.submodul_name}
             </option>
           ))}
         </select>
@@ -177,16 +240,31 @@ const ContentMateriTugas = () => {
       <hr className="my-6 border-gray-300" />
       <h3 className="text-lg font-semibold mb-4 mt-6">Form Tugas</h3>
       <div className="mb-4">
+        <label className="block mb-1 font-medium">Pilih Modul</label>
+        <select
+          value={tugas.modul_id} // Ensure value is correctly set
+          onChange={(e) => setTugas({ ...tugas, modul_id: e.target.value })}
+          className="w-full border border-gray-300 rounded-lg p-2"
+        >
+          <option value="">-- Pilih Modul --</option>
+          {modulOptions.map((modul) => (
+            <option key={modul.modul_id} value={modul.modul_id}>
+              {modul.modul_name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="mb-4">
         <label className="block mb-1 font-medium">Pilih Submodul</label>
         <select
-          value={tugas.submodul_id}
+          value={tugas.submodul_id} // Ensure value is correctly set
           onChange={(e) => setTugas({ ...tugas, submodul_id: e.target.value })}
           className="w-full border border-gray-300 rounded-lg p-2"
         >
-          <option value="">-- Pilih --</option>
-          {submodulOptions.map((sub) => (
-            <option key={sub.submodul_id} value={sub.submodul_id}>
-              {sub.submodul_name}
+          <option value="">-- Pilih Submodul --</option>
+          {submodulOptions.map((submodul) => (
+            <option key={submodul.submodul_id} value={submodul.submodul_id}>
+              {submodul.submodul_name}
             </option>
           ))}
         </select>
@@ -205,44 +283,6 @@ const ContentMateriTugas = () => {
         rows="4"
         placeholder="Isi Tugas"
       />
-
-      {/* === CHECKBOX + SELECT BAHASA COMPILER === */}
-      <div className="mb-4">
-        <label className="inline-flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={tugas.use_compiler}
-            onChange={(e) => setTugas({ ...tugas, use_compiler: e.target.checked })}
-            className="form-checkbox"
-          />
-          Tugas ini menggunakan compiler?
-        </label>
-      </div>
-
-      {tugas.use_compiler && (
-        <div className="mb-4">
-          <label className="block mb-1 font-medium">Pilih Bahasa Compiler</label>
-          <select
-            value={tugas.compiler_lang}
-            onChange={(e) => setTugas({ ...tugas, compiler_lang: e.target.value })}
-            className="w-full border border-gray-300 rounded-lg p-2"
-          >
-            <option value="">-- Pilih Bahasa --</option>
-            {compilerLanguages.map((lang) => (
-              <option key={lang.id} value={lang.id}>
-                {lang.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
-
-      <button
-        onClick={handleSaveTugas}
-        className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition"
-      >
-        Simpan Tugas
-      </button>
     </section>
   );
 };

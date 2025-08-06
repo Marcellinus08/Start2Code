@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/supabaseClient";
-import Header from "@/components/member/fragments/homepage/Header";
 
 const ContentModulSub = () => {
   const [modul, setModul] = useState({
@@ -13,10 +12,7 @@ const ContentModulSub = () => {
   const [modulList, setModulList] = useState([]);
   const [selectedModulId, setSelectedModulId] = useState("");
 
-  const [submoduls, setSubmoduls] = useState([
-    { submodul_name: "", submodul_description: "" },
-  ]);
-
+  const [submoduls, setSubmoduls] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -27,8 +23,34 @@ const ContentModulSub = () => {
     const { data, error } = await supabase
       .from("modul")
       .select("modul_id, modul_name");
-    if (!error) setModulList(data);
+
+    if (!error) {
+      setModulList(data);
+    }
   };
+
+  const fetchSubmoduls = async () => {
+    if (selectedModulId) {
+      const { data, error } = await supabase
+        .from("submodul")
+        .select("*")
+        .eq("modul_id", selectedModulId)
+        .order("submodul_position", { ascending: true });
+
+      if (!error) {
+        setSubmoduls(data);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (selectedModulId) {
+      fetchSubmoduls();
+    } else {
+      // Reset submodul ketika memilih "Buat Modul Baru"
+      setSubmoduls([]);
+    }
+  }, [selectedModulId]);
 
   const handleSubmodulChange = (index, field, value) => {
     const updated = [...submoduls];
@@ -37,16 +59,37 @@ const ContentModulSub = () => {
   };
 
   const handleAddSubmodulField = () => {
-    setSubmoduls([
-      ...submoduls,
-      { submodul_name: "", submodul_description: "" },
-    ]);
+    const newSubmodul = {
+      submodul_name: "",
+      submodul_description: "",
+      submodul_position: submoduls.length + 1, // Posisi berurutan
+    };
+    setSubmoduls([...submoduls, newSubmodul]);
   };
 
-  const handleRemoveSubmodulField = (index) => {
-    const updated = [...submoduls];
-    updated.splice(index, 1);
-    setSubmoduls(updated);
+  const handleRemoveSubmodulField = async (index) => {
+    const submodulToRemove = submoduls[index];
+
+    // Menghapus submodul dari database
+    try {
+      const { error } = await supabase
+        .from("submodul")
+        .delete()
+        .eq("submodul_id", submodulToRemove.submodul_id);
+
+      if (error) {
+        throw error;
+      }
+
+      // Menghapus submodul dari state
+      const updated = [...submoduls];
+      updated.splice(index, 1);
+      setSubmoduls(updated);
+      alert("✅ Submodul berhasil dihapus!");
+    } catch (err) {
+      console.error("❌ Gagal menghapus submodul: ", err.message);
+      alert("❌ Gagal menghapus submodul.");
+    }
   };
 
   const handleSave = async () => {
@@ -54,7 +97,6 @@ const ContentModulSub = () => {
     try {
       let modul_id = selectedModulId;
 
-      // Jika membuat modul baru
       if (!selectedModulId) {
         const { data: newModul, error: modulError } = await supabase
           .from("modul")
@@ -66,10 +108,17 @@ const ContentModulSub = () => {
         modul_id = newModul.modul_id;
       }
 
+      // Hapus data submodul lama sebelum memasukkan yang baru
+      await supabase
+        .from("submodul")
+        .delete()
+        .eq("modul_id", modul_id);
+
       const submodulPayload = submoduls.map((sub) => ({
         modul_id,
         submodul_name: sub.submodul_name,
         submodul_description: sub.submodul_description,
+        submodul_position: sub.submodul_position,
       }));
 
       const { error: submodulError } = await supabase
@@ -81,8 +130,9 @@ const ContentModulSub = () => {
       alert("✅ Modul & Submodul berhasil disimpan!");
       setModul({ modul_name: "", modul_description: "", icon: "", color: "" });
       setSelectedModulId("");
-      setSubmoduls([{ submodul_name: "", submodul_description: "" }]);
+      setSubmoduls([]); // Reset submodul setelah menyimpan
       fetchModulList();
+      fetchSubmoduls(); // Refresh submoduls list
     } catch (err) {
       alert("❌ Gagal menyimpan modul: " + err.message);
     } finally {
@@ -91,16 +141,12 @@ const ContentModulSub = () => {
   };
 
   return (
-
     <section className="bg-white p-6 rounded-2xl shadow-lg mb-10">
-      {/* Pilih Modul Lama */}
-      <label className="block mb-2 font-medium">
-        Pilih Modul (jika ingin menambah submodul ke modul lama)
-      </label>
+      <label className="block mb-2 font-medium text-gray-800">Pilih Modul</label>
       <select
         value={selectedModulId}
         onChange={(e) => setSelectedModulId(e.target.value)}
-        className="w-full border border-gray-300 rounded-lg p-2 mb-6"
+        className="w-full border border-gray-300 rounded-lg p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         <option value="">-- Buat Modul Baru --</option>
         {modulList.map((m) => (
@@ -113,14 +159,14 @@ const ContentModulSub = () => {
       {/* Form Modul Baru */}
       {!selectedModulId && (
         <>
-          <h3 className="text-lg font-semibold mb-4">Form Modul Baru</h3>
+          <h3 className="text-lg font-semibold mb-4 text-gray-800">Form Modul Baru</h3>
           <input
             name="modul_name"
             value={modul.modul_name}
             onChange={(e) =>
               setModul((prev) => ({ ...prev, modul_name: e.target.value }))
             }
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4"
+            className="w-full border border-gray-300 rounded-lg p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Nama Modul"
           />
           <textarea
@@ -132,7 +178,7 @@ const ContentModulSub = () => {
                 modul_description: e.target.value,
               }))
             }
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4"
+            className="w-full border border-gray-300 rounded-lg p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Deskripsi Modul"
             rows={3}
           />
@@ -142,7 +188,7 @@ const ContentModulSub = () => {
             onChange={(e) =>
               setModul((prev) => ({ ...prev, icon: e.target.value }))
             }
-            className="w-full border border-gray-300 rounded-lg p-2 mb-4"
+            className="w-full border border-gray-300 rounded-lg p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Material Icon (e.g. code, memory)"
           />
           <input
@@ -151,15 +197,14 @@ const ContentModulSub = () => {
             onChange={(e) =>
               setModul((prev) => ({ ...prev, color: e.target.value }))
             }
-            className="w-full border border-gray-300 rounded-lg p-2 mb-6"
+            className="w-full border border-gray-300 rounded-lg p-3 mb-6 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Warna Tailwind (e.g. blue, green)"
           />
         </>
       )}
 
-      {/* Submodul */}
       <hr className="my-6 border-gray-200" />
-      <h3 className="text-lg font-semibold mb-4">Submodul</h3>
+      <h3 className="text-lg font-semibold mb-4 text-gray-800">Submodul</h3>
       {submoduls.map((sub, index) => (
         <div key={index} className="mb-4 bg-gray-50 p-4 rounded-lg">
           <input
@@ -168,7 +213,7 @@ const ContentModulSub = () => {
             onChange={(e) =>
               handleSubmodulChange(index, "submodul_name", e.target.value)
             }
-            className="w-full border border-gray-300 rounded-lg p-2 mb-2"
+            className="w-full border border-gray-300 rounded-lg p-3 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder={`Nama Submodul #${index + 1}`}
           />
           <textarea
@@ -176,9 +221,18 @@ const ContentModulSub = () => {
             onChange={(e) =>
               handleSubmodulChange(index, "submodul_description", e.target.value)
             }
-            className="w-full border border-gray-300 rounded-lg p-2"
+            className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Deskripsi Submodul"
             rows={2}
+          />
+          <input
+            type="number"
+            value={sub.submodul_position}
+            onChange={(e) =>
+              handleSubmodulChange(index, "submodul_position", e.target.value)
+            }
+            className="w-full border border-gray-300 rounded-lg p-3 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder={`Posisi Submodul #${index + 1}`}
           />
           {submoduls.length > 1 && (
             <div className="text-right mt-2">
@@ -211,7 +265,6 @@ const ContentModulSub = () => {
         </button>
       </div>
     </section>
-
   );
 };
 

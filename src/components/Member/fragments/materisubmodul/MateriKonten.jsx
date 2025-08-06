@@ -142,16 +142,14 @@ const MateriKonten = ({ activeTab }) => {
 
     const { data, error } = await supabase
       .from("jawaban_tugas")
-      .insert([
-        {
-          username,
-          tugas_id: tugas.tugas_id,
-          jawaban_code: code,
-          jawaban_output: output,
-          jawaban_keterangan: keterangan,
-          jawaban_submitted_at: new Date().toISOString(),
-        },
-      ])
+      .insert([{
+        username,
+        tugas_id: tugas.tugas_id,
+        jawaban_code: code,
+        jawaban_output: output,
+        jawaban_keterangan: keterangan,
+        jawaban_submitted_at: new Date().toISOString(),
+      }])
       .select("*")
       .single();
 
@@ -199,7 +197,13 @@ const MateriKonten = ({ activeTab }) => {
         <>
           <TitleMateri title={materi.materi_title} />
           <MateriText>{materi.materi_content}</MateriText>
-          <NavigationButton />
+          <div className="mt-4 text-center flex justify-end">
+            <Link to={`/submodul/${encodeURIComponent(modulName)}`}>
+              <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                Sub Modul Selanjutnya
+              </button>
+            </Link>
+          </div>
         </>
       ) : activeTab === "tugas" && tugas ? (
         submittedData && !isEditing ? (
@@ -230,13 +234,11 @@ const MateriKonten = ({ activeTab }) => {
               >
                 ✏️ Edit Jawaban
               </button>
-              {modulName && (
-                <Link to={`/submodul/${encodeURIComponent(modulName)}`}>
-                  <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-                    Sub Modul Selanjutnya
-                  </button>
-                </Link>
-              )}
+              <Link to={`/submodul/${encodeURIComponent(modulName)}`}>
+                <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                  Sub Modul Selanjutnya
+                </button>
+              </Link>
             </div>
           </div>
         ) : isEditing ? (

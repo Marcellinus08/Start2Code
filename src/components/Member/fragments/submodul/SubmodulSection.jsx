@@ -26,7 +26,7 @@ const SubModulSection = ({ modulName }) => {
         .from("submodul")
         .select("*")
         .eq("modul_id", modul.modul_id)
-        .order("submodul_id", { ascending: true });
+        .order("submodul_position", { ascending: true }); // ✅ Urutkan berdasarkan posisi
 
       if (error) {
         console.error("Gagal memuat submodul:", error.message);
@@ -55,6 +55,7 @@ const SubModulSection = ({ modulName }) => {
             desc={submodul.submodul_description}
             isLocked={submodul.is_locked}
             id={submodul.submodul_id}
+            modul_id={submodul.modul_id}
           />
         ))}
       </div>
