@@ -1,4 +1,62 @@
-import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
+// import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
+// import Home from './pages/Member/Home';
+// import Modul from './pages/Member/ModulPembelajaran';
+// import Meet from './pages/Member/Meet';
+// import ForumDiskusi from './pages/Member/ForumDiskusi';
+// import Konsultasi from './pages/Member/Konsultasi';
+// import Statistik from './pages/Member/Statistik';
+// import CompilerAI from './pages/Member/CompilerAI';
+// import Akun from './pages/Member/Akun';
+// import Login from './pages/Member/Login';
+// import Dashboard from "./pages/admin/UserManagement";
+// import SubModul from './pages/Member/SubModul';
+// import MateriSubModul from './pages/Member/MateriSubModul';
+// import ModulManagement from './pages/admin/ModulManagement';
+// import Activity from './pages/admin/Activity';
+// import ModulAdd from './pages/admin/ModulAdd';
+// import ModulEdit from './pages/admin/ModulEdit';
+// // import Meets from './pages/Member/Meets';
+// // import MeetRoom from './pages/Member/MeetRoom';
+
+
+// const MeetRoomWrapper = () => {
+//   const { roomCode } = useParams();
+//   return <MeetRoom roomCode={roomCode} />;
+// };
+
+// function App () {
+//   return (
+//     <Router>
+//       <Routes>
+//         <Route path="/" element={<Login />} />
+//         <Route path="/home" element={<Home />} />
+//         <Route path="/modul" element={<Modul />} />
+//         <Route path="/meet/" element={<Meet />} />
+//         <Route path="/forum" element={<ForumDiskusi />} />
+//         <Route path="/konsultasi" element={<Konsultasi />} />
+//         <Route path="/statistik" element={<Statistik />} />
+//         <Route path="/compilerai" element={<CompilerAI />} />
+//         <Route path="/akun" element={<Akun />} />
+//         <Route path="/admin" element={<Dashboard />} />
+//         <Route path="/submodul/:modulName" element={<SubModul />} />
+//         <Route path="/materi/:submodulId" element={<MateriSubModul />} />
+//         <Route path="/modul_management" element={<ModulManagement />} />
+//         <Route path="/activity" element={<Activity />} />
+//         <Route path="/modul_add" element={<ModulAdd />} />
+//         <Route path="/modul_edit" element={<ModulEdit />} />
+//         {/* <Route path="/meets/:roomCode" element={<Meets />} />  */}
+//         {/* <Route path="/meetroom/:roomCode" element={<MeetRoom />} />  */}
+//       </Routes>
+//     </Router>
+//   );
+// }
+
+// export default App;
+
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Member pages
 import Home from './pages/Member/Home';
 import Modul from './pages/Member/ModulPembelajaran';
 import Meet from './pages/Member/Meet';
@@ -8,47 +66,45 @@ import Statistik from './pages/Member/Statistik';
 import CompilerAI from './pages/Member/CompilerAI';
 import Akun from './pages/Member/Akun';
 import Login from './pages/Member/Login';
-import Dashboard from "./pages/admin/UserManagement";
 import SubModul from './pages/Member/SubModul';
 import MateriSubModul from './pages/Member/MateriSubModul';
+import JoinRoom from './components/Member/fragments/meet/JoinForm';
+import Room from './pages/Member/Room'; 
+import Dashboard from './pages/admin/UserManagement';
 import ModulManagement from './pages/admin/ModulManagement';
 import Activity from './pages/admin/Activity';
 import ModulAdd from './pages/admin/ModulAdd';
 import ModulEdit from './pages/admin/ModulEdit';
-import Meets from './pages/Member/Meets';
-// import MeetRoom from './pages/Member/MeetRoom';
+// import Meets from './pages/Member/Meets';
 
 
-const MeetRoomWrapper = () => {
-  const { roomCode } = useParams();
-  return <MeetRoom roomCode={roomCode} />;
-};
-
-function App () {
+function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/modul" element={<Modul />} />
-        <Route path="/meet/" element={<Meet />} />
+        <Route path="/meet" element={<Meet />} />
         <Route path="/forum" element={<ForumDiskusi />} />
         <Route path="/konsultasi" element={<Konsultasi />} />
         <Route path="/statistik" element={<Statistik />} />
         <Route path="/compilerai" element={<CompilerAI />} />
         <Route path="/akun" element={<Akun />} />
-        <Route path="/admin" element={<Dashboard />} />
         <Route path="/submodul/:modulName" element={<SubModul />} />
         <Route path="/materi/:submodulId" element={<MateriSubModul />} />
+        <Route path="/joinroom" element={<JoinRoom />} />
+        <Route path="/room/:roomCode" element={<Room />} />
+        <Route path="/admin" element={<Dashboard />} />
         <Route path="/modul_management" element={<ModulManagement />} />
         <Route path="/activity" element={<Activity />} />
         <Route path="/modul_add" element={<ModulAdd />} />
         <Route path="/modul_edit" element={<ModulEdit />} />
-        <Route path="/meets/:roomCode" element={<Meets />} /> 
-        {/* <Route path="/meetroom/:roomCode" element={<MeetRoom />} />  */}
+        {/* <Route path="/meets/:roomCode" element={<Meets />} /> */}
       </Routes>
     </Router>
   );
 }
 
 export default App;
+

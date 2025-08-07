@@ -1,82 +1,48 @@
+import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
-import { useHMSActions } from "@100mslive/react-sdk";
-import { Link } from "react-router-dom"; 
-import { MdArrowBack } from "react-icons/md";
 
-function Join() {
-  const hmsActions = useHMSActions();
+const JoinRoom = () => {
+  const navigate = useNavigate();
   const roomCodeRef = useRef(null);
-  const userNameRef = useRef(null);
+  const nameRef = useRef(null);
 
-  const handleSubmit = async (e) => {
+  const handleJoin = (e) => {
     e.preventDefault();
-    const authToken = await hmsActions.getAuthTokenByRoomCode({
-      roomCode: roomCodeRef.current?.value,
-    });
+    const roomCode = roomCodeRef.current?.value.trim();
+    const name = nameRef.current?.value.trim();
 
-    try {
-      await hmsActions.join({
-        userName: userNameRef.current?.value,
-        authToken,
-      });
-    } catch (e) {
-      console.error(e);
+    if (roomCode && name) {
+      navigate(`/room/${roomCode}/${name}`);
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black px-4">
-     
-      <div className="absolute top-4 left-5">
-        <Link
-          to="/meet"
-          className="absolute top-4 left-5 flex items-center text-white hover:text-blue-400 transition"
-        >
-          <MdArrowBack className="mr-2 text-2xl" />
-          <span c lassName="text-lg font-medium">Kembali</span>
-        </Link>
-      </div>
-
-      <img
-        className="h-20 w-auto mb-6"
-        src="/assets/logo putih.png"
-        alt="Start2Code Logo"
-      />
-      <h2 className="text-2xl font-semibold text-white mb-2">Join Room</h2>
-      <p className="text-gray-300 mb-6 text-center">
-        Enter your room code and name before joining
-      </p>
-
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-md flex flex-col gap-4"
-      >
+    <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
+      <h1 className="text-2xl font-semibold mb-4">Join a Room</h1>
+      <form onSubmit={handleJoin} className="flex flex-col gap-4 w-full max-w-sm">
         <input
-          ref={roomCodeRef}
-          id="room-code"
           type="text"
-          name="roomCode"
-          placeholder="Your Room Code"
-          className="w-full h-12 px-4 rounded-md bg-[#1e1f24] text-white border border-[#2c2d33] focus:outline-none focus:ring-2 focus:ring-blue-500"
+          ref={roomCodeRef}
+          placeholder="Enter Room Code"
+          className="p-2 rounded bg-gray-800 text-white"
+          required
         />
         <input
-          required
-          ref={userNameRef}
-          id="name"
           type="text"
-          name="name"
-          placeholder="Your Name"
-          className="w-full h-12 px-4 rounded-md bg-[#1e1f24] text-white border border-[#2c2d33] focus:outline-none focus:ring-2 focus:ring-blue-500"
+          ref={nameRef}
+          placeholder="Enter Your Name"
+          className="p-2 rounded bg-gray-800 text-white"
+          required
         />
         <button
           type="submit"
-          className="flex items-center justify-center h-12 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition-colors"
+          className="bg-blue-600 hover:bg-blue-700 p-2 rounded text-white"
         >
-          Join Now
+          Join Room
         </button>
       </form>
     </div>
   );
-}
+};
 
-export default Join;
+export default JoinRoom;
