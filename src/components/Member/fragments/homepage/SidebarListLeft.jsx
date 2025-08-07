@@ -5,8 +5,11 @@ const SidebarListLeft = ({ name, jenis, now, to = "/", onClick, noActive = false
   const location = useLocation();
 
   const isModulActive = to === "/modul" && (
-    location.pathname.startsWith("/submodul") || location.pathname === "/materisubmodul"
-  );
+  location.pathname.startsWith("/modul") ||
+  location.pathname.startsWith("/submodul") ||
+  location.pathname.startsWith("/materi")
+);
+
 
   if (onClick) {
     return (
