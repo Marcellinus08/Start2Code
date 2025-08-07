@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useHMSActions } from "@100mslive/react-sdk";
-// import { ArrowRightIcon } from "@100mslive/react-icons";
+import { Link } from "react-router-dom"; 
+import { MdArrowBack } from "react-icons/md";
 
 function Join() {
   const hmsActions = useHMSActions();
@@ -25,6 +26,17 @@ function Join() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-black px-4">
+     
+      <div className="absolute top-4 left-5">
+        <Link
+          to="/meet"
+          className="absolute top-4 left-5 flex items-center text-white hover:text-blue-400 transition"
+        >
+          <MdArrowBack className="mr-2 text-2xl" />
+          <span c lassName="text-lg font-medium">Kembali</span>
+        </Link>
+      </div>
+
       <img
         className="h-20 w-auto mb-6"
         src="/assets/logo putih.png"
@@ -61,7 +73,6 @@ function Join() {
           className="flex items-center justify-center h-12 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition-colors"
         >
           Join Now
-          {/* <ArrowRightIcon height={16} width={16} className="ml-2" /> */}
         </button>
       </form>
     </div>
