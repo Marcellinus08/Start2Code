@@ -15,7 +15,9 @@ import ModulManagement from './pages/admin/ModulManagement';
 import Activity from './pages/admin/Activity';
 import ModulAdd from './pages/admin/ModulAdd';
 import ModulEdit from './pages/admin/ModulEdit';
-import MeetRoom from './pages/Member/MeetRoom';
+import Meets from './pages/Member/Meets';
+// import MeetRoom from './pages/Member/MeetRoom';
+
 
 const MeetRoomWrapper = () => {
   const { roomCode } = useParams();
@@ -29,7 +31,7 @@ function App () {
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/modul" element={<Modul />} />
-        <Route path="/meet" element={<Meet />} />
+        <Route path="/meet/" element={<Meet />} />
         <Route path="/forum" element={<ForumDiskusi />} />
         <Route path="/konsultasi" element={<Konsultasi />} />
         <Route path="/statistik" element={<Statistik />} />
@@ -42,7 +44,8 @@ function App () {
         <Route path="/activity" element={<Activity />} />
         <Route path="/modul_add" element={<ModulAdd />} />
         <Route path="/modul_edit" element={<ModulEdit />} />
-        <Route path="/meetroom/:roomCode" element={<MeetRoom />} /> 
+        <Route path="/meets/:roomCode" element={<Meets />} /> 
+        {/* <Route path="/meetroom/:roomCode" element={<MeetRoom />} />  */}
       </Routes>
     </Router>
   );

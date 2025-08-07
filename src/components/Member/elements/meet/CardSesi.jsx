@@ -33,7 +33,7 @@ const CardSesi = ({ date, month, year, time, title, subtitle, teacher, joinUrl, 
       <div>
         {joinUrl ? (
           <button
-            onClick={() => navigate(`/meetroom/${joinUrl}`)}
+            onClick={() => navigate(`/meets/${joinUrl}`)}
             className="text-white bg-blue-500 hover:bg-blue-600 text-sm font-semibold py-3 px-6 rounded-lg flex items-center hover:scale-[1.02] shadow-md"
           >
             <span className="material-icons text-white text-[18px] mr-2">video_call</span>Gabung Sesi

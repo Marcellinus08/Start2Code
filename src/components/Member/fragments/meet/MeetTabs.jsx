@@ -9,10 +9,10 @@ const MeetTabs = () => {
     kelas: {
       mendatang: [
         {
-          date: "05",
+          date: "07",
           month: "AGU",
           year: "2025",
-          time: "05:19 - 23:30",
+          time: "01:19 - 23:30",
           title: "Sesi Tanya Jawab: Struktur Data Lanjutan",
           subtitle: "Sub Bab: Pengenalan Algoritma",
           teacher: "Bpk. Reno",
@@ -59,7 +59,7 @@ const MeetTabs = () => {
     konsultasi: {
       mendatang: [
         {
-          date: "05",
+          date: "07",
           month: "AGU",
           year: "2025",
           time: "02:00 - 14:30",
