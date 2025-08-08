@@ -4,12 +4,13 @@ import ListNav2 from "../../elements/homepage/ListNav2";
 const SidebarListLeft = ({ name, jenis, now, to = "/", onClick, noActive = false }) => {
   const location = useLocation();
 
-  const isModulActive = to === "/modul" && (
-  location.pathname.startsWith("/modul") ||
-  location.pathname.startsWith("/submodul") ||
-  location.pathname.startsWith("/materi")
-);
-
+  const isModulActive =
+    to === "/modul_management" &&
+    (
+      location.pathname.startsWith("/modul_management") ||
+      location.pathname.startsWith("/modul_add") ||
+      location.pathname.startsWith("/modul_edit")
+    );
 
   if (onClick) {
     return (
