@@ -17,6 +17,11 @@ import ModulManagement from './pages/admin/ModulManagement';
 import Activity from './pages/admin/Activity';
 import ModulAdd from './pages/admin/ModulAdd';
 import ModulEdit from './pages/admin/ModulEdit';
+import JadwalKelas from './pages/Mentor/JadwalKelas';
+import ForumMentor from './pages/mentor/ForumMentor';
+import KonsultasiMentor from './pages/mentor/KonsultasiMentor';
+import RekamanMentor from './pages/mentor/RekamanMentor';
+import ProgressMentor from './pages/mentor/ProgressMentor';
 
 
 function App() {
@@ -41,6 +46,12 @@ function App() {
         <Route path="/activity" element={<Activity />} />
         <Route path="/modul_add" element={<ModulAdd />} />
         <Route path="/modul_edit" element={<ModulEdit />} />
+        <Route path="/mentor" element={<JadwalKelas />} />
+        <Route path="/jadwal_kelas" element={<JadwalKelas />} />
+        <Route path="/forum_mentor" element={<ForumMentor />} />
+        <Route path="/konsultasi_mentor" element={<KonsultasiMentor />} />
+        <Route path="/rekaman_mentor" element={<RekamanMentor />} />
+        <Route path="/progres_mentor" element={<ProgressMentor />} />
       </Routes>
     </Router>
   );
