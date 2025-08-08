@@ -1,54 +1,43 @@
-const PieChart = (props) => {
-  const { total } = props;
+const PieChart = ({ data, total }) => {
+  const radius = 15.9155;
+  const strokeWidth = 3.8;
+  let offset = 0;
+
   return (
     <div className="flex justify-center items-center h-64">
       <div className="relative w-48 h-48">
         <svg className="w-full h-full" viewBox="0 0 36 36">
-          {/* Abu-abu latar belakang 100% */}
-          <path
-            d="M18 2.0845
-               a 15.9155 15.9155 0 1 1 0 31.831
-               a 15.9155 15.9155 0 1 1 0 -31.831"
+          {/* Background lingkaran */}
+          <circle
+            cx="18"
+            cy="18"
+            r={radius}
             fill="none"
             stroke="#e6e6e6"
-            strokeWidth="3.8"
+            strokeWidth={strokeWidth}
           />
 
-          {/* Biru - 60% */}
-          <path
-            d="M18 2.0845
-               a 15.9155 15.9155 0 1 1 0 31.831
-               a 15.9155 15.9155 0 1 1 0 -31.831"
-            fill="none"
-            stroke="#2563eb"
-            strokeWidth="3.8"
-            strokeDasharray="60, 40"
-            strokeDashoffset="0"
-          />
+          {/* Data Selesai dan Belum */}
+          {data.map((item, i) => {
+            const dasharray = `${item.percent}, ${100 - item.percent}`;
+            const dashoffset = -offset;
+            offset += item.percent;
 
-          {/* Hijau - 30% */}
-          <path
-            d="M18 2.0845
-               a 15.9155 15.9155 0 1 1 0 31.831
-               a 15.9155 15.9155 0 1 1 0 -31.831"
-            fill="none"
-            stroke="#22c55e"
-            strokeWidth="3.8"
-            strokeDasharray="30, 70"
-            strokeDashoffset="-60"
-          />
-
-          {/* Kuning - 10% */}
-          <path
-            d="M18 2.0845
-               a 15.9155 15.9155 0 1 1 0 31.831
-               a 15.9155 15.9155 0 1 1 0 -31.831"
-            fill="none"
-            stroke="#facc15"
-            strokeWidth="3.8"
-            strokeDasharray="10, 90"
-            strokeDashoffset="-90"
-          />
+            return (
+              <circle
+                key={i}
+                cx="18"
+                cy="18"
+                r={radius}
+                fill="none"
+                stroke={item.color}
+                strokeWidth={strokeWidth}
+                strokeDasharray={dasharray}
+                strokeDashoffset={dashoffset}
+                transform="rotate(-90 18 18)"
+              />
+            );
+          })}
         </svg>
 
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
@@ -61,4 +50,3 @@ const PieChart = (props) => {
 };
 
 export default PieChart;
-  
