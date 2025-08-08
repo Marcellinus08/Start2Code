@@ -54,7 +54,7 @@ const Content = () => {
                             <FontContent By="By PROCODECG’s" name="Kids Regular Coding Class" Describe="Kelas coding menyenangkan untuk anak-anak, mengembangkan logika, kreativitas, dan keterampilan teknologi sejak dini."></FontContent>
                             <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 transform hover:scale-105">Mulai Belajar</button>
                         </div>
-                        <Persentase jumlah='45%'></Persentase>
+                        <Persentase></Persentase>
                     </div>
                 </div>
             </section>
