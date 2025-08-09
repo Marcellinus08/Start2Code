@@ -9,7 +9,7 @@ import TitleContent from "../../fragments/homepage/TitleContent";
 import EventList from "../../elements/homepage/EventList";
 import { useEffect, useState } from "react";
 import { supabase } from "@/supabaseClient";
-
+import { Link } from "react-router-dom";
 
 const Content = () => {
     const [namaDepan, setNamaDepan] = useState("");
@@ -52,7 +52,7 @@ const Content = () => {
                     <div className="bg-white bg-opacity-90 p-6 rounded-lg shadow-inner text-gray-800">
                         <div className="flex justify-between items-start">
                             <FontContent By="By PROCODECG’s" name="Kids Regular Coding Class" Describe="Kelas coding menyenangkan untuk anak-anak, mengembangkan logika, kreativitas, dan keterampilan teknologi sejak dini."></FontContent>
-                            <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 transform hover:scale-105">Mulai Belajar</button>
+                            <Link to="/modul"><button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 transform hover:scale-105">Mulai Belajar</button></Link>
                         </div>
                         <Persentase></Persentase>
                     </div>

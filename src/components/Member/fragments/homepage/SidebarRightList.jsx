@@ -64,7 +64,7 @@ const SidebarRightList = (props) => {
 
       {/* Progress Sub Modul Chart */}
       <div className="bg-white p-4 rounded-xl shadow-md text-center">
-        <h3 className="text-md font-semibold text-gray-800 mb-2">Progress Sub Modul</h3>
+        <h3 className="text-md font-semibold text-gray-800 mb-2">Progress Belajar</h3>
 
         {loading ? (
           <p className="text-gray-500">Memuat data...</p>
