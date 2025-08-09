@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/member/Home';
+import Home from '@/pages/member/Home';
 import Modul from './pages/member/ModulPembelajaran';
 import Meet from './pages/member/Meet';
 import ForumDiskusi from './pages/member/ForumDiskusi';
