@@ -17,7 +17,7 @@ import ModulManagement from './pages/admin/ModulManagement';
 import Activity from './pages/admin/Activity';
 import ModulAdd from './pages/admin/ModulAdd';
 import ModulEdit from './pages/admin/ModulEdit';
-import JadwalKelas from './pages/Mentor/JadwalKelas';
+import JadwalKelas from './pages/mentor/JadwalKelas';
 import ForumMentor from './pages/mentor/ForumMentor';
 import KonsultasiMentor from './pages/mentor/KonsultasiMentor';
 import RekamanMentor from './pages/mentor/RekamanMentor';
