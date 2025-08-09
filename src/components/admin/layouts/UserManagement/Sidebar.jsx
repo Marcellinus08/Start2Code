@@ -53,7 +53,7 @@ const Sidebar = () => {
       </div>
       <div>
         <nav>
-          <SidebarListLeft jenis="account_circle" name="Akun" to="/" />
+          <SidebarListLeft jenis="account_circle" name="Akun" to="/akun" />
           <SidebarListLeft
             jenis="logout"
             name="Keluar"

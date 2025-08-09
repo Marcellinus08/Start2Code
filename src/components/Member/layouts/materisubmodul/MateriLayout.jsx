@@ -69,7 +69,7 @@ const MateriLayout = () => {
           desc="Pahami konsep fundamental algoritma dan berbagai struktur data."
         />
 
-        <section className="mt-6 bg-white p-6 rounded-xl card-shadow w-full">
+        <section className="mt-6 bg-white p-6 rounded-xl card-shadow w-full" style={{ whiteSpace: "pre-line" }}>
           <h3 className="text-xl font-semibold text-gray-800 mb-1">
             Sub Bab: {submodul.submodul_name}
           </h3>

@@ -47,7 +47,6 @@ function App() {
         <Route path="/modul_add" element={<ModulAdd />} />
         <Route path="/modul_edit" element={<ModulEdit />} />
         <Route path="/mentor" element={<JadwalKelas />} />
-        <Route path="/jadwal_kelas" element={<JadwalKelas />} />
         <Route path="/forum_mentor" element={<ForumMentor />} />
         <Route path="/konsultasi_mentor" element={<KonsultasiMentor />} />
         <Route path="/rekaman_mentor" element={<RekamanMentor />} />

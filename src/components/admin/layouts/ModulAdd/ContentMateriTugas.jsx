@@ -6,6 +6,13 @@ const ContentMateriTugas = () => {
   const [submodulOptions, setSubmodulOptions] = useState([]);
   const [modulOptions, setModulOptions] = useState([]);
   const [compilerLanguages, setCompilerLanguages] = useState([]);
+  const handlePaste = (e) => {
+  e.preventDefault();
+  const pastedText = e.clipboardData.getData("text");
+  // Hapus line break tunggal di tengah kalimat, biarkan line break ganda
+  const cleanedText = pastedText.replace(/([^\n])\n([^\n])/g, '$1 $2');
+  e.target.value = cleanedText;
+};
 
   // State untuk form Materi
   const [materi, setMateri] = useState({
@@ -323,6 +330,8 @@ const ContentMateriTugas = () => {
         placeholder="Judul Materi"
       />
       <textarea
+        wrap="hard"
+        onPaste={handlePaste}
         value={materi.konten}
         onChange={(e) => setMateri({ ...materi, konten: e.target.value })}
         className="w-full border border-gray-300 rounded-lg p-2 mb-4"
