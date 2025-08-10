@@ -1,4 +1,4 @@
-import MateriLayout from "@/components/Member/layouts/materisubmodul/MateriLayout";
+import MateriLayout from "@/components/member/layouts/materisubmodul/MateriLayout";
 import React from "react";
 import SidebarLeft from "@/components/member/layouts/homepage/SidebarLeft";
 

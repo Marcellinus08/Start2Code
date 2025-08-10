@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import SubmodulLayout from "@/components/Member/layouts/submodul/SubmodulLayout";
-import TentangModul from "@/components/Member/fragments/submodul/TentangModul";
-import SubModulSection from "@/components/Member/fragments/submodul/SubModulSection";
+import SubmodulLayout from "@/components/member/layouts/submodul/SubmodulLayout";
+import TentangModul from "@/components/member/fragments/submodul/TentangModul";
+import SubModulSection from "@/components/member/fragments/submodul/SubModulSection";
 import SidebarLeft from "@/components/member/layouts/homepage/SidebarLeft";
 
 const SubModul = () => {

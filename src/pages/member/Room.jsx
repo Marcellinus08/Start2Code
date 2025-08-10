@@ -1,4 +1,4 @@
-import RoomEmbed from '@/components/Member/elements/meet/RoomEmbed';
+import RoomEmbed from '@/components/member/elements/meet/RoomEmbed';
 
 const Room = () => {
   return (
