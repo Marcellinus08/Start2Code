@@ -18,8 +18,8 @@ const KonsultasiLayout = () => {
       id: "K-1002",
       member: "Budi Santoso",
       topik: "Debugging API",
-      tanggal: "2025-08-10",
-      jam: "15:30 – 16:00",
+      tanggal: "2025-8-10",
+      jam: "15:30 – 16:07",
       status: "accepted",
     },
     {
