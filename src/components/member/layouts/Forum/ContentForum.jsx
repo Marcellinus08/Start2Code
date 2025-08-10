@@ -1,125 +1,297 @@
-import Header from "../../fragments/modulpage/submodul/Header";
+    import { useEffect, useMemo, useRef, useState } from "react";
+    import Header from "../../fragments/modulpage/submodul/Header";
 
-const ContentForum = () => {
+    const initialMessages = [
+    {
+        id: "m1",
+        author: {
+        name: "Ahmad Fauzi",
+        role: "member",
+        avatar: "https://i.pravatar.cc/100?img=15",
+        },
+        text: "Halo semua, masih bingung centering div (vertikal + horizontal). Ada tips?",
+        at: "2025-08-10T13:45:00Z",
+        flagged: false,
+        replyTo: null,
+    },
+    {
+        id: "m2",
+        author: {
+        name: "Budi Santoso",
+        role: "member",
+        avatar: "https://i.pravatar.cc/100?img=12",
+        },
+        text: "Coba Flexbox: display:flex; justify-content:center; align-items:center;",
+        at: "2025-08-10T14:05:00Z",
+        flagged: false,
+        replyTo: "m1",
+    },
+    {
+        id: "m3",
+        author: {
+        name: "Kamu (You)",
+        role: "member",
+        avatar: "",
+        },
+        text: "Untuk kasus kompleks, pertimbangkan Grid. Untuk centering simple, Flex sudah cukup. 👍",
+        at: "2025-08-10T15:20:00Z",
+        flagged: true,
+        replyTo: "m1",
+    },
+    ];
+
+    const nowISO = () => new Date().toISOString();
+
+    const groupByDay = (messages) => {
+    const map = new Map();
+    messages.forEach((m) => {
+        const d = new Date(m.at);
+        const key = new Date(d.getFullYear(), d.getMonth(), d.getDate()).toISOString();
+        if (!map.has(key)) map.set(key, []);
+        map.get(key).push(m);
+    });
+    return Array.from(map.entries())
+        .sort((a, b) => new Date(a[0]) - new Date(b[0]))
+        .map(([dateISO, msgs]) => ({
+        dateISO,
+        msgs: msgs.sort((a, b) => new Date(a.at) - new Date(b.at)),
+        }));
+    };
+
+    const DayHeader = ({ dateISO }) => {
+    const d = new Date(dateISO);
+    const label = d.toLocaleDateString("id-ID", {
+        weekday: "long",
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+    });
     return (
-        <main className="flex-1 p-8 overflow-y-auto ml-64">
-            <Header
-                title="Forum Diskusi"
-                desc="Punya pertanyaan atau ide? Ayo diskusikan bareng komunitas!"
-            />
+        <div className="text-center my-3">
+        <span className="text-[11px] px-3 py-1 rounded-full bg-gray-200 text-gray-600">
+            {label}
+        </span>
+        </div>
+    );
+    };
 
-            <div className="flex-1 overflow-y-scroll h-125 p-4 space-y-6 bg-white rounded-xl shadow-inner">
+    const MessageItem = ({ msg, replyOf, onReply, onToggleFlag }) => {
+    const isYou = /\(You\)/i.test(msg.author.name);
 
-                {/* Pesan Ahmad Fauzi */}
-                <div className="flex items-start gap-3">
-                    <img className="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQsHiQx0JeHnLHvH97bgZyDCHejmkuNIWYfhlJ_69L80fwDl9nvdSAaW2xLOw2tmvR4llTWMHjc--STtPfI-ChuBHdHEJhlsotUagtZGoJhifmQEWen1dTqpXxBh1uZlqeRQxEvJQtMk788aa5rbxwoF_ZUES8XssorGW-i7vzxOrC29kRnUW374EvzfztXOx8BAeUvVAgnPCpjvv73AHLN-ThgvAEdczX6lS4pbz0ekd62-EFR1bHdJmGaoVkqNBgTpvuSWDudRan" alt="Avatar Ahmad Fauzi" />
-                    <div>
-                        <div className="flex items-baseline gap-2">
-                            <p className="font-semibold text-gray-800">Ahmad Fauzi</p>
-                            <span className="text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full">Member</span>
-                        </div>
-                        <div className="bg-gray-100 p-4 rounded-xl mt-1 max-w-md">
-                            <p>Halo semua, saya masih bingung nih soal centering div di CSS. Udah coba <code>margin: auto;</code> tapi kadang gak berhasil. Ada cara lain yang lebih jitu gak ya? Terutama buat centering vertikal juga.</p>
-                        </div>
-                        <div className="flex items-center gap-3 mt-1">
-                            <p className="text-xs text-gray-400">13.45</p>
-                            <button className="reply-btn text-sm text-blue-600 flex items-center gap-1">
-                                <span className="material-icons text-sm">reply</span> Balas
-                            </button>
-                        </div>
-                    </div>
-                </div>
+    const rowClass = isYou ? "justify-end" : "justify-start";
+    const avatarOrder = isYou ? "order-2" : "order-1";
+    const contentOrder = isYou ? "order-1 items-end text-right" : "order-2 items-start text-left";
 
-                {/* Balasan Sabrina Yuanti (kanan) */}
-                <div className="flex items-start gap-3 justify-end">
-                    <div className="text-right">
-                        <div className="flex items-baseline gap-2 justify-end">
-                            <p className="font-semibold text-gray-800">Sabrina Yuanti</p>
-                            <span className="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full">Member</span>
-                        </div>
-                        <div className="bg-blue-500 text-white p-4 rounded-xl mt-1 max-w-md text-left">
-                            <p>
-                                Halo Ahmad! Cara paling modern dan efektif sekarang itu pakai Flexbox atau Grid. Coba deh pakai ini di container div-nya:
-                                <br /><br />
-                                <code>display: flex;</code><br />
-                                <code>justify-content: center;</code> (horizontal)<br />
-                                <code>align-items: center;</code> (vertikal)
-                                <br /><br />
-                                Itu dijamin langsung ke tengah deh, baik horizontal maupun vertikal.
-                            </p>
-                        </div>
-                        <div className="flex items-center justify-end gap-3 mt-1">
-                            <p className="text-xs text-gray-200">14.05</p>
-                            <button className="reply-btn text-sm text-white flex items-center gap-1 hover:text-yellow-200">
-                                <span className="material-icons text-sm">reply</span> Balas
-                            </button>
-                        </div>
-                    </div>
-                    <img className="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsVLdsreqFV6gE-iaeo2tbo_9VQnLl2Aa1axBE66LlE4aUnjerdiH6xNbScWmcjyQ9iUha0JDqzrp9bm_8Bmrud5EO-nx-bp9HVavll20Q6kS0_vnKm997edYRSuyMCcDlTsumvehoBXd4zCrgmKLjCdbncXz7baajEMvWM_05yggm82rSJ1EIY7PdCUKTG6HF5Qct_TfIG7BmeIHHVhZ5anEozR7QCpVELwBgy7pa6U7dDtp-xyq_GQP1MgeqzxiORvWr3eGQOi0_" />
-                </div>
+    const mainBubbleClass = isYou
+        ? "bg-blue-500 text-white"
+        : "bg-gray-100 text-gray-800";
 
-                {/* Balasan Budi ke Sabrina */}
-                <div className="ml-10 border-l-2 border-gray-200 pl-5">
-                    <div className="flex items-start gap-3">
-                        <img className="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1WzsGYNG9RF79XP0UUf5vu5q2arhuHY78srXTESBMcEsQUiEGG7e6tYpuT_XABAuAev87T6HfwrMsgSrDJeQfhIDnPc-emFxgeTbQcyhIr4ggjU76svn8554WF7zYnLFIoTgskt5_kgkD3wq9v8InWxnt_QgMczCZ9QxFIsSNmvCz6nwzvBE_mZzJK0BhjT1ziv5O26kMlwkxqzdsKehdnAWfx--Cx7czaXbkl8MNyZPWU94bxFaYcXPJUy17iZBIcTUoOLHxENUU" alt="Avatar Budi" />
-                        <div>
-                            <div className="flex items-baseline gap-2">
-                                <p className="font-semibold text-gray-800">Budi Santoso</p>
-                                <span className="text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full">Member</span>
-                            </div>
-                            <div className="bg-gray-100 p-2 rounded-lg mt-1 text-sm text-gray-600 max-w-md">
-                                Balasan untuk <span className="font-semibold text-blue-600">@Sabrina Yuanti</span>
-                            </div>
-                            <div className="bg-gray-100 p-4 rounded-xl mt-1 max-w-md">
-                                <p>Betul kata Sabrina, Flexbox itu sakti banget buat layout. Kalau kasusnya lebih kompleks dan butuh kontrol baris dan kolom, bisa coba CSS Grid juga. Tapi untuk sekedar centering, Flexbox udah lebih dari cukup dan gampang diingat.</p>
-                            </div>
-                            <div className="flex items-center gap-3 mt-1">
-                                <p className="text-xs text-gray-400">15.00</p>
-                                <button className="reply-btn text-sm text-blue-600 flex items-center gap-1">
-                                    <span className="material-icons text-sm">reply</span> Balas
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    return (
+        <div className={`flex ${rowClass} gap-3`}>
+        {/* Avatar */}
+        <img
+            className={`w-10 h-10 rounded-full object-cover ${avatarOrder}`}
+            src={
+            msg.author.avatar ||
+            "https://ui-avatars.com/api/?name=You&background=3b82f6&color=fff"
+            }
+            alt={msg.author.name}
+        />
 
-                {/* Balasan akhir dari Ahmad Fauzi */}
-                <div className="flex items-start gap-3">
-                    <img className="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQsHiQx0JeHnLHvH97bgZyDCHejmkuNIWYfhlJ_69L80fwDl9nvdSAaW2xLOw2tmvR4llTWMHjc--STtPfI-ChuBHdHEJhlsotUagtZGoJhifmQEWen1dTqpXxBh1uZlqeRQxEvJQtMk788aa5rbxwoF_ZUES8XssorGW-i7vzxOrC29kRnUW374EvzfztXOx8BAeUvVAgnPCpjvv73AHLN-ThgvAEdczX6lS4pbz0ekd62-EFR1bHdJmGaoVkqNBgTpvuSWDudRan" alt="Avatar Ahmad Fauzi" />
-                    <div>
-                        <div className="flex items-baseline gap-2">
-                            <p className="font-semibold text-gray-800">Ahmad Fauzi</p>
-                            <span className="text-xs bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full">Member</span>
-                        </div>
-                        <div className="bg-gray-100 p-4 rounded-xl mt-1 max-w-md">
-                            <p>Wah, makasih banyak Sabrina dan Budi! Langsung saya coba dan berhasil. Keren banget! Ternyata segampang itu ya, hehe.</p>
-                        </div>
-                        <div className="flex items-center gap-3 mt-1">
-                            <p className="text-xs text-gray-400">15.40</p>
-                            <button className="reply-btn text-sm text-blue-600 flex items-center gap-1">
-                                <span className="material-icons text-sm">reply</span> Balas
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
+        {/* Content */}
+        <div
+            className={`flex flex-col ${contentOrder} max-w-[820px] ${
+            isYou ? "border-r-2 pr-2" : "border-l-2 pl-2"
+            } border-gray-300`}
+        >
+            {/* Nama & role */}
+            <div className="flex items-center gap-2">
+            <p className="font-semibold text-gray-800">{msg.author.name}</p>
+            <span className="text-[11px] px-2 py-[2px] rounded-full bg-gray-200 text-gray-600">
+                Member
+            </span>
+            {msg.flagged && <span className="text-red-500 text-xs">🚩</span>}
             </div>
 
-            {/* Form input */}
-            <div className="mt-6">
-                <div className="relative flex">
-                    <input
-                        className="w-full pl-4 pr-12 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        placeholder="Ketik balasan Anda..."
-                        type="text"
+            {/* Balasan */}
+            {replyOf && (
+            <div
+                className={`rounded-xl p-3 mb-2 text-[14px] leading-relaxed ${
+                isYou
+                    ? "bg-blue-50 text-blue-900 border border-blue-100"
+                    : "bg-gray-100 text-gray-700"
+                }`}
+            >
+                <div className="text-[12px] mb-1 opacity-90">
+                Balasan untuk{" "}
+                <span className="font-semibold text-blue-600">
+                    @{replyOf.author.name}
+                </span>
+                </div>
+                <div className="opacity-90">{replyOf.text}</div>
+            </div>
+            )}
+
+            {/* Bubble utama */}
+            <div className={`rounded-xl p-4 text-[15px] leading-relaxed ${mainBubbleClass}`}>
+            {msg.text}
+            </div>
+
+            {/* Action bar */}
+            <div
+            className={`flex items-center gap-4 mt-2 text-xs ${
+                isYou ? "justify-end" : "justify-start"
+            }`}
+            >
+            <span className="text-gray-400">
+                {new Date(msg.at).toLocaleTimeString("id-ID", {
+                hour: "2-digit",
+                minute: "2-digit",
+                })}
+            </span>
+            <button
+                onClick={() => onReply(msg)}
+                className={`flex items-center gap-1 ${
+                isYou ? "text-white/90 hover:text-white" : "text-blue-600 hover:text-blue-700"
+                }`}
+            >
+                <span className="material-icons text-[14px]">reply</span> Balas
+            </button>
+            <button
+                onClick={() => onToggleFlag(msg.id)}
+                className={`flex items-center gap-1 ${
+                msg.flagged
+                    ? isYou
+                    ? "text-white"
+                    : "text-red-600"
+                    : isYou
+                    ? "text-white/70 hover:text-white"
+                    : "text-gray-400 hover:text-red-500"
+                }`}
+            >
+                <span className="material-icons text-[14px]">flag</span>
+                {msg.flagged ? "Penting" : "Tandai"}
+            </button>
+            </div>
+        </div>
+        </div>
+    );
+    };
+
+    const ContentForum = () => {
+    const [messages, setMessages] = useState(initialMessages);
+    const [text, setText] = useState("");
+    const [replyTo, setReplyTo] = useState(null);
+
+    const byId = useMemo(
+        () => Object.fromEntries(messages.map((m) => [m.id, m])),
+        [messages]
+    );
+    const grouped = useMemo(() => groupByDay(messages), [messages]);
+
+    const endRef = useRef(null);
+    useEffect(() => {
+        endRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
+
+    const onReply = (msg) => setReplyTo(msg);
+    const clearReply = () => setReplyTo(null);
+
+    const onToggleFlag = (id) =>
+        setMessages((prev) =>
+        prev.map((m) => (m.id === id ? { ...m, flagged: !m.flagged } : m))
+        );
+
+    const send = () => {
+        const v = text.trim();
+        if (!v) return;
+        const payload = {
+        id: `m-${Date.now()}`,
+        author: {
+            name: "Kamu (You)",
+            role: "member",
+            avatar: "",
+        },
+        text: v,
+        at: nowISO(),
+        flagged: false,
+        replyTo: replyTo?.id || null,
+        };
+        setMessages((prev) => [...prev, payload]);
+        setText("");
+        setReplyTo(null);
+    };
+
+    const onKeyDown = (e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        send();
+        }
+    };
+
+    return (
+        <main className="flex-1 p-8 ml-64 h-screen overflow-hidden">
+        <Header
+            title="Forum Diskusi"
+            desc="Punya pertanyaan atau ide? Ayo diskusikan bareng komunitas!"
+        />
+
+        <div className="bg-white rounded-xl shadow-inner p-6 h-[calc(100vh-150px)] flex flex-col">
+            {/* list */}
+            <div className="flex-1 overflow-y-auto space-y-8">
+            {grouped.map(({ dateISO, msgs }) => (
+                <div key={dateISO}>
+                <DayHeader dateISO={dateISO} />
+                <div className="space-y-8">
+                    {msgs.map((m) => (
+                    <MessageItem
+                        key={m.id}
+                        msg={m}
+                        replyOf={m.replyTo ? byId[m.replyTo] : null}
+                        onReply={onReply}
+                        onToggleFlag={onToggleFlag}
                     />
-                    <button className="m-1 bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-full">
-                        <span className="material-icons">send</span>
-                    </button>
+                    ))}
                 </div>
+                </div>
+            ))}
+            <div ref={endRef} />
             </div>
+
+            {/* composer */}
+            <div className="pt-4 border-t mt-3">
+            {replyTo && (
+                <div className="mb-3 flex items-center justify-between bg-sky-50 border border-sky-200 text-sky-800 rounded px-3 py-2 text-xs">
+                <div className="truncate">
+                    Membalas <b>{replyTo.author.name}</b>:{" "}
+                    <span className="opacity-80">{replyTo.text}</span>
+                </div>
+                <button onClick={clearReply} className="text-sky-700 hover:underline">
+                    Batal
+                </button>
+                </div>
+            )}
+            <div className="relative flex">
+                <textarea
+                rows={1}
+                className="w-full pl-4 pr-12 py-3 min-h-[44px] border rounded-lg resize-y focus:outline-none focus:ring-2 focus:ring-sky-500"
+                placeholder="Ketik pesan sebagai member…"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                onKeyDown={onKeyDown}
+                />
+                <button
+                onClick={send}
+                className="absolute right-2 bottom-1.5 bg-sky-600 hover:bg-sky-700 text-white p-1 rounded-full"
+                title="Kirim"
+                >
+                <span className="material-icons">send</span>
+                </button>
+            </div>
+            </div>
+        </div>
         </main>
     );
-};
+    };
 
-export default ContentForum;
+    export default ContentForum;
