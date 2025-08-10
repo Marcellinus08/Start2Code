@@ -1,26 +1,51 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+const ROOM_CODES = {
+  kelas:       { member: "cxr-atgo-wqk", mentor: "bas-cffm-gwn" },
+  konsultasi:  { member: "pif-irlg-tnl", mentor: "ahv-rane-kph" },
+};
+
 const getDayName = (dateString) => {
   const hari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
   return hari[new Date(dateString).getDay()];
 };
 
-const CardSesi = ({ date, month, year, time, title, subtitle, teacher, joinUrl, isFinished, type }) => {
+const CardSesi = ({
+  date,              
+  month,           
+  year,          
+  time,              
+  title,
+  subtitle,
+  teacher,
+  joinUrl,             
+  isFinished,
+  type = "kelas",    
+}) => {
   const navigate = useNavigate();
 
-  const cardColor = isFinished ? "bg-gray-200 text-gray-600" : "bg-blue-500 text-white";
-  const validDate = `${year}-${{
-    JAN: "01", FEB: "02", MAR: "03", APR: "04", MEI: "05", JUN: "06",
-    JUL: "07", AGU: "08", SEP: "09", OKT: "10", NOV: "11", DES: "12"
-  }[month]}-${date.padStart(2, "0")}`;
+  const monthToNum = {
+    JAN:"01", FEB:"02", MAR:"03", APR:"04", MEI:"05", JUN:"06",
+    JUL:"07", AGU:"08", SEP:"09", OKT:"10", NOV:"11", DES:"12"
+  };
+  const validDate = `${year}-${monthToNum[month]}-${String(date).padStart(2,"0")}`;
   const realDay = getDayName(validDate);
+
+  const [startStr, endStr] = String(time).split("-").map(s => s.trim());
+  const start = new Date(`${validDate}T${startStr}`);
+  const end   = new Date(`${validDate}T${endStr}`);
+  const now   = new Date();
+  const isNow = now >= start && now <= end;
+
+  const memberCode = ROOM_CODES[type]?.member || ROOM_CODES.kelas.member;
+  const finalJoinCode = joinUrl || (isNow ? memberCode : null);
 
   return (
     <div className="bg-white rounded-xl shadow-md flex items-center justify-between px-8 py-6 mb-6 transition-transform duration-300 hover:shadow-lg">
-      <div className={`flex flex-col items-center justify-center rounded-md w-[95px] h-[90px] ${cardColor}`}>
+      <div className={`flex flex-col items-center justify-center rounded-md w-[95px] h-[90px] ${isFinished ? "bg-gray-200 text-gray-600" : "bg-blue-500 text-white"}`}>
         <p className="text-[28px] font-bold leading-none">{date}</p>
-        <p className="text-sm font-semibold mt-1 uppercase">{month} <span className="font-medium normal-case">‘{year.slice(-2)}</span></p>
+        <p className="text-sm font-semibold mt-1 uppercase">{month} <span className="font-medium normal-case">‘{String(year).slice(-2)}</span></p>
       </div>
 
       <div className="flex-1 px-6 flex flex-col gap-y-1">
@@ -31,9 +56,9 @@ const CardSesi = ({ date, month, year, time, title, subtitle, teacher, joinUrl, 
       </div>
 
       <div>
-        {joinUrl ? (
+        {finalJoinCode ? (
           <button
-            onClick={() => navigate(`/room/${joinUrl}`)}
+            onClick={() => navigate(`/room/${finalJoinCode}`)}
             className="text-white bg-blue-500 hover:bg-blue-600 text-sm font-semibold py-3 px-6 rounded-lg flex items-center hover:scale-[1.02] shadow-md"
           >
             <span className="material-icons text-white text-[18px] mr-2">video_call</span>Gabung Sesi
