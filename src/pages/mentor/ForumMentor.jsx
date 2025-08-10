@@ -1,8 +1,11 @@
-import ForumLayout from "@/components/mentor/layouts/forumdiskusi/ForumLayout";
+import ContentForumMentor from "@/components/mentor/fragments/forumdiskusi/ContentForumMentor";
+import ForumLayout from "@/components/Mentor/layouts/forumdiskusi/ForumLayout";
 
 const ForumMentor = () => {
   return (
-    <ForumLayout />
+    <ForumLayout>
+      <ContentForumMentor />
+    </ForumLayout>
   );
 };
 
