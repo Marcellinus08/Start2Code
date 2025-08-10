@@ -1,4 +1,4 @@
-import ForumLayout from "@/components/Mentor/layouts/forumdiskusi/ForumLayout";
+import ForumLayout from "@/components/mentor/layouts/forumdiskusi/ForumLayout";
 
 const ForumMentor = () => {
   return (

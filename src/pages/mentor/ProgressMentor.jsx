@@ -1,4 +1,4 @@
-import ProgressLayout from "@/components/Mentor/layouts/progresmember/ProgressLayout";
+import ProgressLayout from "@/components/mentor/layouts/progresmember/ProgressLayout";
 
 const ProgressMentor = () => {
   return (

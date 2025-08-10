@@ -1,7 +1,7 @@
-import DaftarKelas from "@/components/Mentor/fragments/jadwalkelas/DaftarKelas";
-import EditKelasModal from "@/components/Mentor/fragments/jadwalkelas/EditKelasModal";
-import FormTambahKelas from "@/components/Mentor/fragments/jadwalkelas/FormTambahKelas";
-import JadwalLayout from "@/components/Mentor/layouts/jadwalkelas/JadwalLayout";
+import DaftarKelas from "@/components/mentor/fragments/jadwalkelas/DaftarKelas";
+import EditKelasModal from "@/components/mentor/fragments/jadwalkelas/EditKelasModal";
+import FormTambahKelas from "@/components/mentor/fragments/jadwalkelas/FormTambahKelas";
+import JadwalLayout from "@/components/mentor/layouts/jadwalkelas/JadwalLayout";
 import React, { useState } from "react";
 
 

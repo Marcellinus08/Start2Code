@@ -1,4 +1,4 @@
-import KonsultasiLayout from "@/components/Mentor/layouts/konsultasi/KonsultasiLayout";
+import KonsultasiLayout from "@/components/mentor/layouts/konsultasi/KonsultasiLayout";
 
 const KonsultasiMentor = () => {
   return (

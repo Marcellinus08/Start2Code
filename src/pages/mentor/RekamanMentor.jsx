@@ -1,4 +1,4 @@
-import RekamanLayout from "@/components/Mentor/layouts/rekamansesi/RekamanLayout";
+import RekamanLayout from "@/components/mentor/layouts/rekamansesi/RekamanLayout";
 
 const KonsultasiMentor = () => {
   return (
