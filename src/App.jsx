@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Home from '@/pages/member/Home';
+import Home from '@/pages/member/Home.jsx';
 import ModulPembelajaran from '@/pages/member/ModulPembelajaran'; // atau '@/pages/member/Modul' kalau itu nama filenya
 import Meet from '@/pages/member/Meet';
 import ForumDiskusi from '@/pages/member/ForumDiskusi';
