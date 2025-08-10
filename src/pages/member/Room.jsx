@@ -1,9 +1,11 @@
 import RoomEmbed from '@/components/member/elements/meet/RoomEmbed';
 
+import { useParams } from "react-router-dom";
 import React from "react";
 
 const Room = () => {
   const params = useParams();
+  const code = params.code || params.roomCode; 
 
   if (!code) {
     return (

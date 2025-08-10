@@ -11,6 +11,13 @@ const JadwalKelas = () => {
 
   const tambahKelas = (data) => {
     const id = data.id ?? `${Date.now()}`; 
+
+    const jam =
+      data.jam && data.jam.includes(":")
+        ? data.jam
+        : `${data.jam_mulai ?? ""} – ${data.jam_selesai ?? ""}`;
+
+    setKelasList((prev) => [...prev, { ...data, id, jam }]);
   };
 
   const mulaiKelas = (kelas) => {
