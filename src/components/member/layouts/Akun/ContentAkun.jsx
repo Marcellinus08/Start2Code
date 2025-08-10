@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/supabaseClient";
 import Header from "../../fragments/modulpage/submodul/Header";
 import Profile from "../../fragments/Akun/Profile";
-import Username from "../../fragments/akun/Username";
-import Form from "../../fragments/akun/Form";
+import Username from "../../fragments/Akun/Username";
+import Form from "../../fragments/Akun/Form";
 
 const ContentAkun = () => {
   const [userData, setUserData] = useState(null);
