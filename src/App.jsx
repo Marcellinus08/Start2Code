@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from '@/pages/member/Home';
-import Modul from '@/pages/member/ModulPembelajaran'; // atau '@/pages/member/Modul' kalau itu nama filenya
+import ModulPembelajaran from '@/pages/member/ModulPembelajaran'; // atau '@/pages/member/Modul' kalau itu nama filenya
 import Meet from '@/pages/member/Meet';
 import ForumDiskusi from '@/pages/member/ForumDiskusi';
 import Konsultasi from '@/pages/member/Konsultasi';
@@ -32,7 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/modul" element={<Modul />} />
+        <Route path="/modul" element={<ModulPembelajaran />} />
         <Route path="/meet" element={<Meet />} />
         <Route path="/forum" element={<ForumDiskusi />} />
         <Route path="/konsultasi" element={<Konsultasi />} />
