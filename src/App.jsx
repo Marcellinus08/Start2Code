@@ -11,7 +11,7 @@ import Akun from '@/pages/member/Akun';
 import Login from '@/pages/member/Login';
 import SubModul from '@/pages/member/SubModul';
 import MateriSubModul from '@/pages/member/MateriSubModul';
-import JoinRoom from '@/components/member/fragments/meet/JoinForm';
+import JoinRoom from '@/components/member/fragments/meet/JoinRoom';
 import Room from '@/pages/member/Room';
 
 import Dashboard from '@/pages/admin/UserManagement';

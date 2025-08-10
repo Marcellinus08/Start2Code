@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { supabase } from "@/supabaseClient"; 
 
 const EditKelasModal = ({ isOpen, onClose, data, onUpdate }) => {
   const [formData, setFormData] = useState({
@@ -12,25 +11,9 @@ const EditKelasModal = ({ isOpen, onClose, data, onUpdate }) => {
     pengajar: "",
   });
 
-  const [mentors, setMentors] = useState([]);
+  const mentorList = ["Bpk. Reno", "Ibu Sari", "Bpk. Rudi", "Ibu Nia"];
 
-  useEffect(() => {
-    const fetchMentors = async () => {
-      const { data: mentorData, error } = await supabase
-        .from("users")
-        .select("username, full_name")
-        .eq("role", "mentor");
-
-      if (!error) {
-        setMentors(mentorData);
-      } else {
-        console.error("Gagal ambil mentor:", error);
-      }
-    };
-
-    if (isOpen) fetchMentors();
-  }, [isOpen]);
-
+  // Prefill form ketika modal dibuka
   useEffect(() => {
     if (!data) return;
 
@@ -130,6 +113,7 @@ const EditKelasModal = ({ isOpen, onClose, data, onUpdate }) => {
             required
           />
 
+          {/* Dropdown Mentor Statis */}
           <select
             className="input-style"
             name="pengajar"
@@ -138,9 +122,9 @@ const EditKelasModal = ({ isOpen, onClose, data, onUpdate }) => {
             required
           >
             <option value="">Pilih Mentor</option>
-            {mentors.map((mentor, idx) => (
-              <option key={idx} value={mentor.full_name || mentor.username}>
-                {mentor.full_name || mentor.username}
+            {mentorList.map((mentor, idx) => (
+              <option key={idx} value={mentor}>
+                {mentor}
               </option>
             ))}
           </select>
