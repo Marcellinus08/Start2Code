@@ -1,3 +1,14 @@
+import React from "react";
+
+const Composer = ({ placeholder, replyingTo, value, onChange, onSend, onCancel }) => {
+  const onKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      onSend();
+    }
+  };
+
+  return (
     <div className="pt-4 border-t mt-3">
       {replyingTo && (
         <div className="mb-3 flex items-center justify-between bg-sky-50 border border-sky-200 text-sky-800 rounded px-3 py-2 text-xs">

@@ -1,3 +1,16 @@
+import { useEffect, useState } from "react";
+
+const EditNoteModal = ({ open, member, onClose, onSave }) => {
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    if (open) setText(member?.notes || "");
+  }, [open, member]);
+
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/30 z-50 flex items-center justify-center">
       <div className="bg-white w-full max-w-xl rounded-lg shadow-lg p-6">
         <h3 className="text-lg font-bold text-blue-600 mb-4 flex items-center gap-2">
           <span className="material-icons">sticky_note_2</span>

@@ -1,3 +1,36 @@
+import React, { useEffect, useState } from "react";
+
+const pad = (v) => v?.trim?.() || "";
+
+const RescheduleModal = ({ open, initial, onClose, onSave }) => {
+  const [tanggal, setTanggal] = useState("");
+  const [mulai, setMulai] = useState("");
+  const [selesai, setSelesai] = useState("");
+
+  useEffect(() => {
+    if (!open) return;
+    const [m = "", s = ""] = String(initial?.jam || "")
+      .split(/[-–—]/)
+      .map((x) => x.trim());
+    setTanggal(initial?.tanggal || "");
+    setMulai(m);
+    setSelesai(s);
+  }, [open, initial]);
+
+  if (!open) return null;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!tanggal || !mulai || !selesai) return;
+    const start = new Date(`1970-01-01T${mulai}:00`);
+    const end   = new Date(`1970-01-01T${selesai}:00`);
+    if (start > end) {
+      alert("Jam selesai tidak boleh lebih awal dari jam mulai.");
+      return;
+    }
+    onSave({
+      id: initial?.id,
+      tanggal: pad(tanggal),
       jam: `${pad(mulai)} – ${pad(selesai)}`,
     });
     onClose();
