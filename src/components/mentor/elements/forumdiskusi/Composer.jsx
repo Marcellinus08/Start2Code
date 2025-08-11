@@ -31,7 +31,7 @@ const Composer = ({ placeholder, replyingTo, value, onChange, onSend, onCancel }
         />
         <button
           onClick={onSend}
-          className="absolute right-2 bottom-2 bg-sky-600 hover:bg-sky-700 text-white py-2 px-3 rounded-full"
+          className="absolute right-2 bottom-1 bg-sky-600 hover:bg-sky-700 text-white py-1 px-2 rounded-full"
           title="Kirim"
         >
           <span className="material-icons">send</span>
