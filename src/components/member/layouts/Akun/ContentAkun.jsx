@@ -42,7 +42,7 @@ const ContentAkun = () => {
           <Profile />
 
           <div className="flex-1 w-full">
-            <Username name={userData.full_name} email={userData.email} />
+            <Username name={userData.full_name} email={userData.role} />
             <Form
               username={userData.username}
               email={userData.email}
